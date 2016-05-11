@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+.flex-notes {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    background-color: dodgerblue ;
+}
+.flex-note {
+    background-color: ghostwhite ;
+    font-family: 'Roboto', sans-serif;
+    width: auto;
+    margin: 10px;
+}
+.flex-note-finished {
+    background-color: dodgerblue;
+    width: auto;
+    margin: 10px;
+}
+.flex-note-edit {
+    background-color: dodgerblue;
+    width: auto;
+    margin: 10px;
+}
+
+
+.flex-notes-details {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+.title {
+    font-family: 'Railway', sans-serif;
+}
