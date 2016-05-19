@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>SimpleNote</title>
-
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <div class="flex-notes">
-        <div class="flex-note-finished"><input type="checkbox" id="note-finished-check"  ></div>
-        <div class="flex-note">
-            <div class="flex-notes-details">
-                <div class="title">
-                    <h3>Der Titel einer Notiz</h3>
-                </div>
-                <div class="description">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                        Cum sociis natoque penatibus et magnis dis parturient montes,[..]
-                    </p>
-                </div>
+</head>
+<body class="content">
+<header role="banner">
+    <h1>Einfach notieren</h1>
+
+    <nav class="note-sorter" role="navigation">
+        <div class="sorter">
+            <label for="sorterselect">Sortieren nach:</label>
+            <select id="sorterselect">
+                <option value="finished-date">Beendet Datum</option>
+                <option value="creation-date">Angelegt Datum</option>
+                <option value="importance" selected>Wichtigkeit</option>
+                <option value="urgency">Dringlichkeit</option>
+            </select>
+            <div class="filter">
+                <label for="showfinished-notes">Beendete Notizen anzeigen: </label>
+                <input type="checkbox" id="showfinished-notes">
             </div>
         </div>
-        <div class="flex-note-edit"> <button type="button">Edit</button> </div>
+    </nav>
+</header>
+<div class="notes">
+    <label for="note-finished-cb">Beendet:</label>
+    <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
+    <div class="note">
+        <div class="notes-details">
+            <div class="title">
+                <h3>Der Titel einer Notiz</h3>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa.
+                    Cum sociis natoque penatibus et magnis dis parturient montes,[..]
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="note-edit">
+        <button type="button">Edit</button>
+    </div>
+</div>
+
+<footer>
+    <div class="css-selection">
+        <label for="css-selector">Design auswählen: </label>
+        <select id="css-selector">
+            <option value="StyleOne">BlackandWhite</option>
+            <option value="StyleTwo" selected>HSRColor</option>
+        </select>
     </div>
 
-
-  </body>
+</footer>
+</body>
 </html>
