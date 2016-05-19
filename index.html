@@ -5,7 +5,7 @@
     <title>SimpleNote</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body class="content">
+<body class="site">
 <header role="banner">
     <h1>Einfach notieren</h1>
 
@@ -26,12 +26,17 @@
     </nav>
 </header>
 <div class="notes">
-    <label for="note-finished-cb">Beendet:</label>
-    <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
+    <div class="note-finished">
+        <div class="spacer">
+            <h5>space</h5>
+        </div>
+        <label for="note-finished-cb"></label>
+        <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
+    </div>
     <div class="note">
         <div class="notes-details">
             <div class="title">
-                <h3>Der Titel einer Notiz</h3>
+                <h5>Der Titel einer Notiz</h5>
             </div>
             <div class="description">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
@@ -42,6 +47,9 @@
         </div>
     </div>
     <div class="note-edit">
+        <div class="spacer">
+            <h5>space</h5>
+        </div>
         <button type="button">Edit</button>
     </div>
 </div>
