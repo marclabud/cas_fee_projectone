@@ -14,8 +14,8 @@ Install packages in `package.json`  from project folder using npm
 
 ## Dependencies
 
-* [typescript](http:/github.com/microsoft/typescript)
-* [typings](http:/github.com/typings/typings)
+* [typescript](http:/github.com/microsoft/typescript.git)
+* [typings](http:/github.com/typings/typings.git)
 * jasmine
 * jquery
 * handlebars.js
