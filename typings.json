@@ -1,4 +1,7 @@
 {
   "name": "SimpleNote",
-  "dependencies": {}
+  "dependencies": {},
+  "globalDependencies": {
+    "handlebars": "registry:dt/handlebars#3.0.3+20160317120654"
+  }
 }
