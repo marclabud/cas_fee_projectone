@@ -1,17 +1,5 @@
-body {
-    font-family: sans-serif;
-    margin: 50px;
-}
 
-small {
-    color: #999;
-}
-
-h1 {
-    text-align: center;
-}
-
-h2 {
+li h2  {
     font-size: 1.2rem;
     margin: 0;
 }
@@ -66,7 +54,7 @@ li {
     padding-bottom: 2em;
 }
 
-button {
+button[attribute^=data-delta] {
     cursor: pointer;
     font-size: 24px;
     border: 1px solid transparent;

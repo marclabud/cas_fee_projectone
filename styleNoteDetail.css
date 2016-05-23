@@ -42,6 +42,19 @@ form div h4 {
 footer {
  /* TODO */
 }
+
+footer button {
+    margin: 5px;
+    padding: 5px;
+}
+
+footer button:hover,
+footer button:focus,
+footer button:active{
+    background-color: #ACD6F5;
+    font-weight:bold;
+}
+
 .content {
     display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6,
                             Safari <=6 */
