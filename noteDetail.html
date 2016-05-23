@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+
     <title>Note Detail</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="styleNoteDetail.css">
-</head>
+    <!-- link calendar resources -->
+    <link rel="stylesheet" type="text/css" href="css/tcal.css">
+    <script type="text/javascript" src="js/tcal.js"></script>
+
+    <script type="text/javascript" src="js/moment.min.js"></script>
+ /head>
 <body class="site">
 <header role="banner">
     <h1>Notiz erstellen</h1>
@@ -16,20 +23,18 @@
         <form id="form" class="note-form">
             <div class="item col1"><h4>Title</h4></div>
             <div class="item col2">
-                <label>
-                    <input id="title" class="input" name="title" type="text">
-                </label>
+                <label><input id="title" class="input" name="title" type="text"></label>
             </div>
             <div class="item col1"><h4>Beschreibung</h4></div>
             <div class="item col2">
-                <label>
-                     <textarea id="beschreibung" class="beschreibung" name="beschreibung" cols="50" rows="5"></textarea>
-                </label>
+                <label><textarea id="beschreibung" class="beschreibung" name="beschreibung" cols="50" rows="5"></textarea></label>
             </div>
             <div class="item col1"><h4>Wichtigkeit</h4></div>
             <div class="item col2"></div>
             <div class="item col1"><h4>Erledigt bis:</h4></div>
-            <div class="item col2"></div>
+            <div class="item col2">
+                <label><input id="finishedDate" type="text" name="finishedDate" class="tcal" value=""></label>
+            </div>
         </form>
     </main>
 
