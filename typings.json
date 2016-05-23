@@ -2,6 +2,8 @@
   "name": "SimpleNote",
   "dependencies": {},
   "globalDependencies": {
-    "handlebars": "registry:dt/handlebars#3.0.3+20160317120654"
+    "handlebars": "registry:dt/handlebars#3.0.3+20160317120654",
+    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "moment": "registry:dt/moment#2.8.0+20160316155526"
   }
 }
