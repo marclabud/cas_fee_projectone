@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A notepad example for [CAS] Front End Engineering.",
   "devDependencies": {
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "handlebars": "^4.0.5"
   }
 }
