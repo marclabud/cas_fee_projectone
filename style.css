@@ -56,12 +56,11 @@ li   {
 }
 .notes {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: center;
 }
 
-
-.notes-details {
+.details {
     display: flex;
     flex-direction: column;
 }

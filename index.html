@@ -37,34 +37,37 @@
         </div>
     </nav>
 </header>
-<div class="notes">
-    <ul id="notes-ulist" class="notes"></ul>
+
+    <ul id="notes-ulist"></ul>
     <!-- handlebars-template for notes -->
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each notes }}
-        <li> <div class="note-finished">
-            <div class="spacer">
-                <h5>space</h5>S
-            </div>
-            <label for="note-finished-cb"></label>
-            <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
-        </div>
-        <div class="note">
-            <div class="notes-details">
-                <div class="title">
-                    <h5>{{title}}</h5>
+        <li>
+            <div class="notes">
+                <div class="note-finished">
+                    <div class="spacer">
+                        <h5>space</h5>S
+                    </div>
+                    <div class="note-finished"><label for="note-finished-cb"></label><input type="checkbox" id="note-finished-cb"></div>
                 </div>
-                <div class="description">
-                    <p>{{description}}</p>
+                <div class="notetext">
+                   <div class="details">
+                        <div class="title">
+                            <h5>{{title}}</h5>
+                        </div>
+                        <div class="description">
+                            <p>{{description}}</p>
+                        </div>
+                   </div>
+                </div>
+                <div class="note-edit">
+                    <div class="spacer">
+                        <h5>space</h5>
+                    </div>
+                    <button type="button">Edit</button>
                 </div>
             </div>
-        </div>
-        <div class="note-edit">
-            <div class="spacer">
-                <h5>space</h5>
-            </div>
-            <button type="button">Edit</button>
-        </div> </li>
+        </li>
         {{else}}
         <p class="notes-empty">No content</p>
         {{/each}}
