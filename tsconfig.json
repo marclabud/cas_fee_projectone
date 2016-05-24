@@ -10,6 +10,7 @@
     "noImplicitAny": true
   },
   "files": [
+    "noteslistview.ts",
     "typings/index.d.ts"
   ],
   "exclude": [
@@ -17,3 +18,4 @@
     "typings"
   ]
 }
+

@@ -55,8 +55,8 @@ p {
 
 .notes {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .notes-details {
@@ -65,7 +65,8 @@ p {
 }
 
 footer {
-    position: absolute;
+    display: block;
+    position: relative;
     bottom: 0;
     width: 100%;
     display: flex;

@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>SimpleNote</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!--jquery-core snippet vom cdn-->
+    <!--jquery-core snippet from cdn-->
     <script
             src="http://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous">
     </script>
-    <!-- handlebars vom cdn-->
+    <!-- handlebars lib from cdn-->
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
+            src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
     </script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="noteslistview.js"></script>
 
 </head>
 <body class="site">
@@ -37,32 +38,37 @@
     </nav>
 </header>
 <div class="notes">
-    <div class="note-finished">
-        <div class="spacer">
-            <h5>space</h5>
-        </div>
-        <label for="note-finished-cb"></label>
-        <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
-    </div>
-    <div class="note">
-        <div class="notes-details">
-            <div class="title">
-                <h5>Der Titel einer Notiz</h5>
+    <ul id="notes-list"></ul>
+    <!-- handlebars-template for notes -->
+    <script id="notes-template" type="text/x-handlebars-template">
+        {{#each notes }}
+        <div class="note-finished">
+            <div class="spacer">
+                <h5>space</h5>
             </div>
-            <div class="description">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                    massa.
-                    Cum sociis natoque penatibus et magnis dis parturient montes,[..]
-                </p>
+            <label for="note-finished-cb"></label>
+            <div class="note-finished"><input type="checkbox" id="note-finished-cb"></div>
+        </div>
+        <div class="note">
+            <div class="notes-details">
+                <div class="title">
+                    <h5>{{title}}</h5>
+                </div>
+                <div class="description">
+                    <p>{{description}}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="note-edit">
-        <div class="spacer">
-            <h5>space</h5>
+        <div class="note-edit">
+            <div class="spacer">
+                <h5>space</h5>
+            </div>
+            <button type="button">Edit</button>
         </div>
-        <button type="button">Edit</button>
-    </div>
+        {{else}}
+        <p class="notes-empty">No content</p>
+        {{/each}}
+    </script>
 </div>
 
 <footer>
@@ -73,7 +79,7 @@
             <option value="StyleTwo" selected>HSRColor</option>
         </select>
     </div>
-
 </footer>
+
 </body>
 </html>
