@@ -47,17 +47,19 @@ h5 {
 p {
    font-size: 1rem;
 }
-
+li   {
+    list-style: none;
+}
 .sorter {
     display: flex;
     justify-content: flex-end;
 }
-
 .notes {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
+
 
 .notes-details {
     display: flex;
@@ -65,11 +67,9 @@ p {
 }
 
 footer {
-    display: block;
-    position: relative;
+    display: flex;
     bottom: 0;
     width: 100%;
-    display: flex;
     justify-content: flex-end;
     background-color: #005291;
     color: white;

@@ -14,8 +14,8 @@ window.onload = function() {
     };
     var createNotesHTML: HandlebarsTemplateDelegate = Handlebars.compile(document.getElementById("notes-template").innerText);
     
-    var listHtml : string  = createNotesHTML(context);
-    document.getElementById("notes-list").innerHTML = listHtml;
+    var notesHtml : string  = createNotesHTML(context);
+    document.getElementById("notes-ulist").innerHTML = notesHtml;
 
     console.log ("End Window onload");
 };
