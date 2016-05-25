@@ -66,9 +66,10 @@ li   {
 }
 
 footer {
-    display: flex;
+    position: absolute;
     bottom: 0;
     width: 100%;
+    display: flex;
     justify-content: flex-end;
     background-color: #005291;
     color: white;
