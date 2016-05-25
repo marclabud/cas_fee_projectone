@@ -1,0 +1,66 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+.note-detail {
+    height:100%;
+    width: 100%;
+    /* border: 1px solid black; */
+}
+.note-form {
+    display: flex;
+    flex-wrap:wrap;
+    margin: 10px;
+}
+.item {
+    display: inline-block;
+   /* background:blue; */
+    margin: 10px;
+    flex-grow: 1;
+    width: calc(100% /2 - 6*10px);
+
+}
+
+.col1 {
+    flex-basis:  calc(100% /10*2 - 6*10px);;
+}
+.col2 {
+    flex-basis:  calc(100% /10*8 - 6*10px);
+}
+
+.input {
+    width: 90%;
+}
+
+.beschreibung {
+    width: 90%;
+}
+
+form div h4 {
+    margin: 0;
+}
+
+footer {
+ /* TODO */
+}
+
+footer button {
+    margin: 5px;
+    padding: 5px;
+}
+
+footer button:hover,
+footer button:focus,
+footer button:active{
+    background-color: #ACD6F5;
+    font-weight:bold;
+}
+
+.content {
+    display: -webkit-box;  /* OLD: Chrome <=20, iOS <=6,
+                            Safari <=6 */
+    display: -moz-box;     /* OLD: Firefox <=21 */
+    display: -ms-flexbox;  /* TWEENER: IE 10 */
+    display: -webkit-flex; /* NEW: Chrome 21-28 */
+    display: flex;         /* NEW (Spec): Chrome >=29,
+                            Firefox >=22, IE >=11 */
+}

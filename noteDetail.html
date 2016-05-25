@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>Note Detail</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styleNoteDetail.css">
+    <!-- link calendar resources -->
+    <link rel="stylesheet" type="text/css" href="css/tcal.css">
+    <script type="text/javascript" src="js/tcal.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <!-- link rating stuff-->
+    <link rel="stylesheet" type="text/css" href="css/rating.css">
+    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+<body class="site">
+<header role="banner">
+    <h1>Notiz erstellen</h1>
+</header>
+<div class="note-content">
+    <main class="note-detail">
+        <form id="form" class="note-form">
+            <div class="item col1"><h4>Title</h4></div>
+            <div class="item col2">
+                <label><input id="title" class="input" name="title" type="text"></label>
+            </div>
+            <div class="item col1"><h4>Beschreibung</h4></div>
+            <div class="item col2">
+                <label><textarea id="beschreibung" class="beschreibung" name="beschreibung" cols="50" rows="5"></textarea></label>
+            </div>
+            <div class="item col1"><h4>Wichtigkeit</h4></div>
+            <div class="item col2"><ul id="songs" data-maximale-rate="5"></ul></div>
+            <div class="item col1"><h4>Erledigt bis:</h4></div>
+            <div class="item col2">
+                <label><input id="finishedDate" type="text" name="finishedDate" class="tcal" value=""></label>
+            </div>
+        </form>
+    </main>
+</div>
+<footer>
+    <div class="footer">
+        <button id="speichern" type="submit" form="form">Speichern</button>
+        <button id="abbrechen" type="reset" value="">Abbrechen</button>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script id="songs-template" type="text/x-handlebars-template">
+    {{#each this}}
+    <li id="song-{{this.id}}" class="index-{{@index}}">
+        {{> song}}
+    </li>
+    {{/each}}
+</script>
+<script id="song-template" type="text/x-handlebars-template">
+    <h2>{{this.title}}  <small><i class="fa fa-music"></i> {{this.artist}}</small></h2>
+    <div>
+        <span class="rating">{{{rate this.rating}}}</span>
+        <button data-delta="-1" data-song-id="{{this.id}}" type="button">−</button>
+        <button data-delta="1" data-song-id="{{this.id}}" type="button">+</button>
+    </div>
+</script>
+<script id="css-template" type="text/x-handlebars-template">
+    {{#each this}}
+    #songs>.index-{{@index}}{transform:translateY({{math @index '*' 100}}%);}
+    {{/each}}
+</script>
+
+<script>
+    Element.prototype.index = function() {
+        var returnedIndex = 0;
+        var siblings = this.parentNode.childNodes;
+        var count = siblings.length;
+        var index = 0;
+        while (index < count) {
+            if (siblings[index].nodeType === Node.ELEMENT_NODE) {
+                // Node is an element
+                if (this == siblings[index]) {
+                    break;
+                }
+                returnedIndex++;
+            }
+            index++;
+        }
+        return returnedIndex;
+    };
+    (function($) {
+        var songs = [
+            {'id': '01', 'title': '', 'artist': '', 'rating': 2},
+        ];
+        var $songs = $.getElementById('songs');
+        var songsTemplate = $.getElementById('songs-template').innerText;
+        var songTemplate = $.getElementById('song-template').innerText;
+        var cssTemplate = $.getElementById('css-template').innerText;
+        var style = $.createElement('style');
+        var maximaleRate = parseInt($songs.dataset.maximaleRate) || 5;
+        var compareSongs = function(s1, s2) {
+            return s1.rating < s2.rating;
+        };
+        var findSong = function(id) {
+            for (var i = 0; i < songs.length; i++) {
+                if (songs[i].id == id) {
+                    return songs[i];
+                }
+            }
+            return false;
+        };
+        var rateSong = function(data) {
+            if (data.songId && (data.delta || data.rate > -1)) {
+                var song = findSong(data.songId);
+                if (song) {
+                    song.rating = data.rate > -1 ? data.rate : Math.min(Math.max(song.rating + parseInt(data.delta), 0), maximaleRate);
+                    songs.sort(compareSongs).forEach(function(song, index) {
+                        var li = document.getElementById('song-' + song.id);
+                        li.className = 'index-' + index;
+                        li.innerHTML = Handlebars.compile(songTemplate)(song);
+                    });
+                }
+            }
+        };
+        Handlebars.registerPartial('song', songTemplate);
+        Handlebars.registerHelper('math', function(lvalue, operator, rvalue, options) {
+            lvalue = parseFloat(lvalue);
+            rvalue = parseFloat(rvalue);
+
+            return {
+                '+': lvalue + rvalue,
+                '-': lvalue - rvalue,
+                '*': lvalue * rvalue,
+                '/': lvalue / rvalue,
+                '%': lvalue % rvalue
+            }[operator];
+        });
+        Handlebars.registerHelper('rate', function(value) {
+            var active = parseInt(value);
+            var inactive = maximaleRate - active;
+            var html = '';
+            while (inactive--) {
+                html += '<span></span>';
+            }
+            while (active--) {
+                html += '<span class="active"></span>';
+            }
+            return html;
+        });
+        style.innerHTML = Handlebars.compile(cssTemplate)(songs);
+        $.head.appendChild(style);
+        $songs.innerHTML = Handlebars.compile(songsTemplate)(songs.sort(compareSongs));
+        $.addEventListener('click', function(event) {
+            var target = event.target;
+            if (target.matches('button')) {
+                rateSong(target.dataset);
+            } else if (target.matches('.rating>span')) {
+                var active = target.parentElement.querySelectorAll('.active').length;
+                var rate = maximaleRate - target.index();
+                var id = target.closest('li').id.slice(5);
+                if (active == rate) {
+                    rate = 0;
+                }
+                rateSong({
+                    songId: id,
+                    rate: rate
+                });
+            }
+        });
+    })(document);
+</script>
+</body>
+</html>
