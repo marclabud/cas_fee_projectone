@@ -2,8 +2,15 @@
   "name": "SimpleNote",
   "version": "0.0.1",
   "description": "A notepad example for [CAS] Front End Engineering.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marclabud/cas_fee_projectone.git"
+  },
+  "dependencies": {
+    "moment": "^2.13.0",
+    "handlebars": "^4.0.5"
+  },
   "devDependencies": {
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "typescript": "^1.8.10"
   }
 }

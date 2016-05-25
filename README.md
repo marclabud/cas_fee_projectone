@@ -7,6 +7,7 @@ A notepad example for [CAS] Front End Engineering.
 prerequisite:
 * Node.js installed
 * Repository cloned
+* Typings cli installed
 
 Install packages in `package.json`  from project folder using npm
 
