@@ -11,6 +11,7 @@
   },
   "files": [
     "noteslistview.ts",
+     "mock-notes.ts",
     "typings/index.d.ts"
   ],
   "exclude": [

@@ -12,9 +12,12 @@ A notepad example for [CAS] Front End Engineering.
     npm install typings --global
 
 ### Setup
-Install packages in `package.json`  from project folder using npm
+Install packages in `package.json`  from project folder using npm.
 
     npm install
+
+Install typings in `typings.json`  from project folder using typings.
+
     typings install
 
 ## Dependencies
