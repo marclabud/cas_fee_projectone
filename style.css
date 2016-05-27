@@ -20,7 +20,12 @@ header {
     color: white;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Raleway', sans-serif;
 }
 
@@ -47,14 +52,23 @@ h5 {
 p {
    font-size: 1rem;
 }
-li   {
-    list-style: none;
-}
+
 .sorter {
     display: flex;
     justify-content: flex-end;
 }
+
+/* main content: notelist*/
+/* erste Ebene section  .notes */
 .notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/*zweite Ebene article .note-card */
+
+.note-card {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -66,7 +80,7 @@ li   {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;

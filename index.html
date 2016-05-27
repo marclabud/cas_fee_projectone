@@ -39,12 +39,11 @@
     </nav>
 </header>
 
-<ul id="notelist"></ul>
+<section id="notelist" class="notes"></section>
     <!-- handlebars-template for notes -->
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each notes }}
-        <li>
-            <div class="notes">
+        <article id="{{id}}-{{title}}" class="note-card">
                 <div class="note-finished">
                     <div class="spacer">
                         <h5>space</h5>S
@@ -69,14 +68,11 @@
                        <button type="button">Edit</button>
                     </a>
                 </div>
-            </div>
-        </li>
+        </article>
         {{else}}
         <p class="notes-empty">No content</p>
         {{/each}}
     </script>
-</div>
-
 <footer>
     <div class="css-selection">
         <label for="css-selector">Design auswählen: </label>
