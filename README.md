@@ -26,7 +26,7 @@ Install typings in `typings.json`  from project folder using typings.
 * [typings](https://github.com/typings/typings.git)
 * jasmine
 * jquery
-* handlebars.js
+* [handlebars.js](https://github.com/wycats/handlebars.js/)
 * moment.js
 
 
