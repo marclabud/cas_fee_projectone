@@ -10,9 +10,7 @@ body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
-
 }
-
 header {
     display: block;
     width: 100%;
@@ -81,9 +79,17 @@ p {
     margin: 0.5rem 0 0.5rem 0;
 }
 
-.details {
+/* title and description */
+.notetext {
     display: flex;
     flex-direction: column;
+}
+
+/* Note-Edit Button  */
+.btn-note-edit {
+    height: 1.5rem;
+    width: 2.5rem;
+    margin: 0.5rem 0 0.5rem 0;
 }
 
 footer {
