@@ -15,7 +15,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="mock-notes.js"></script>
-    <script src="noteslistview.js"></script>
+    <script src="notelist.js"></script>
 
 </head>
 <body class="site">
@@ -39,44 +39,25 @@
     </nav>
 </header>
 
-    <ul id="notes-ulist"></ul>
+<section id="notelist" class="notes"></section>
     <!-- handlebars-template for notes -->
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each notes }}
-        <li>
-            <div class="notes">
-                <div class="note-finished">
-                    <div class="spacer">
-                        <h5>space</h5>S
-                    </div>
-                    <div class="note-finished"><label for="note-finished-cb"></label><input type="checkbox" id="note-finished-cb"></div>
-                </div>
+        <article id="{{id}}-{{title}}" class="note-card">
+            <label for="cb_note-finished"></label><input type="checkbox" id="cb_note-finished"
+                                                         class="chbx-note-finished">
                 <div class="notetext">
-                   <div class="details">
-                        <div class="title">
                             <h5>{{title}}</h5>
-                        </div>
-                        <div class="description">
                             <p>{{description}}</p>
-                        </div>
-                   </div>
                 </div>
-                <div class="note-edit">
-                    <div class="spacer">
-                        <h5>space</h5>
-                    </div>
                     <a href="noteDetail.html">
-                       <button type="button">Edit</button>
+                        <button type="button" class="btn-note-edit">Edit</button>
                     </a>
-                </div>
-            </div>
-        </li>
+        </article>
         {{else}}
         <p class="notes-empty">No content</p>
         {{/each}}
     </script>
-</div>
-
 <footer>
     <div class="css-selection">
         <label for="css-selector">Design auswählen: </label>
