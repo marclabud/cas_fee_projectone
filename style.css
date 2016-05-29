@@ -62,6 +62,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 /*zweite Ebene article .note-card */
@@ -85,6 +86,8 @@ p {
     flex-direction: column;
 }
 
+/* Rating */
+
 .scored-sign::after {
     content: "\2605";
     color: gold;
@@ -95,11 +98,11 @@ p {
     color: #ccc;
 }
 
+/* Rating-Error */
 .error-sign::after {
     content: "\2614 ";
     color: black;
 }
-
 
 /* Note-Edit Button  */
 .btn-note-edit {
@@ -115,14 +118,5 @@ footer {
     display: flex;
     justify-content: flex-end;
     background-color: #005291;
-    color: white;
-}
-
-.note-edit,.note-finished {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.spacer {
     color: white;
 }
