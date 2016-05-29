@@ -21,23 +21,24 @@
 <body class="site">
 <header role="banner">
     <h1>Einfach notieren</h1>
+    <nav class="notes-ctrl-sorter" role="navigation">
+        <label for="ddlb_sorterselect">Sortieren nach:</label>
+        <select id="ddlb_sorterselect" class="sorter">
+            <option value="id" selected>Standard</option>
+            <option value="due-date">Fällig Datum</option>
+            <option value="creation-date">Erstellt Datum</option>
+            <option value="importance">Wichtigkeit</option>
+            <option value="urgency">Dringlichkeit</option>
+        </select>
 
-    <nav class="note-sorter" role="navigation">
-        <div class="sorter">
-            <label for="sorterselect">Sortieren nach:</label>
-            <select id="sorterselect">
-                <option value="finished-date">Beendet Datum</option>
-                <option value="creation-date">Angelegt Datum</option>
-                <option value="importance">Wichtigkeit</option>
-                <option value="urgency">Dringlichkeit</option>
-                <option value="id" selected>Standard</option>
-
-            </select>
-            <div class="filter">
-                <label for="showfinished-notes">Beendete Notizen anzeigen: </label>
-                <input type="checkbox" id="showfinished-notes">
-            </div>
-        </div>
+        <label for="ddlb_filterselect">Filtern nach: </label>
+        <select id="ddlb_filterselect" class="filter">
+            <option value="id" selected>Standard</option>
+            <option value="note-active">Notizen in Arbeit</option>
+            <option value="note-highimportance">Hoher Wichtigkeit</option>  <!--Rating 4 oder 5-->
+            <option value="note-mediumimportance">Mittlerer Wichtigkeit</option> <!--Rating 2 oder 3-->
+            <option value="note-lowimportance">Niedriger Wichtigkeit</option> <!--Rating 0 oder 1-->
+        </select>
     </nav>
 </header>
 
@@ -52,6 +53,7 @@
                     <h5>{{title}}
                         <small>Wichtigkeit: {{rate importance}}</small>
                     </h5>
+                    <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
                     <p> Fällig: {{finishedDate}}
                         <small> Erstellt: {{createdDate}}</small>
                     </p>
@@ -65,7 +67,7 @@
         <p class="notes-empty">No content</p>
         {{/each}}
     </script>
-<footer>s
+<footer>
     <div class="css-selection">
         <label for="css-selector">Design auswählen: </label>
         <select id="css-selector">
