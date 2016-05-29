@@ -51,11 +51,6 @@ p {
    font-size: 1rem;
 }
 
-.sorter {
-    display: flex;
-    justify-content: flex-end;
-}
-
 /* main content: notelist*/
 /* erste Ebene section  .notes */
 .notes {
@@ -70,6 +65,9 @@ p {
 .note-card {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 20%;
+    height: 10%;
     justify-content: center;
 }
 
