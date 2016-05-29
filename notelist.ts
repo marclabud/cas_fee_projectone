@@ -1,5 +1,28 @@
 "use strict";
 
+Handlebars.registerHelper('rate', function (rating:number) {
+    var RatingHTML:string = "";
+    const BESTRATING:number = 5;
+    if (rating >= 0 && rating <= BESTRATING) {
+        for (var i = 1; i <= BESTRATING; i++) {
+            if (rating >= i) {
+                RatingHTML = RatingHTML + '<span class="scored-sign">&nbsp;</span>';
+            } else {
+                RatingHTML = RatingHTML + '<span class="unscored-sign">&nbsp;</span>';
+            }
+        }
+
+    }
+    else {
+        const ERRORSIGNSPAN:string = '<span class="error-sign">&nbsp;</span>';
+        for (var i = 1; i <= BESTRATING; i++) {
+            RatingHTML = RatingHTML + ERRORSIGNSPAN
+        }
+    }
+
+    return new Handlebars.SafeString(RatingHTML);
+});
+
 class Notelistview {
     notelist:note[];
 

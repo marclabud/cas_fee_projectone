@@ -85,6 +85,22 @@ p {
     flex-direction: column;
 }
 
+.scored-sign::after {
+    content: "\2605";
+    color: gold;
+}
+
+.unscored-sign::after {
+    content: "\2605";
+    color: #ccc;
+}
+
+.error-sign::after {
+    content: "\2614 ";
+    color: black;
+}
+
+
 /* Note-Edit Button  */
 .btn-note-edit {
     height: 1.5rem;
