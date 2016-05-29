@@ -22,22 +22,17 @@
 <header role="banner">
     <h1>Einfach notieren</h1>
 
-    <nav class="note-sorter" role="navigation">
-        <div class="sorter">
-            <label for="sorterselect">Sortieren nach:</label>
-            <select id="sorterselect">
-                <option value="finished-date">Beendet Datum</option>
-                <option value="creation-date">Angelegt Datum</option>
-                <option value="importance">Wichtigkeit</option>
-                <option value="urgency">Dringlichkeit</option>
-                <option value="id" selected>Standard</option>
-
-            </select>
-            <div class="filter">
-                <label for="showfinished-notes">Beendete Notizen anzeigen: </label>
-                <input type="checkbox" id="showfinished-notes">
-            </div>
-        </div>
+    <nav class="notes-ctrl-sorter" role="navigation">
+        <label for="sorterselect">Sortieren nach:</label>
+        <select id="sorterselect" class="sorter">
+            <option value="finished-date">Beendet Datum</option>
+            <option value="creation-date">Angelegt Datum</option>
+            <option value="importance">Wichtigkeit</option>
+            <option value="urgency">Dringlichkeit</option>
+            <option value="id" selected>Standard</option>
+        </select>
+        <label for="showfinished-notes">Beendete Notizen anzeigen: </label>
+        <input type="checkbox" id="showfinished-notes" class="filter">
     </nav>
 </header>
 

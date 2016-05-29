@@ -11,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 header {
     display: block;
     width: 100%;
@@ -45,10 +46,17 @@ h4 {
 
 h5 {
     font-size: 1.25rem;
-    margin: 0.5rem 0 0.5rem 0 ;
+    margin: 0.5rem 0 0.5rem 0;
 }
+
 p {
-   font-size: 1rem;
+    font-size: 1rem;
+}
+
+/* Nav */
+.notes-ctrl-sorter {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* main content: notelist*/
