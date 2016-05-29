@@ -28,8 +28,10 @@
             <select id="sorterselect">
                 <option value="finished-date">Beendet Datum</option>
                 <option value="creation-date">Angelegt Datum</option>
-                <option value="importance" selected>Wichtigkeit</option>
+                <option value="importance">Wichtigkeit</option>
                 <option value="urgency">Dringlichkeit</option>
+                <option value="id" selected>Standard</option>
+
             </select>
             <div class="filter">
                 <label for="showfinished-notes">Beendete Notizen anzeigen: </label>
@@ -47,8 +49,10 @@
             <label for="cb_note-finished"></label><input type="checkbox" id="cb_note-finished"
                                                          class="chbx-note-finished">
                 <div class="notetext">
-                            <h5>{{title}}</h5>
-                    <p> Fällig: {{finishedDate}} Wichtigkeit: {{importance}}
+                    <h5>{{title}}
+                        <small>Wichtigkeit: {{rate importance}}</small>
+                    </h5>
+                    <p> Fällig: {{finishedDate}}
                         <small> Erstellt: {{createdDate}}</small>
                     </p>
                             <p>{{description}}</p>
@@ -61,7 +65,7 @@
         <p class="notes-empty">No content</p>
         {{/each}}
     </script>
-<footer>
+<footer>s
     <div class="css-selection">
         <label for="css-selector">Design auswählen: </label>
         <select id="css-selector">
