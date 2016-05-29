@@ -40,6 +40,15 @@ var notesarray:note[] = [
         createdDate: "05/03/2016",
         dueDate: "05/23/2016"
     },
+    {
+        "id": 14,
+        title: "Vierte Notiz",
+        description: "",
+        importance: 3,
+        finishedDate: "05/13/2016",
+        createdDate: "05/03/2016",
+        dueDate: "05/23/2016"
+    },
 
     {
         "id": 15,
