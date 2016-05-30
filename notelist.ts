@@ -62,9 +62,12 @@ class Notelistview {
 }
 
 class NotelistController {
+    /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     ListboxSort:HTMLElement;
     ListboxFilter:HTMLElement;
-    /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
+    /* Aktives Filter- und Sortierkriterium über Listboxen
+     Default ist das Item, das ausgewählt wurde */
+
     constructor() {
         this.ListboxSort = NotelistController.registerListboxSorter();
         this.ListboxFilter = NotelistController.registerListboxFilter();
@@ -79,6 +82,24 @@ class NotelistController {
         let el:HTMLElement = document.getElementById("ddlb_filterselect");
         return el;
     }
+
+    registerEventsLB() {
+        this.ListboxSort.addEventListener('click', function () {
+            console.log("click LBSort");
+        });
+        this.ListboxSort.addEventListener('change', function () {
+            console.log("change LBSort");
+        });
+        this.ListboxFilter.addEventListener('click', function () {
+            console.log("click LBFilter");
+        });
+        this.ListboxFilter.addEventListener('change', function () {
+            console.log("change LBFilter");
+        });
+    }
+
+    /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
+     und dann das notelistarray neu sortieren. Arrow-Funktion verwenden*/
 }
 
 
@@ -87,6 +108,7 @@ $(document).ready(function () {
     var noteslistview = new Notelistview(notesarray);
     noteslistview.show();
     var notelistctrl = new NotelistController();
+    notelistctrl.registerEventsLB();
 
 });
 
