@@ -29,7 +29,7 @@ footer {
     bottom: 0;
     position: fixed;
 }
-.beschreibung,
+.description,
 .buttons,
 .input {
     width: 95%;
@@ -46,6 +46,7 @@ form button {
     float: right;
     margin: 5px;
     padding: 5px;
+    width: 5rem;
 }
 form button:hover,
 form button:focus,
