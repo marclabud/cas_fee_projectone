@@ -45,15 +45,9 @@ Handlebars.registerHelper('showdate', function (date:string) {
 /* Notelistview Classes */
 
 class Notelistview {
-    notelist:note[];
-
-    constructor(notelist:note[]) {
-        this.notelist = notelist
-    }
-
-    show():void {
+    show(notelist:note[]):void {
         let context = {
-            notes: this.notelist
+            notes: notelist
         };
         let createNotesHTML:HandlebarsTemplateDelegate = Handlebars.compile(document.getElementById("notes-template").innerText);
         let notesHtml:string = createNotesHTML(context);
@@ -63,28 +57,31 @@ class Notelistview {
 
 class NotelistController {
     notelist:note[];
+    noteslistview:Notelistview;
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
 
     constructor(notelist:note[]) {
         this.notelist = notelist;
+        this.noteslistview = new Notelistview();
+        this.noteslistview.show(this.notelist);
         this.registerListboxSorter();
         this.registerListboxFilter();
     };
 
     registerListboxSorter():void {
         let el:HTMLElement = document.getElementById("ddlb_sorterselect");
-        el.addEventListener('change', this.sort);
+        el.addEventListener('change', this.sort.bind(this));
     }
 
     registerListboxFilter():void {
         let el:HTMLElement = document.getElementById("ddlb_filterselect");
-        el.addEventListener('change', this.filter);
+        el.addEventListener('change', this.filter.bind(this));
 
     }
-
     sort():void {
+        this.noteslistview.show(this.notelist)
         console.log("change LBSort");
     }
 
@@ -98,8 +95,6 @@ class NotelistController {
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var noteslistview = new Notelistview(notesarray);
-    noteslistview.show();
     var notelistctrl = new NotelistController(notesarray);
 
 });
