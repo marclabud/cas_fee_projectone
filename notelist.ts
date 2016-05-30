@@ -61,9 +61,32 @@ class Notelistview {
     }
 }
 
+class NotelistController {
+    ListboxSort:HTMLElement;
+    ListboxFilter:HTMLElement;
+    /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
+    constructor() {
+        this.ListboxSort = NotelistController.registerListboxSorter();
+        this.ListboxFilter = NotelistController.registerListboxFilter();
+    };
+
+    static registerListboxSorter():HTMLElement {
+        let el:HTMLElement = document.getElementById("ddlb_sorterselect");
+        return el;
+    }
+
+    static registerListboxFilter():HTMLElement {
+        let el:HTMLElement = document.getElementById("ddlb_filterselect");
+        return el;
+    }
+}
+
+
 /* App.Ctrl */
 $(document).ready(function () {
     var noteslistview = new Notelistview(notesarray);
     noteslistview.show();
+    var notelistctrl = new NotelistController();
+
 });
 
