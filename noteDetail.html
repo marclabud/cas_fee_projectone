@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>Note Detail</title>
-    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="styleNoteDetail.css">
     <!-- link calendar resources -->
     <link rel="stylesheet" type="text/css" href="css/tcal.css">
-    <script type="text/javascript" src="js/tcal.js"></script>
-    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script src="js/tcal.js"></script>
+    <script src="notemgr.js"></script>
 </head>
 <body class="site">
 <header role="banner">
@@ -18,14 +18,18 @@
 </header>
 <div class="note-content">
     <main class="note-detail">
-        <form id="form" class="note-form">
+        <form id="note-form" class="note-form" action="" onsubmit="saveOrUpdate()" method="post">
+            <input id="note-id" class="input" name="id" type="number" hidden="hidden">
+            <label for="note-id"></label>
             <div class="item col1"><h4>Title</h4></div>
             <div class="item col2">
-                <label><input id="title" class="input" name="title" type="text"></label>
+                <input id="note-title" class="input" name="title" type="text" autofocus>
+                <label for="note-title"></label>
             </div>
             <div class="item col1"><h4>Beschreibung</h4></div>
             <div class="item col2">
-                <label><textarea id="beschreibung" class="beschreibung" name="beschreibung" cols="50" rows="5"></textarea></label>
+                <textarea id="note-description" class="description" name="beschreibung" cols="50" rows="5" placeholder="Beschreiben Sie hier Ihre Notiz..."></textarea>
+                <label for="note-description"></label>
             </div>
             <div class="item col1"><h4>Wichtigkeit</h4></div>
             <div class="item col2">
@@ -44,14 +48,18 @@
             </div>
             <div class="item col1"><h4>Erledigt bis:</h4></div>
             <div class="item col2">
-                <label><input id="finishedDate" type="text" name="finishedDate" class="tcal" value=""></label>
+                <input id="note-finishedDate" type="text" name="finishedDate" class="tcal" value="">
+                <label for="note-finishedDate"></label>
             </div>
             <div class="item col1"></div>
             <div class="item col2">
                 <div class="buttons">
-                    <button id="abbrechen" type="reset" value="">Abbrechen</button>
-                    <button id="speichern" type="submit" form="form">Speichern</button>
-                    </div>
+                    <a href="index.html"><button id="back" type="button">Zurück</button></a>
+                    <a href="noteDetail.html">
+                        <button id="reset" type="button" form="note-form">Reset</button>
+                    </a>
+                    <button id="save" form="note-form">Speichern</button>
+                </div>
             </div>
          </form>
     </main>
@@ -60,7 +68,7 @@
     <div class="item footer">CAS Frontend Engineering 2016</br>Authoren: Marc Labud, Michel Rimbeaux</div>
     <div class="item col2">
         <div class="git">
-            Projekt Sourcen:&nbsp&nbsp<a href="https://github.com/marclabud/cas_fee_projectone">github</a>
+            Projekt-Sourcen:&nbsp&nbsp<a href="https://github.com/marclabud/cas_fee_projectone">github</a>
         </div>
     </div>
 </footer>
