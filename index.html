@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>SimpleNote</title>
+
+    <!--moment und deutsche lokalisierung -->
+    <script src="./node_modules/moment/moment.js"></script>
+    <script src="./node_modules/moment/locale/de.js"></script>
+
     <!--jquery-core snippet from cdn-->
     <script
             src="http://code.jquery.com/jquery-2.2.4.min.js"
@@ -54,8 +59,8 @@
                         <small>Wichtigkeit: {{rate importance}}</small>
                     </h5>
                     <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
-                    <p> Fällig: {{finishedDate}}
-                        <small> Erstellt: {{createdDate}}</small>
+                    <p> Fällig: {{showdate finishedDate}}
+                        <small> Erstellt: {{showdate createdDate}}</small>
                     </p>
                             <p>{{description}}</p>
                 </div>

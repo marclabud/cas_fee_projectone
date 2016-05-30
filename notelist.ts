@@ -17,17 +17,24 @@ Handlebars.registerHelper('rate', function (rating:number) {
                 RatingHTML = RatingHTML + '<span class="unscored-sign">&nbsp;</span>';
             }
         }
-
     }
     else {
         const ERRORSIGNSPAN:string = '<span class="error-sign">&nbsp;</span>';
         for (let i = 1; i <= BESTRATING; i++) {
-            RatingHTML = RatingHTML + ERRORSIGNSPAN
+            RatingHTML = RatingHTML + ERRORSIGNSPAN;
         }
     }
 
     return new Handlebars.SafeString(RatingHTML);
 });
+
+Handlebars.registerHelper('showdate', function (date:string) {
+    const DATEFORMAT:string = "LL";
+    let outDate = moment(date).format(DATEFORMAT);
+/*    ToDo: Fehlerbehandlung bei ungültigem Datum */
+    return new Handlebars.SafeString(outDate);
+});
+
 /* Notelistview Classes */
 
 class Notelistview {
