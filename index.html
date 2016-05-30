@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="mock-notes.js"></script>
     <script src="notelist.js"></script>
-
+    <script src="notemgr.js"></script>
 </head>
 <body class="site">
 <header role="banner">
@@ -50,9 +50,9 @@
                             <h5>{{title}}</h5>
                             <p>{{description}}</p>
                 </div>
-                    <a href="noteDetail.html">
-                        <button type="button" class="btn-note-edit">Edit</button>
-                    </a>
+
+                        <button type="button" onclick="edit({{{id}}})" class="btn-note-edit">Edit</button>
+
         </article>
         {{else}}
         <p class="notes-empty">No content</p>
