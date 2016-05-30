@@ -30,8 +30,15 @@ Handlebars.registerHelper('rate', function (rating:number) {
 
 Handlebars.registerHelper('showdate', function (date:string) {
     const DATEFORMAT:string = "LL";
-    let outDate = moment(date).format(DATEFORMAT);
-/*    ToDo: Fehlerbehandlung bei ungültigem Datum */
+    let outDate:string = "";
+    if (moment(date).isValid()) {
+        outDate = moment(date).format(DATEFORMAT);
+    }
+    else {
+        outDate ="";
+        console.log ("Invalid Date: "+moment(date));
+    }
+
     return new Handlebars.SafeString(outDate);
 });
 
