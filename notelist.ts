@@ -126,7 +126,6 @@ class NoteService {
         let filterednotelist:note[];
 
         switch (SelectedFilterCriteria) {
-
             case FilterCriteria.id:
                 /*KeineFilter*/
 
