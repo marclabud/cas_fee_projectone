@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>SimpleNote</title>
 
-    <!--moment und deutsche lokalisierung -->
+    <!--moment und moment deutsche lokalisierung -->
     <script src="./node_modules/moment/moment.js"></script>
     <script src="./node_modules/moment/locale/de.js"></script>
 
@@ -59,7 +59,7 @@
                         <small>Wichtigkeit: {{rate importance}}</small>
                     </h5>
                     <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
-                    <p> Fällig: {{showdate finishedDate}}
+                    <p> Fällig: {{showdate dueDate}}
                         <small> Erstellt: {{showdate createdDate}}</small>
                     </p>
                             <p>{{description}}</p>

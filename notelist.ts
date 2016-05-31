@@ -80,8 +80,23 @@ class NotelistController {
         el.addEventListener('change', this.filter.bind(this));
 
     }
-    sort():void {
-        this.noteslistview.show(this.notelist)
+
+    sort(event:Event):void {
+        let target:any = event.target;
+        let sortCriteria:string = target.value;
+        if (sortCriteria == "due-date") {
+            this.notelist.sort(function (a:note, b:note):number {
+                if (a.dueDate > b.dueDate) {
+                    return 1;
+                }
+                else if (a.dueDate < b.dueDate) {
+                    return -1;
+                }
+                else return 0;
+            })
+        }
+
+        this.noteslistview.show(this.notelist);
         console.log("change LBSort");
     }
 
