@@ -68,7 +68,8 @@ class NoteService {
         notelist = notesarray;
         return notelist
     }
-    sortBy(noteList:note[], SelectedSortCriteria: SortCriteria):void {
+
+    sortBy(noteList:note[], SelectedSortCriteria:SortCriteria):void {
 
         switch (SelectedSortCriteria) {
             case SortCriteria.id:
@@ -120,8 +121,37 @@ class NoteService {
         }
         return
     }
-}
 
+    filterBy(noteList:note[], SelectedFilterCriteria:FilterCriteria):void {
+        let filterednotelist:note[];
+
+        switch (SelectedFilterCriteria) {
+
+            case FilterCriteria.id:
+                /*KeineFilter*/
+
+                break;
+            case FilterCriteria.noteActive:
+                /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
+
+                break;
+            case FilterCriteria.noteHighImportance:
+                /* Nur Rating 4 oder 5 */
+
+                break;
+            case FilterCriteria.noteMediumImportance:
+                /* Nur Rating 2 oder 3 */
+
+            break;
+            case FilterCriteria.noteLowImportance:
+                /* Nur Rating 0 oder 1 */
+                break;
+            default:
+                break;
+        }
+        return
+    }
+}
 class Notelistview {
     show(notelist:note[]):void {
         let context = {
@@ -188,6 +218,29 @@ class NotelistController {
     }
 
     filter(event: Event):void {
+        let target:any = event.target;
+        let SelectedSortOption:string = target.value;
+        switch (SelectedSortOption){
+            case "id":
+                this.noteservice.filterBy(this.notelist, FilterCriteria.id);
+                break;
+            case "note-active":
+                this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
+                break;
+            case "note-highimportance":
+                this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
+                break;
+            case "note-mediumimportance":
+                this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
+                break;
+            case "note-lowimportance":
+                this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
+                break;
+            default:
+                console.log("Switch SelectedSortOption: default");
+                break;
+        }
+        this.notelistview.show(this.notelist);
         console.log("change LBFilter");
     }
     /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
