@@ -63,7 +63,7 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 class NoteService {
 
-    getNodesfromStorage():note[] {
+    getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
         return notelist
@@ -122,33 +122,54 @@ class NoteService {
         return
     }
 
-    filterBy(noteList:note[], SelectedFilterCriteria:FilterCriteria):void {
+    filterBy(noteList:note[], SelectedFilterCriteria:FilterCriteria):note[] {
         let filterednotelist:note[];
 
         switch (SelectedFilterCriteria) {
             case FilterCriteria.id:
-                /*KeineFilter*/
-
+                /* KeineFilter, */
+                /* ToDo: Noch effizienter wäre beim Aufruf von Filterby die nicht gefilterte Liste anzuzeigen*/
                 break;
             case FilterCriteria.noteActive:
                 /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
-
+            function filterByFinishedDate(el: any) {
+                if (el.finishedDate== "") {
+                    return true;
+                }
+            }
+                filterednotelist = noteList.filter(filterByFinishedDate);
                 break;
             case FilterCriteria.noteHighImportance:
                 /* Nur Rating 4 oder 5 */
-
+            function filterByHighImportance(el: any) {
+                if (el.importance>=4) {
+                    return true;
+                }
+            }
+                filterednotelist = noteList.filter(filterByHighImportance);
                 break;
             case FilterCriteria.noteMediumImportance:
                 /* Nur Rating 2 oder 3 */
-
+            function filterByMediumImportance(el: any) {
+                if (el.importance==2 || el.importance==3) {
+                    return true;
+                }
+            }
+                filterednotelist = noteList.filter(filterByMediumImportance);
             break;
             case FilterCriteria.noteLowImportance:
                 /* Nur Rating 0 oder 1 */
+            function filterByLowImportance(el: any) {
+                if (el.importance<=1) {
+                    return true;
+                }
+            }
+                filterednotelist = noteList.filter(filterByLowImportance);
                 break;
             default:
                 break;
         }
-        return
+        return filterednotelist
     }
 }
 class Notelistview {
@@ -219,21 +240,23 @@ class NotelistController {
     filter(event: Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
+        /* To Do: Direkten Zugriff auf das Array durch noteService.getNodesfromStorage */
+        this.notelist=notesarray;
         switch (SelectedSortOption){
             case "id":
-                this.noteservice.filterBy(this.notelist, FilterCriteria.id);
+                /* Kein Filter */
                 break;
             case "note-active":
-                this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
+                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
                 break;
             case "note-highimportance":
-                this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
+                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
                 break;
             case "note-mediumimportance":
-                this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
+                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
                 break;
             case "note-lowimportance":
-                this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
+                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
                 break;
             default:
                 console.log("Switch SelectedSortOption: default");
