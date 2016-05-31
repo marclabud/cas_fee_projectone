@@ -1,5 +1,22 @@
 "use strict";
 
+/* ENUM SortCriteria notelist */
+enum SortCriteria {
+    id,
+    dueDate,
+    creationDate,
+    importance,
+}
+/* ENUM FilterCriteria notelist */
+enum FilterCriteria {
+    id,
+    noteActive,
+    noteHighImportance,
+    noteMediumImportance,
+    noteLowImportance
+}
+
+
 /* Handlebars Helper */
 
 /* Rate transformiert den Score (Ausprägung des Ratings) in HTML
@@ -44,6 +61,67 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 /* Notelistview Classes */
 
+class NoteService {
+
+    getNodesfromStorage():note[] {
+        let notelist:note[];
+        notelist = notesarray;
+        return notelist
+    }
+    sortBy(noteList:note[], SelectedSortCriteria: SortCriteria):void {
+
+        switch (SelectedSortCriteria) {
+            case SortCriteria.id:
+                noteList.sort(function (a:note, b:note):number {
+                    if (a.id > b.id) {
+                        return 1;
+                    }
+                    else if (a.id < b.id) {
+                        return -1;
+                    }
+                    else return 0;
+                });
+                break;
+            case SortCriteria.dueDate:
+                noteList.sort(function (a:note, b:note):number {
+                    if (a.dueDate > b.dueDate) {
+                        return 1;
+                    }
+                    else if (a.dueDate < b.dueDate) {
+                        return -1;
+                    }
+                    else return 0;
+                });
+                break;
+            case SortCriteria.creationDate:
+                noteList.sort(function (a:note, b:note):number {
+                    if (a.dueDate > b.dueDate) {
+                        return 1;
+                    }
+                    else if (a.dueDate < b.dueDate) {
+                        return -1;
+                    }
+                    else return 0;
+                });
+                break;
+            case SortCriteria.importance:
+                noteList.sort(function (a:note, b:note):number {
+                    if (a.importance > b.importance) {
+                        return 1;
+                    }
+                    else if (a.importance < b.importance) {
+                        return -1;
+                    }
+                    else return 0;
+                });
+                break;
+            default:
+                break;
+        }
+        return
+    }
+}
+
 class Notelistview {
     show(notelist:note[]):void {
         let context = {
@@ -57,15 +135,18 @@ class Notelistview {
 
 class NotelistController {
     notelist:note[];
-    noteslistview:Notelistview;
+    notelistview:Notelistview;
+    noteservice:NoteService;
+
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
 
     constructor(notelist:note[]) {
         this.notelist = notelist;
-        this.noteslistview = new Notelistview();
-        this.noteslistview.show(this.notelist);
+        this.notelistview = new Notelistview;
+        this.notelistview.show(this.notelist);
+        this.noteservice = new NoteService;
         this.registerListboxSorter();
         this.registerListboxFilter();
     };
@@ -82,31 +163,36 @@ class NotelistController {
     }
 
     sort(event:Event):void {
+        /* found no type for event.target therefore any as type */
         let target:any = event.target;
-        let sortCriteria:string = target.value;
-        if (sortCriteria == "due-date") {
-            this.notelist.sort(function (a:note, b:note):number {
-                if (a.dueDate > b.dueDate) {
-                    return 1;
-                }
-                else if (a.dueDate < b.dueDate) {
-                    return -1;
-                }
-                else return 0;
-            })
+        let SelectedSortOption:string = target.value;
+        switch (SelectedSortOption){
+            case "id":
+                this.noteservice.sortBy(this.notelist, SortCriteria.id);
+                break;
+            case "due-date":
+                this.noteservice.sortBy(this.notelist, SortCriteria.dueDate);
+                break;
+            case "creation-date":
+                this.noteservice.sortBy(this.notelist, SortCriteria.creationDate);
+                break;
+            case "importance":
+                this.noteservice.sortBy(this.notelist, SortCriteria.importance);
+                break;
+            default:
+                console.log("Switch SelectedSortOption: default");
+                break;
         }
-
-        this.noteslistview.show(this.notelist);
+        this.notelistview.show(this.notelist);
         console.log("change LBSort");
     }
 
-    filter():void {
+    filter(event: Event):void {
         console.log("change LBFilter");
     }
     /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
      und dann das notelistarray neu sortieren. Arrow-Funktion verwenden*/
 }
-
 
 /* App.Ctrl */
 $(document).ready(function () {
