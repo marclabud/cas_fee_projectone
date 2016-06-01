@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>SimpleNote</title>
+
+    <!--moment und moment deutsche lokalisierung -->
+    <script src="./node_modules/moment/moment.js"></script>
+    <script src="./node_modules/moment/locale/de.js"></script>
+
     <!--jquery-core snippet from cdn-->
     <script
             src="http://code.jquery.com/jquery-2.2.4.min.js"
@@ -28,7 +33,6 @@
             <option value="due-date">Fällig Datum</option>
             <option value="creation-date">Erstellt Datum</option>
             <option value="importance">Wichtigkeit</option>
-            <option value="urgency">Dringlichkeit</option>
         </select>
 
         <label for="ddlb_filterselect">Filtern nach: </label>
@@ -54,8 +58,8 @@
                         <small>Wichtigkeit: {{rate importance}}</small>
                     </h5>
                     <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
-                    <p> Fällig: {{finishedDate}}
-                        <small> Erstellt: {{createdDate}}</small>
+                    <p> Fällig: {{showdate dueDate}}
+                        <small> Erstellt: {{showdate createdDate}}</small>
                     </p>
                             <p>{{description}}</p>
                 </div>

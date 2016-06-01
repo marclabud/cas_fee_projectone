@@ -18,36 +18,36 @@ var notesarray:note[] = [
         title: "Erste Notiz",
         description: "Erste Beschreibung",
         importance: 1,
-        finishedDate: "05/11/2016",
-        createdDate: "05/01/2016",
-        dueDate: "05/21/2016"
+        finishedDate: "2016-05-18T17:15:00+00:00",
+        createdDate: "2016-05-04T17:15:00+00:00",
+        dueDate: "2016-05-20T17:15:00+00:00"
     },
     {
         "id": 12,
         title: "Zweite Notiz",
         description: "Zweite Beschreibung",
         importance: 2,
-        finishedDate: "05/12/2016",
-        createdDate: "05/02/2016",
-        dueDate: "05/22/2016"
+        finishedDate: "2016-05-30T17:15:00+00:00",
+        createdDate: "2016-05-02T17:15:00+00:00",
+        dueDate: "2016-05-18T17:15:00+00:00"
     },
     {
         "id": 13,
         title: "Dritte Notiz",
         description: "Dritte Beschreibung",
         importance: 4,
-        finishedDate: "05/13/2016",
-        createdDate: "05/03/2016",
-        dueDate: "05/23/2016"
+        finishedDate: "2016-05-29T17:15:00+00:00",
+        createdDate: "2016-05-04T17:15:00+00:00",
+        dueDate: "2016-05-30T17:15:00+00:00"
     },
     {
         "id": 14,
         title: "Vierte Notiz",
         description: "",
         importance: 3,
-        finishedDate: "05/13/2016",
-        createdDate: "05/03/2016",
-        dueDate: "05/23/2016"
+        finishedDate: "2016-05-06T17:15:00+00:00",
+        createdDate: "2016-05-02T17:15:00+00:00",
+        dueDate: "2016-05-05T17:15:00+00:00"
     },
 
     {
@@ -56,7 +56,7 @@ var notesarray:note[] = [
         description: "Fünfte lange Beschreibung",
         importance: 5,
         finishedDate: "",
-        createdDate: "05/04/2016",
-        dueDate: "05/24/2016"
+        createdDate: "2016-05-29T17:15:00+00:00",
+        dueDate: "2016-06-15T17:15:00+00:00"
     },
 ];  
