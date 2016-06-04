@@ -28,5 +28,6 @@ Install typings in `typings.json`  from project folder using typings.
 * jquery
 * [handlebars.js](https://github.com/wycats/handlebars.js/)
 * moment.js
+* moment-timezone-with-data.js
 
 
