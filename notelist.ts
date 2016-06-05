@@ -173,7 +173,7 @@ class NoteService {
     }
 }
 class Notelistview {
-    show(notelist:note[]):void {
+    render(notelist:note[]):void {
         let context = {
             notes: notelist
         };
@@ -182,7 +182,6 @@ class Notelistview {
         document.getElementById("notelist").innerHTML = notesHtml;
     }
 }
-
 class NotelistController {
     notelist:note[];
     notelistview:Notelistview;
@@ -195,11 +194,19 @@ class NotelistController {
     constructor(notelist:note[]) {
         this.notelist = notelist;
         this.notelistview = new Notelistview;
-        this.notelistview.show(this.notelist);
+        this.notelistview.render(this.notelist);
+        this.registerCBFinished();
         this.noteservice = new NoteService;
         this.registerListboxSorter();
         this.registerListboxFilter();
     };
+
+    registerCBFinished():void {
+        $(":checkbox").change(function () {
+            var attr = $(this).parent().attr("id");
+            console.log("Checkbox changed:", attr);
+        })
+    }
 
     registerListboxSorter():void {
         let el:HTMLElement = document.getElementById("ddlb_sorterselect");
@@ -233,7 +240,7 @@ class NotelistController {
                 console.log("Switch SelectedSortOption: default");
                 break;
         }
-        this.notelistview.show(this.notelist);
+        this.notelistview.render(this.notelist);
         console.log("change LBSort");
     }
 
@@ -262,7 +269,7 @@ class NotelistController {
                 console.log("Switch SelectedSortOption: default");
                 break;
         }
-        this.notelistview.show(this.notelist);
+        this.notelistview.render(this.notelist);
         console.log("change LBFilter");
     }
     /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
