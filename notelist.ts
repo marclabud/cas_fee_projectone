@@ -75,6 +75,14 @@ class NoteService {
         notelist = JSON.parse(localStorage.getItem("noteClient"));
         return notelist
     }
+    /* Testing: Setup local store data with Mock Array */
+    WriteMockNotestoLocalStorage():void {
+        let notelist:note[];
+        localStorage.removeItem("noteClient")
+        notelist= notesarray;
+        /* Store notelist */
+        localStorage.setItem("noteClient", JSON.stringify(notelist));
+    }
 
     sortBy(noteList:note[], SelectedSortCriteria:SortCriteria):void {
 
@@ -200,6 +208,8 @@ class NotelistController {
 
     constructor() {
         this.noteservice = new NoteService;
+        /* Test ToDo Nach Test entfernen
+        this.noteservice.WriteMockNotestoLocalStorage(); */
         this.notelist = this.noteservice.getNotesfromStorage();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
