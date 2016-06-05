@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="css/tcal.css">
     <script src="js/tcal.js"></script>
     <script src="notemgr.js"></script>
+    <script src="./node_modules/moment/moment.js"></script>
+    <script src="./node_modules/moment-timezone/builds/moment-timezone-with-data.js"></script>
 </head>
 <body class="site">
 <header role="banner">
@@ -18,9 +20,13 @@
 </header>
 <div class="note-content">
     <main class="note-detail">
-        <form id="note-form" class="note-form" action="" onsubmit="saveOrUpdate()" method="post">
+        <form id="note-form" class="note-form" action="" onsubmit="saveOrUpdateNote()" method="post">
             <input id="note-id" class="input" name="id" type="number" hidden="hidden">
             <label for="note-id"></label>
+            <input id="note-createdDate" class="input" name="createdDate" type="text" hidden="hidden">
+            <label for="note-createdDate"></label>
+            <input id="note-finishedDate" class="input" name="finishedDate" type="text" hidden="hidden">
+            <label for="note-finishedDate"></label>
             <div class="item col1"><h4>Title</h4></div>
             <div class="item col2">
                 <input id="note-title" class="input" name="title" type="text" autofocus>
@@ -48,8 +54,8 @@
             </div>
             <div class="item col1"><h4>Erledigt bis:</h4></div>
             <div class="item col2">
-                <input id="note-finishedDate" type="text" name="finishedDate" class="tcal" value="">
-                <label for="note-finishedDate"></label>
+                <input id="note-dueDate" type="text" name="dueDate" class="tcal" value="">
+                <label for="note-dueDate"></label>
             </div>
             <div class="item col1"></div>
             <div class="item col2">
@@ -59,6 +65,7 @@
                         <button id="reset" type="button" form="note-form">Reset</button>
                     </a>
                     <button id="save" form="note-form">Speichern</button>
+                    <button id="MockUpd" type="button" form="note-form" onclick="updateNote(1, '2016-07-20T00:00:00+02:00')">Upd finished Date</button>
                 </div>
             </div>
          </form>

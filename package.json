@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4",
     "handlebars": "^4.0.5"
   },
   "devDependencies": {
