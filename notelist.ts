@@ -62,10 +62,17 @@ Handlebars.registerHelper('showdate', function (date:string) {
 /* Notelistview Classes */
 
 class NoteService {
-    /* Mock-Daten aus dem Array */
+    /* Mock-Daten aus dem Array
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
+     return notelist 
+     } */
+
+    /* Daten aus dem LocalStorage */
+    getNotesfromStorage():note[] {
+        let notelist:note[];
+        notelist = JSON.parse(localStorage.getItem("noteClient"));
         return notelist
     }
 
