@@ -62,7 +62,7 @@ Handlebars.registerHelper('showdate', function (date:string) {
 /* Notelistview Classes */
 
 class NoteService {
-
+    /* Mock-Daten aus dem Array */
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
@@ -191,12 +191,12 @@ class NotelistController {
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
 
-    constructor(notelist:note[]) {
-        this.notelist = notelist;
+    constructor() {
+        this.noteservice = new NoteService;
+        this.notelist = this.noteservice.getNotesfromStorage();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
         this.registerCBFinished();
-        this.noteservice = new NoteService;
         this.registerListboxSorter();
         this.registerListboxFilter();
     };
@@ -247,8 +247,8 @@ class NotelistController {
     filter(event: Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
-        /* To Do: Direkten Zugriff auf das Array durch noteService.getNodesfromStorage */
-        this.notelist=notesarray;
+        /* Noteliste mit allen Elementen initialisieren   */
+        this.notelist = this.noteservice.getNotesfromStorage();
         switch (SelectedSortOption){
             case "id":
                 /* Kein Filter */
@@ -278,7 +278,6 @@ class NotelistController {
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var notelistctrl = new NotelistController(notesarray);
-
+    var notelistctrl = new NotelistController();
 });
 
