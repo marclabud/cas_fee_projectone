@@ -62,20 +62,21 @@ Handlebars.registerHelper('showdate', function (date:string) {
 /* Notelistview Classes */
 
 class NoteService {
-    /* Mock-Daten aus dem Array
+    /* Mock-Daten aus dem Array */
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
-     return notelist 
-     } */
+     return notelist
+    }
 
-    /* Daten aus dem LocalStorage */
+    /* Daten aus dem LocalStorage
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = JSON.parse(localStorage.getItem("noteClient"));
         return notelist
-    }
-    /* Testing: Setup local store data with Mock Array */
+     } */
+
+    /* For Testing: Setup local store data with Mock Array */
     WriteMockNotestoLocalStorage():void {
         let notelist:note[];
         localStorage.removeItem("noteClient")
@@ -121,7 +122,8 @@ class NoteService {
                 });
                 break;
             case SortCriteria.importance:
-                noteList.sort(function (a:note, b:note):number {
+                note
+                List.sort(function (a:note, b:note):number {
                     if (a.importance > b.importance) {
                         return 1;
                     }
