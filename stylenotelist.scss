@@ -1,12 +1,16 @@
 @import "layout.scss";
 
+$NotecardBackgroundColor: #CCDCE9;
+$NotecardBorderColor: #005291;
 /* main content: notelist*/
 /* erste Ebene section  .notes */
 .notes {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  flex-basis: 90%;
+  justify-content: center;
   flex-wrap: wrap;
+
 }
 
 /*zweite Ebene article .note-card */
@@ -14,8 +18,19 @@
 .note-card {
   display: flex;
   flex-direction: row;
+  flex-basis: 50%;
   flex-wrap: wrap;
   justify-content: center;
+  width: 50%;
+  border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  border: 0.125rem solid $NotecardBorderColor;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.note-card:hover {
+  background-color: $NotecardBackgroundColor;
 }
 
 /* checkbox to finish note dependencies with  title style h5 */

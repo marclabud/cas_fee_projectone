@@ -122,8 +122,7 @@ class NoteService {
                 });
                 break;
             case SortCriteria.importance:
-                note
-                List.sort(function (a:note, b:note):number {
+                noteList.sort(function (a:note, b:note):number {
                     if (a.importance > b.importance) {
                         return 1;
                     }
