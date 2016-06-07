@@ -64,10 +64,10 @@ var NoteService = (function () {
         return notelist;
     };
     /* Daten aus dem LocalStorage
-    getNotesfromStorage():note[] {
-        let notelist:note[];
-        notelist = JSON.parse(localStorage.getItem("noteClient"));
-        return notelist
+     getNotesfromStorage():note[] {
+     let notelist:note[];
+     notelist = JSON.parse(localStorage.getItem("noteClient"));
+     return notelist
      } */
     /* For Testing: Setup local store data with Mock Array */
     NoteService.prototype.WriteMockNotestoLocalStorage = function () {
@@ -139,7 +139,7 @@ var NoteService = (function () {
                 /* KeineFilter, */
                 /* ToDo: Noch effizienter wäre beim Aufruf von Filterby die nicht gefilterte Liste anzuzeigen*/
                 break;
-            case FilterCriteria.noteActive:
+            case FilterCriteria.noteActive: {
                 /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
                 function filterByFinishedDate(el) {
                     if (el.finishedDate == "") {
@@ -148,7 +148,8 @@ var NoteService = (function () {
                 }
                 filterednotelist = noteList.filter(filterByFinishedDate);
                 break;
-            case FilterCriteria.noteHighImportance:
+            }
+            case FilterCriteria.noteHighImportance: {
                 /* Nur Rating 4 oder 5 */
                 function filterByHighImportance(el) {
                     if (el.importance >= 4) {
@@ -157,7 +158,8 @@ var NoteService = (function () {
                 }
                 filterednotelist = noteList.filter(filterByHighImportance);
                 break;
-            case FilterCriteria.noteMediumImportance:
+            }
+            case FilterCriteria.noteMediumImportance: {
                 /* Nur Rating 2 oder 3 */
                 function filterByMediumImportance(el) {
                     if (el.importance == 2 || el.importance == 3) {
@@ -166,7 +168,8 @@ var NoteService = (function () {
                 }
                 filterednotelist = noteList.filter(filterByMediumImportance);
                 break;
-            case FilterCriteria.noteLowImportance:
+            }
+            case FilterCriteria.noteLowImportance: {
                 /* Nur Rating 0 oder 1 */
                 function filterByLowImportance(el) {
                     if (el.importance <= 1) {
@@ -175,6 +178,7 @@ var NoteService = (function () {
                 }
                 filterednotelist = noteList.filter(filterByLowImportance);
                 break;
+            }
             default:
                 break;
         }
@@ -209,6 +213,7 @@ var NotelistController = (function () {
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
+        this.registerListboxStyleChanger();
     }
     ;
     NotelistController.prototype.registerCBFinished = function () {
@@ -224,6 +229,22 @@ var NotelistController = (function () {
     NotelistController.prototype.registerListboxFilter = function () {
         var el = document.getElementById("ddlb_filterselect");
         el.addEventListener('change', this.filter.bind(this));
+    };
+    NotelistController.prototype.registerListboxStyleChanger = function () {
+        var el = document.getElementById("ddlb_stylesheetSelect");
+        el.addEventListener('change', this.styleSheetSelect.bind(this));
+    };
+    NotelistController.prototype.styleSheetSelect = function (event) {
+        var target = event.target;
+        var SelectedStyle = target.value;
+        if (SelectedStyle === "StyleOne") {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        }
+        else {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+        }
     };
     NotelistController.prototype.sort = function (event) {
         /* found no type for event.target therefore any as type */

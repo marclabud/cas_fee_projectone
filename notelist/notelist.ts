@@ -66,21 +66,21 @@ class NoteService {
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
-     return notelist
+        return notelist
     }
 
     /* Daten aus dem LocalStorage
-    getNotesfromStorage():note[] {
-        let notelist:note[];
-        notelist = JSON.parse(localStorage.getItem("noteClient"));
-        return notelist
+     getNotesfromStorage():note[] {
+     let notelist:note[];
+     notelist = JSON.parse(localStorage.getItem("noteClient"));
+     return notelist
      } */
 
     /* For Testing: Setup local store data with Mock Array */
     WriteMockNotestoLocalStorage():void {
         let notelist:note[];
         localStorage.removeItem("noteClient");
-        notelist= notesarray;
+        notelist = notesarray;
         /* Store notelist */
         localStorage.setItem("noteClient", JSON.stringify(notelist));
     }
@@ -146,48 +146,56 @@ class NoteService {
                 /* KeineFilter, */
                 /* ToDo: Noch effizienter wäre beim Aufruf von Filterby die nicht gefilterte Liste anzuzeigen*/
                 break;
-            case FilterCriteria.noteActive:
+            case FilterCriteria.noteActive: {
                 /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
-            function filterByFinishedDate(el: any) {
-                if (el.finishedDate== "") {
-                    return true;
+                function filterByFinishedDate(el:any) {
+                    if (el.finishedDate == "") {
+                        return true;
+                    }
                 }
-            }
+
                 filterednotelist = noteList.filter(filterByFinishedDate);
                 break;
-            case FilterCriteria.noteHighImportance:
-                /* Nur Rating 4 oder 5 */
-            function filterByHighImportance(el: any) {
-                if (el.importance>=4) {
-                    return true;
-                }
             }
+            case FilterCriteria.noteHighImportance: {
+                /* Nur Rating 4 oder 5 */
+                function filterByHighImportance(el:any) {
+                    if (el.importance >= 4) {
+                        return true;
+                    }
+                }
+
                 filterednotelist = noteList.filter(filterByHighImportance);
                 break;
-            case FilterCriteria.noteMediumImportance:
+            }
+            case FilterCriteria.noteMediumImportance: {
                 /* Nur Rating 2 oder 3 */
-            function filterByMediumImportance(el: any) {
-                if (el.importance==2 || el.importance==3) {
-                    return true;
+                function filterByMediumImportance(el:any) {
+                    if (el.importance == 2 || el.importance == 3) {
+                        return true;
+                    }
                 }
-            }
+
                 filterednotelist = noteList.filter(filterByMediumImportance);
-            break;
-            case FilterCriteria.noteLowImportance:
-                /* Nur Rating 0 oder 1 */
-            function filterByLowImportance(el: any) {
-                if (el.importance<=1) {
-                    return true;
-                }
+                break;
             }
+            case FilterCriteria.noteLowImportance: {
+                /* Nur Rating 0 oder 1 */
+                function filterByLowImportance(el:any) {
+                    if (el.importance <= 1) {
+                        return true;
+                    }
+                }
                 filterednotelist = noteList.filter(filterByLowImportance);
                 break;
+            }
             default:
                 break;
         }
         return filterednotelist
+    }
 }
-}
+
 class Notelistview {
     render(notelist:note[]):void {
         let context = {
@@ -217,7 +225,9 @@ class NotelistController {
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
-    };
+        this.registerListboxStyleChanger();
+
+        };
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
@@ -236,7 +246,23 @@ class NotelistController {
         el.addEventListener('change', this.filter.bind(this));
 
     }
+    registerListboxStyleChanger():void {
+        let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
+        el.addEventListener('change', this.styleSheetSelect.bind(this));
+    }
 
+    styleSheetSelect (event:Event):void {
+        let target:any = event.target;
+        let SelectedStyle:string = target.value;
+        if (SelectedStyle==="StyleOne"){
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        }
+        else {
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+        }
+    }
     sort(event:Event):void {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
