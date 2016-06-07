@@ -186,7 +186,7 @@ class NoteService {
                 break;
         }
         return filterednotelist
-    }
+}
 }
 class Notelistview {
     render(notelist:note[]):void {
