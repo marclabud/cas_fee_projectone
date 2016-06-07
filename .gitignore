@@ -1,6 +1,6 @@
 .idea
 typings
-app/**/*.js
-app/**/*.map
+notelist/*.js
+notelist/*.map
 node_modules
 
