@@ -79,7 +79,7 @@ class NoteService {
     /* For Testing: Setup local store data with Mock Array */
     WriteMockNotestoLocalStorage():void {
         let notelist:note[];
-        localStorage.removeItem("noteClient")
+        localStorage.removeItem("noteClient");
         notelist= notesarray;
         /* Store notelist */
         localStorage.setItem("noteClient", JSON.stringify(notelist));
