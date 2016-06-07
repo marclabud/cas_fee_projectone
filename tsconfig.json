@@ -10,8 +10,8 @@
     "noImplicitAny": true
   },
   "files": [
-    "mock-notes.ts",
-    "notelist.ts",
+    "notelist/mock-notes.ts",
+    "notelist/notelist.ts",
     "typings/index.d.ts"
   ],
   "exclude": [
