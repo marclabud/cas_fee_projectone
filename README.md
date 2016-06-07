@@ -30,4 +30,5 @@ Install typings in `typings.json`  from project folder using typings.
 * moment.js
 * moment-timezone-with-data.js
 
-
+## required devtools
+* SASS
