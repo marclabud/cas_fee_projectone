@@ -209,6 +209,7 @@ var NotelistController = (function () {
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
+        this.registerListboxStyleChanger();
     }
     ;
     NotelistController.prototype.registerCBFinished = function () {
@@ -224,6 +225,22 @@ var NotelistController = (function () {
     NotelistController.prototype.registerListboxFilter = function () {
         var el = document.getElementById("ddlb_filterselect");
         el.addEventListener('change', this.filter.bind(this));
+    };
+    NotelistController.prototype.registerListboxStyleChanger = function () {
+        var el = document.getElementById("ddlb_stylesheetSelect");
+        el.addEventListener('change', this.styleSheetSelect.bind(this));
+    };
+    NotelistController.prototype.styleSheetSelect = function (event) {
+        var target = event.target;
+        var SelectedStyle = target.value;
+        if (SelectedStyle === "StyleOne") {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        }
+        else {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+        }
     };
     NotelistController.prototype.sort = function (event) {
         /* found no type for event.target therefore any as type */

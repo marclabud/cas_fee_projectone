@@ -217,7 +217,9 @@ class NotelistController {
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
-    };
+        this.registerListboxStyleChanger();
+
+        };
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
@@ -236,7 +238,23 @@ class NotelistController {
         el.addEventListener('change', this.filter.bind(this));
 
     }
+    registerListboxStyleChanger():void {
+        let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
+        el.addEventListener('change', this.styleSheetSelect.bind(this));
+    }
 
+    styleSheetSelect (event:Event):void {
+        let target:any = event.target;
+        let SelectedStyle:string = target.value;
+        if (SelectedStyle==="StyleOne"){
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        }
+        else {
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+        }
+    }
     sort(event:Event):void {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
