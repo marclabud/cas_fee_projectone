@@ -1,15 +1,11 @@
 'use strict';
 
-var noteClient;
+const NOTE_LIST = "noteList";
+const DATE_FORMAT = "MM/DD/YYYY";
 
-$(function () {
-    noteClient = JSON.parse(localStorage.getItem("noteClient")); //Converts string to object
-    if (noteClient == null) { //If there is no data, initialize an empty array
-        noteClient = [];
-    }
-});
+var noteList;
 
-function edit(id) {
+function editNote(id) {
     $.get("noteDetail\\noteDetail.html", function () {
         var url = "noteDetail\\noteDetail.html?id=" + id;
         location.replace(url);
@@ -17,8 +13,8 @@ function edit(id) {
 }
 
 function readNote(id) {
-    var notelist = noteClient.filter(function (note) {
-         return note.id == id;
+    var notelist = noteList.filter(function (note) {
+        return note.id == id;
     });
     return notelist[0];
 }
@@ -37,9 +33,9 @@ function saveOrUpdateNote() {
 
 function saveNote() {
     var createdDate = new Date().toJSON();
-    var client = createNote(getNextId(), createdDate);
-     noteClient.push(client);
-    localStorage.setItem("noteClient", JSON.stringify(noteClient));
+    var note = createNote(getNextId(), createdDate);
+    noteList.push(note);
+    localStorage.setItem(NOTE_LIST, JSON.stringify(noteList));
     alert("Die neue Notiz wurde gespeichert.");
     return true;
 }
@@ -51,8 +47,8 @@ function updateNote(id, finishedDate) {
         // readNote Note from local storage and updateNote only finishedDate
         var note = readNote(id);
         if (note == undefined) {
-            alert("Note "+id+" does not yet exist! Please create it first");
-            return;
+            alert("Note " + id + " does not yet exist! Please create it first");
+            return false;
         }
         note.finishedDate = finishedDate;
         updatedNote = note;
@@ -61,16 +57,16 @@ function updateNote(id, finishedDate) {
         // readNote note from Form and updateNote whole content except createdDate and finishedDate
         updatedNote = createNote(id, null);
     }
-     var index = id - 1;
-    noteClient[index] = updatedNote;//Alter the selected item on the table
-    localStorage.setItem("noteClient", JSON.stringify(noteClient));
+    var index = id - 1;
+    noteList[index] = updatedNote;//Alter the selected item on the table
+    localStorage.setItem(NOTE_LIST, JSON.stringify(noteList));
     alert("Die bestehende Notiz wurde geändert.");
     return true;
 }
 
 function createNote(id, creationDate) {
     var dueDate = $("#note-dueDate").val();
-    var isoDueDate = moment(dueDate, "MM/DD/YYYY").tz("Europe/Berlin").format(); // ISO8601
+    var isoDueDate = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
 
     return {
         id: id,
@@ -85,7 +81,7 @@ function createNote(id, creationDate) {
 
 function getNextId() {
     var max = 0;
-    $.map(noteClient, function (note) {
+    $.map(noteList, function (note) {
         if (note.id > max) {
             max = note.id;
         }
@@ -98,13 +94,22 @@ function getURLParameter(name) {
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
+
+$(function () {
+    noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+    if (noteList == null) { //If there is no data, initialize an empty array
+        noteList = [];
+    }
+});
+
 $(document).ready(function () {
         var noteId = getURLParameter("id");
 
         if (noteId != null) {
             var note = readNote(Number(noteId));
             if (note != null) {
-                 var dueDate = moment(note.dueDate).format("MM/DD/YYYY");
+
+                var dueDate = moment(note.dueDate).format(DATE_FORMAT);
                 $("#note-id").val(note.id);
                 $("#note-title").val(note.title);
                 $("#note-description").val(note.description);
