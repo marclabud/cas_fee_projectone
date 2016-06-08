@@ -50,6 +50,10 @@ function updateNote(id, finishedDate) {
         // updateNote called by main page
         // readNote Note from local storage and updateNote only finishedDate
         var note = readNote(id);
+        if (note == undefined) {
+            alert("Note "+id+" does not yet exist! Please create it first");
+            return;
+        }
         note.finishedDate = finishedDate;
         updatedNote = note;
     } else {

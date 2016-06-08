@@ -232,7 +232,7 @@ class NotelistController {
     registerCBFinished():void {
         $(":checkbox").change(function () {
             var id = $(this).parent().attr("id");
-            var finishedDate = new Date().toJSON();
+            var finishedDate = $(":checkbox").is(':checked') ? new Date().toJSON() : " ";
             updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
             console.log("Checkbox changed:", finishedDate);
