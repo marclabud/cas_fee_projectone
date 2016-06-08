@@ -62,11 +62,27 @@ Handlebars.registerHelper('showdate', function (date:string) {
 /* Notelistview Classes */
 
 class NoteService {
-
+    /* Mock-Daten aus dem Array */
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
         return notelist
+    }
+
+    /* Daten aus dem LocalStorage
+     getNotesfromStorage():note[] {
+     let notelist:note[];
+     notelist = JSON.parse(localStorage.getItem("noteClient"));
+     return notelist
+     } */
+
+    /* For Testing: Setup local store data with Mock Array */
+    WriteMockNotestoLocalStorage():void {
+        let notelist:note[];
+        localStorage.removeItem("noteClient");
+        notelist = notesarray;
+        /* Store notelist */
+        localStorage.setItem("noteClient", JSON.stringify(notelist));
     }
 
     sortBy(noteList:note[], SelectedSortCriteria:SortCriteria):void {
@@ -130,50 +146,58 @@ class NoteService {
                 /* KeineFilter, */
                 /* ToDo: Noch effizienter wäre beim Aufruf von Filterby die nicht gefilterte Liste anzuzeigen*/
                 break;
-            case FilterCriteria.noteActive:
+            case FilterCriteria.noteActive: {
                 /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
-            function filterByFinishedDate(el: any) {
-                if (el.finishedDate== "") {
-                    return true;
+                function filterByFinishedDate(el:any) {
+                    if (el.finishedDate == "") {
+                        return true;
+                    }
                 }
-            }
+
                 filterednotelist = noteList.filter(filterByFinishedDate);
                 break;
-            case FilterCriteria.noteHighImportance:
-                /* Nur Rating 4 oder 5 */
-            function filterByHighImportance(el: any) {
-                if (el.importance>=4) {
-                    return true;
-                }
             }
+            case FilterCriteria.noteHighImportance: {
+                /* Nur Rating 4 oder 5 */
+                function filterByHighImportance(el:any) {
+                    if (el.importance >= 4) {
+                        return true;
+                    }
+                }
+
                 filterednotelist = noteList.filter(filterByHighImportance);
                 break;
-            case FilterCriteria.noteMediumImportance:
+            }
+            case FilterCriteria.noteMediumImportance: {
                 /* Nur Rating 2 oder 3 */
-            function filterByMediumImportance(el: any) {
-                if (el.importance==2 || el.importance==3) {
-                    return true;
+                function filterByMediumImportance(el:any) {
+                    if (el.importance == 2 || el.importance == 3) {
+                        return true;
+                    }
                 }
-            }
+
                 filterednotelist = noteList.filter(filterByMediumImportance);
-            break;
-            case FilterCriteria.noteLowImportance:
-                /* Nur Rating 0 oder 1 */
-            function filterByLowImportance(el: any) {
-                if (el.importance<=1) {
-                    return true;
-                }
+                break;
             }
+            case FilterCriteria.noteLowImportance: {
+                /* Nur Rating 0 oder 1 */
+                function filterByLowImportance(el:any) {
+                    if (el.importance <= 1) {
+                        return true;
+                    }
+                }
                 filterednotelist = noteList.filter(filterByLowImportance);
                 break;
+            }
             default:
                 break;
         }
         return filterednotelist
     }
 }
+
 class Notelistview {
-    show(notelist:note[]):void {
+    render(notelist:note[]):void {
         let context = {
             notes: notelist
         };
@@ -182,7 +206,6 @@ class Notelistview {
         document.getElementById("notelist").innerHTML = notesHtml;
     }
 }
-
 class NotelistController {
     notelist:note[];
     notelistview:Notelistview;
@@ -192,14 +215,26 @@ class NotelistController {
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
 
-    constructor(notelist:note[]) {
-        this.notelist = notelist;
-        this.notelistview = new Notelistview;
-        this.notelistview.show(this.notelist);
+    constructor() {
         this.noteservice = new NoteService;
+        /* Test ToDo Nach Test entfernen
+        this.noteservice.WriteMockNotestoLocalStorage(); */
+        this.notelist = this.noteservice.getNotesfromStorage();
+        this.notelistview = new Notelistview;
+        this.notelistview.render(this.notelist);
+        this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
-    };
+        this.registerListboxStyleChanger();
+
+        };
+
+    registerCBFinished():void {
+        $(":checkbox").change(function () {
+            var attr = $(this).parent().attr("id");
+            console.log("Checkbox changed:", attr);
+        })
+    }
 
     registerListboxSorter():void {
         let el:HTMLElement = document.getElementById("ddlb_sorterselect");
@@ -211,7 +246,23 @@ class NotelistController {
         el.addEventListener('change', this.filter.bind(this));
 
     }
+    registerListboxStyleChanger():void {
+        let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
+        el.addEventListener('change', this.styleSheetSelect.bind(this));
+    }
 
+    styleSheetSelect (event:Event):void {
+        let target:any = event.target;
+        let SelectedStyle:string = target.value;
+        if (SelectedStyle==="StyleOne"){
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        }
+        else {
+            console.log("Selected Style",SelectedStyle);
+            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+        }
+    }
     sort(event:Event):void {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
@@ -233,15 +284,15 @@ class NotelistController {
                 console.log("Switch SelectedSortOption: default");
                 break;
         }
-        this.notelistview.show(this.notelist);
+        this.notelistview.render(this.notelist);
         console.log("change LBSort");
     }
 
     filter(event: Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
-        /* To Do: Direkten Zugriff auf das Array durch noteService.getNodesfromStorage */
-        this.notelist=notesarray;
+        /* Noteliste mit allen Elementen initialisieren   */
+        this.notelist = this.noteservice.getNotesfromStorage();
         switch (SelectedSortOption){
             case "id":
                 /* Kein Filter */
@@ -262,7 +313,7 @@ class NotelistController {
                 console.log("Switch SelectedSortOption: default");
                 break;
         }
-        this.notelistview.show(this.notelist);
+        this.notelistview.render(this.notelist);
         console.log("change LBFilter");
     }
     /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
@@ -271,7 +322,6 @@ class NotelistController {
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var notelistctrl = new NotelistController(notesarray);
-
+    var notelistctrl = new NotelistController();
 });
 

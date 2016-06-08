@@ -18,10 +18,10 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
     </script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="mock-notes.js"></script>
-    <script src="notelist.js"></script>
-    <script src="notemgr.js"></script>
+    <link rel="stylesheet" type="text/css" href="notelist/blueTheme/stylenotelist.css">
+    <script src="notelist/mock-notes.js"></script>
+    <script src="notelist/notelist.js"></script>
+    <script src="noteDetail/notemgr.js"></script>
 </head>
 <body class="site">
 <header role="banner">
@@ -73,10 +73,10 @@
     </script>
 <footer>
     <div class="css-selection">
-        <label for="css-selector">Design auswählen: </label>
-        <select id="css-selector">
-            <option value="StyleOne">BlackandWhite</option>
-            <option value="StyleTwo" selected>HSRColor</option>
+        <label for="ddlb_stylesheetSelect">Design auswählen: </label>
+        <select id="ddlb_stylesheetSelect">
+            <option value="StyleOne">DarkTheme</option>
+            <option value="StyleTwo" selected>BlueTheme</option>
         </select>
     </div>
 </footer>

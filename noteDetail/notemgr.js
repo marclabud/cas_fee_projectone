@@ -9,8 +9,8 @@ $(function () {
 });
 
 function edit(id) {
-    $.get("noteDetail.html", function () {
-        var url = "noteDetail.html?id=" + id;
+    $.get("noteDetail\\noteDetail.html", function () {
+        var url = "noteDetail\\noteDetail.html?id=" + id;
         location.replace(url);
     });
 }
