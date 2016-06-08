@@ -1,4 +1,4 @@
-"use strict";
+declare function updateNote(id: number, finishedDate : String): void;
 
 /* ENUM SortCriteria notelist */
 enum SortCriteria {
@@ -231,8 +231,11 @@ class NotelistController {
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
-            var attr = $(this).parent().attr("id");
-            console.log("Checkbox changed:", attr);
+            var id = $(this).parent().attr("id");
+            var finishedDate = new Date().toJSON();
+            updateNote(Number(id), finishedDate);
+            console.log("Checkbox changed:", id);
+            console.log("Checkbox changed:", finishedDate);
         })
     }
 

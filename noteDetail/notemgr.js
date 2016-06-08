@@ -49,7 +49,7 @@ function updateNote(id, finishedDate) {
     if (finishedDate) {
         // updateNote called by main page
         // readNote Note from local storage and updateNote only finishedDate
-        var note = JSON.parse(readNote(id));
+        var note = readNote(id);
         note.finishedDate = finishedDate;
         updatedNote = note;
     } else {
