@@ -1,13 +1,13 @@
 declare function updateNote(id: number, finishedDate : String): void;
 
-/* ENUM SortCriteria notelist */
+/* ENUM SortCriteria noteList */
 enum SortCriteria {
     id,
     dueDate,
     creationDate,
     importance,
 }
-/* ENUM FilterCriteria notelist */
+/* ENUM FilterCriteria noteList */
 enum FilterCriteria {
     id,
     noteActive,
@@ -71,9 +71,9 @@ class NoteService {
 
     /* Daten aus dem LocalStorage
      getNotesfromStorage():note[] {
-     let notelist:note[];
-     notelist = JSON.parse(localStorage.getItem("noteClient"));
-     return notelist
+     let noteList:note[];
+     noteList = JSON.parse(localStorage.getItem("noteClient"));
+     return noteList
      } */
 
     /* For Testing: Setup local store data with Mock Array */
@@ -81,7 +81,7 @@ class NoteService {
         let notelist:note[];
         localStorage.removeItem("noteClient");
         notelist = notesarray;
-        /* Store notelist */
+        /* Store noteList */
         localStorage.setItem("noteClient", JSON.stringify(notelist));
     }
 
@@ -203,7 +203,7 @@ class Notelistview {
         };
         let createNotesHTML:HandlebarsTemplateDelegate = Handlebars.compile(document.getElementById("notes-template").innerText);
         let notesHtml:string = createNotesHTML(context);
-        document.getElementById("notelist").innerHTML = notesHtml;
+        document.getElementById("noteList").innerHTML = notesHtml;
     }
 }
 class NotelistController {
@@ -254,15 +254,17 @@ class NotelistController {
     }
 
     styleSheetSelect (event:Event):void {
+        const PATHSTYLE:string = "app/scss/style.css";
+        const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
         let target:any = event.target;
         let SelectedStyle:string = target.value;
-        if (SelectedStyle==="StyleOne"){
-            console.log("Selected Style",SelectedStyle);
-            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        if (SelectedStyle === "StyleOne") {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", PATHDARKSTYLE);
         }
         else {
-            console.log("Selected Style",SelectedStyle);
-            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", PATHSTYLE);
         }
     }
     sort(event:Event):void {

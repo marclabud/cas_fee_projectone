@@ -19,9 +19,9 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
     </script>
-    <link rel="stylesheet" type="text/css" href="notelist/blueTheme/stylenotelist.css">
-    <script src="notelist/mock-notes.js"></script>
-    <script src="notelist/notelist.js"></script>
+    <link rel="stylesheet" type="text/css" href="app/scss/style.css">
+    <script src="noteList/mock-notes.js"></script>
+    <script src="noteList/notelist.js"></script>
     <script src="noteDetail/notemgr.js"></script>
 </head>
 <body class="site">
@@ -47,7 +47,7 @@
     </nav>
 </header>
 
-<section id="notelist" class="notes"></section>
+<section id="noteList" class="notes"></section>
     <!-- handlebars-template for notes -->
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each notes }}

@@ -31,4 +31,15 @@ Install typings in `typings.json`  from project folder using typings.
 * moment-timezone-with-data.js
 
 ## required devtools
-* SASS
+* sass
+
+## sass structure
+top file is style.scss for standard style and
+
+darkstyle for the second style.
+style.scss only imports partials.
+
+#_partials
+* layout.scss for basic styling
+* _stylenotelist.scss. scss dor component noteList.
+
