@@ -1,0 +1,85 @@
+/* Moved to shared
+ *Basic Layout for
+ * header
+ * nav
+ * body
+ * headings
+ * footer */
+
+/* dark layout */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+$roboto-font-stack: 'Roboto', sans-serif;
+$raleway-font-stack: 'Raleway', sans-serif;
+
+$HSRblueColor: black;
+$ColorForBlueBackground: white;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.site {
+  font-family: $roboto-font-stack;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: block;
+  width: 100%;
+  background-color: $HSRblueColor;
+  color: $ColorForBlueBackground;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $raleway-font-stack;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2.813rem;
+}
+
+h3 {
+  font-size: 2.125rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+p {
+  font-size: 1rem;
+}
+
+/* Nav */
+.notes-ctrl-sorter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: $HSRblueColor;
+  color: $ColorForBlueBackground;
+}

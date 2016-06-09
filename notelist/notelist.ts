@@ -254,15 +254,17 @@ class NotelistController {
     }
 
     styleSheetSelect (event:Event):void {
+        const PATHSTYLE:string = "app/scss/style.css";
+        const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
         let target:any = event.target;
         let SelectedStyle:string = target.value;
-        if (SelectedStyle==="StyleOne"){
-            console.log("Selected Style",SelectedStyle);
-            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+        if (SelectedStyle === "StyleOne") {
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", PATHDARKSTYLE);
         }
         else {
-            console.log("Selected Style",SelectedStyle);
-            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+            console.log("Selected Style", SelectedStyle);
+            $("link").attr("href", PATHSTYLE);
         }
     }
     sort(event:Event):void {

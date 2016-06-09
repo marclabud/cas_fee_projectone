@@ -1,0 +1,14 @@
+/* scss Hauptdatei für das Thema dark
+ * besteht aus
+ * _layout.scss (partial for layout für static modules Header, Footer, Nav )
+ * den scss-Files of the component
+ * notelist.scss
+ * notedetail.scss*/
+
+/* partial _layout.scss  */
+@import '../../shared/_darklayout.scss';
+/* noteList partial */
+@import '../../notelist/_stylenotelist.scss';
+/* noteDetail partial
+@import '/noteDetail/stylenoteDetail.scss';
+*/

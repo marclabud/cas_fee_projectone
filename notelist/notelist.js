@@ -1,4 +1,3 @@
-"use strict";
 /* ENUM SortCriteria notelist */
 var SortCriteria;
 (function (SortCriteria) {
@@ -218,8 +217,10 @@ var NotelistController = (function () {
     ;
     NotelistController.prototype.registerCBFinished = function () {
         $(":checkbox").change(function () {
-            var attr = $(this).parent().attr("id");
-            console.log("Checkbox changed:", attr);
+            var id = $(this).parent().attr("id");
+            var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
+            updateNote(Number(id), finishedDate);
+            console.log("Checkbox changed:", id);
         });
     };
     NotelistController.prototype.registerListboxSorter = function () {
@@ -235,15 +236,17 @@ var NotelistController = (function () {
         el.addEventListener('change', this.styleSheetSelect.bind(this));
     };
     NotelistController.prototype.styleSheetSelect = function (event) {
+        var PATHSTYLE = "app/scss/style.css";
+        var PATHDARKSTYLE = "app/scss/darkstyle.css";
         var target = event.target;
         var SelectedStyle = target.value;
         if (SelectedStyle === "StyleOne") {
             console.log("Selected Style", SelectedStyle);
-            $("link").attr("href", "notelist/darkTheme/stylenotelist.css");
+            $("link").attr("href", PATHDARKSTYLE);
         }
         else {
             console.log("Selected Style", SelectedStyle);
-            $("link").attr("href", "notelist/blueTheme/stylenotelist.css");
+            $("link").attr("href", PATHSTYLE);
         }
     };
     NotelistController.prototype.sort = function (event) {
