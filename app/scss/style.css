@@ -3,7 +3,7 @@
  * besteht aus
  * _layout.scss (partial for layout f├╝r static modules Header, Footer, Nav )
  * den scss-Files of the component
- * notelist.scss
+ * noteList.scss
  * notedetail.scss*/
 /* partial _layout.scss  */
 /* Moved to shared
@@ -72,7 +72,7 @@ footer {
   color: white; }
 
 /* noteList partial */
-/* main content: notelist*/
+/* main content: noteList*/
 /* erste Ebene section  .notes */
 .notes {
   display: flex;
@@ -135,4 +135,4 @@ footer {
 @import '/noteDetail/stylenoteDetail.scss';
 */
 
-/*# sourceMappingURL=style.css */
+/*# sourceMappingURL=bluestyle.css.map */

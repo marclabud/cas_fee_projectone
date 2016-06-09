@@ -1,4 +1,4 @@
-/* ENUM SortCriteria notelist */
+/* ENUM SortCriteria noteList */
 var SortCriteria;
 (function (SortCriteria) {
     SortCriteria[SortCriteria["id"] = 0] = "id";
@@ -6,7 +6,7 @@ var SortCriteria;
     SortCriteria[SortCriteria["creationDate"] = 2] = "creationDate";
     SortCriteria[SortCriteria["importance"] = 3] = "importance";
 })(SortCriteria || (SortCriteria = {}));
-/* ENUM FilterCriteria notelist */
+/* ENUM FilterCriteria noteList */
 var FilterCriteria;
 (function (FilterCriteria) {
     FilterCriteria[FilterCriteria["id"] = 0] = "id";
@@ -64,16 +64,16 @@ var NoteService = (function () {
     };
     /* Daten aus dem LocalStorage
      getNotesfromStorage():note[] {
-     let notelist:note[];
-     notelist = JSON.parse(localStorage.getItem("noteClient"));
-     return notelist
+     let noteList:note[];
+     noteList = JSON.parse(localStorage.getItem("noteClient"));
+     return noteList
      } */
     /* For Testing: Setup local store data with Mock Array */
     NoteService.prototype.WriteMockNotestoLocalStorage = function () {
         var notelist;
         localStorage.removeItem("noteClient");
         notelist = notesarray;
-        /* Store notelist */
+        /* Store noteList */
         localStorage.setItem("noteClient", JSON.stringify(notelist));
     };
     NoteService.prototype.sortBy = function (noteList, SelectedSortCriteria) {
@@ -194,7 +194,7 @@ var Notelistview = (function () {
         };
         var createNotesHTML = Handlebars.compile(document.getElementById("notes-template").innerText);
         var notesHtml = createNotesHTML(context);
-        document.getElementById("notelist").innerHTML = notesHtml;
+        document.getElementById("noteList").innerHTML = notesHtml;
     };
     return Notelistview;
 }());
