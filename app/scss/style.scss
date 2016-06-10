@@ -1,14 +1,14 @@
-/* scss Hauptdatei für das Thema blau
- * besteht aus
- * _layout.scss (partial for layout für static modules Header, Footer, Nav )
- * den scss-Files of the component
- * notelist.scss
- * notedetail.scss*/
+/* scss main file for the theme blue
+ * containing:
+ * _layout.scss (partial for layout for static modules Header, Footer, Nav )
+ * the scss-Files of the component
+ * _stylenotelist.scss
+ * _stylenotedetail.scss'
+ */
 
 /* partial _layout.scss  */
 @import '../../shared/_layout.scss';
 /* noteList partial */
-@import '../../noteList/_stylenotelist.scss';
-/* noteDetail partial
-@import '/noteDetail/stylenoteDetail.scss';
-*/
+@import '../../notelist/_stylenotelist.scss';
+/* notedetail partial */
+@import '../../notedetail/_stylenotedetail.scss';

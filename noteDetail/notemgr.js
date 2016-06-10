@@ -6,8 +6,8 @@ const DATE_FORMAT = "MM/DD/YYYY";
 var noteList;
 
 function editNote(id) {
-    $.get("noteDetail\\noteDetail.html", function () {
-        var url = "noteDetail\\noteDetail.html?id=" + id;
+    $.get("notedetail\\notedetail.html", function () {
+        var url = "notedetail\\notedetail.html?id=" + id;
         location.replace(url);
     });
 }

@@ -3,7 +3,7 @@
  * besteht aus
  * _layout.scss (partial for layout f├╝r static modules Header, Footer, Nav )
  * den scss-Files of the component
- * noteList.scss
+ * notelist.scss
  * notedetail.scss*/
 /* partial _layout.scss  */
 /* Moved to shared
@@ -132,8 +132,108 @@ footer {
   width: 2.5rem;
   margin: 0.5rem 0 0.5rem 0; }
 
-/* noteDetail partial
-@import '/noteDetail/stylenoteDetail.scss';
-*/
+/* notedetail partial */
+.note-detail {
+  height: 900%;
+  width: 100%;
+  /* border: 1px solid black; */ }
+
+.note-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px; }
+
+.item {
+  display: inline-block;
+  /* background:blue; */
+  margin: 10px;
+  flex-grow: 1;
+  width: calc(100% /2 - 6*10px); }
+
+.col1 {
+  flex-basis: calc(100% /10*2 - 6*10px); }
+
+.col2 {
+  flex-basis: calc(100% /10*8 - 6*10px); }
+
+footer {
+  flex-basis: calc(100% /10*3 - 6*10px);
+  bottom: 0;
+  position: fixed; }
+
+.description,
+.buttons,
+.input {
+  width: 95%; }
+
+form div h4 {
+  margin: 0; }
+
+.git,
+a[href] {
+  float: right;
+  color: white; }
+
+form button {
+  float: right;
+  margin: 5px;
+  padding: 5px;
+  width: 5rem; }
+
+form button:hover,
+form button:focus,
+form button:active {
+  background-color: #ACD6F5;
+  font-weight: bold; }
+
+/* rating styles */
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px; }
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px; }
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc; }
+
+.rate:not(:checked) > label:before {
+  content: "\2605"; }
+
+.rate > input:checked ~ label {
+  color: #ffc700; }
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217; }
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08; }
+
+.content {
+  display: -webkit-box;
+  /* OLD: Chrome <=20, iOS <=6,
+   Safari <=6 */
+  display: -moz-box;
+  /* OLD: Firefox <=21 */
+  display: -ms-flexbox;
+  /* TWEENER: IE 10 */
+  display: -webkit-flex;
+  /* NEW: Chrome 21-28 */
+  display: flex;
+  /* NEW (Spec): Chrome >=29,
+   Firefox >=22, IE >=11 */ }
 
 /*# sourceMappingURL=darkstyle.css.map */
