@@ -39,7 +39,7 @@ top file is style.scss for standard style and
 darkstyle for the second style.
 style.scss only imports partials.
 
-#_partials
-* layout.scss for basic styling
-* _stylenotelist.scss. scss dor component noteList.
+###_partials
+* _layout.scss for basic styling.
+* _stylenotelist.scss for component noteList.
 
