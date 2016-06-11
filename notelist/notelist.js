@@ -219,7 +219,7 @@ var NotelistController = (function () {
         $(":checkbox").change(function () {
             var id = $(this).parent().attr("id");
             var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
-            updateNote(Number(id), finishedDate);
+            noteStorageService.updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
         });
     };

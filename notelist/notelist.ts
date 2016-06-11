@@ -1,5 +1,3 @@
-declare function updateNote(id: number, finishedDate : String): void;
-
 /* ENUM SortCriteria noteList */
 enum SortCriteria {
     id,
@@ -210,6 +208,7 @@ class NotelistController {
     notelist:note[];
     notelistview:Notelistview;
     noteservice:NoteService;
+    noteStorageService:NoteStorageService;
 
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
@@ -226,14 +225,13 @@ class NotelistController {
         this.registerListboxSorter();
         this.registerListboxFilter();
         this.registerListboxStyleChanger();
-
         };
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
             var id = $(this).parent().attr("id");
             var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
-            updateNote(Number(id), finishedDate);
+            noteStorageService.updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
         })
     }

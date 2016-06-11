@@ -16,7 +16,10 @@
     <script src="../node_modules/moment-timezone/builds/moment-timezone-with-data.js"></script>
     <!-- application resources -->
     <link rel="stylesheet" type="text/css" href="../app/scss/style.css">
-    <script src="notemgr.js"></script>
+    <script src="https://jspm.io/system@0.19.js"></script>
+    <script src="Note.js"></script>
+    <script src="NoteDetail.js"></script>
+    <script src="NoteDetailMain.js"></script>
 </head>
 <body class="site">
 <header role="banner">
@@ -24,7 +27,7 @@
 </header>
 <div class="note-content">
     <main class="note-detail">
-        <form id="note-form" class="note-form" action="" onsubmit="saveOrUpdateNote()" method="post">
+        <form id="note-form" class="note-form" action="" onsubmit="service.saveOrUpdateNote()" method="post">
             <input id="note-id" class="input" name="id" type="number" hidden="hidden">
             <label for="note-id"></label>
             <input id="note-createdDate" class="input" name="createdDate" type="text" hidden="hidden">
