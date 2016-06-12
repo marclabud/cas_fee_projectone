@@ -1,5 +1,9 @@
 .idea
 typings
-noteList/*.js
-noteList/*.map
+notelist/*.js
+notelist/*.map
+app/scss/*.css
+app/scss/*.map
+noteDetail/*.js
+noteDetail/*.map
 node_modules
