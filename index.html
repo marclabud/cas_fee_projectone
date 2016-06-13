@@ -31,7 +31,7 @@
 <header role="banner">
     <h1>Einfach notieren</h1>
     <nav class="notes-ctrl-sorter" role="navigation">
-        <button type="button" class="btn-note-new">NeueNotiz</button>
+        <button type="button" id="btnNoteNew" class="btn-note-new">NeueNotiz</button>
         <label for="ddlb_sorterselect">Sortieren nach:</label>
         <select id="ddlb_sorterselect" class="sorter">
             <option value="id" selected>Standard</option>
@@ -69,7 +69,7 @@
                             <p>{{description}}</p>
                 </div>
 
-                        <button type="button" onclick="service.editNote({{{id}}})" class="btn-note-edit">Edit</button>
+                        <button type="button" onclick="noteStorageService.editNote({{{id}}})" class="btn-note-edit">Edit</button>
 
         </article>
         {{else}}

@@ -223,6 +223,7 @@ class NotelistController {
         this.notelist = this.noteservice.getNotesfromStorage();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
+        this.registerBtnNoteNew();
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
@@ -238,6 +239,10 @@ class NotelistController {
             console.log("Checkbox changed:", id);
         })
     }
+    registerBtnNoteNew():void {
+        let el:HTMLElement = document.getElementById("btnNoteNew");
+        el.addEventListener('click', this.createNewNote.bind(this));
+    }
 
     registerListboxSorter():void {
         let el:HTMLElement = document.getElementById("ddlb_sorterselect");
@@ -252,6 +257,19 @@ class NotelistController {
     registerListboxStyleChanger():void {
         let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
         el.addEventListener('change', this.styleSheetSelect.bind(this));
+    }
+
+    createNewNote (event:Event): void {
+        let NextID:number = 1;
+        console.log("NewNote", Event);
+
+        NextID = noteStorageService.getNextId();
+        if (typeof NextID === "number") {
+            /* noteDetail Editor mit neuer ID aufrufen */
+            noteStorageService.editNote(NextID);
+        }
+        else {console.log ("Error:CreateNewNote: Wrong ID",NextID );
+        }
     }
 
     styleSheetSelect (event:Event):void {

@@ -1,5 +1,6 @@
 /**
  * Notes Mock Data
+ * depends on Notes.ts (interface)
  */
 
 var notesarray:note[] = [
