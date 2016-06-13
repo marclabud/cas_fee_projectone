@@ -218,7 +218,7 @@ class NotelistController {
     constructor() {
         this.noteservice = new NoteService();
         this.noteStorageService= new NoteStorageService(this.notelist);
-        /* Test ToDo Nach Test entfernen
+        /* Test ToDo nach Test entfernen
         this.noteservice.WriteMockNotestoLocalStorage(); */
         this.notelist = this.noteservice.getNotesfromStorage();
         this.notelistview = new Notelistview;

@@ -2,16 +2,6 @@
  * Notes Mock Data
  */
 
-interface note {
-    id:number;
-    title:string;
-    description:string;
-    importance:number;
-    finishedDate:string;
-    createdDate:string;
-    dueDate:string;
-}
-
 var notesarray:note[] = [
     {
         "id": 1,
