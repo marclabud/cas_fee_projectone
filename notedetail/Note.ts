@@ -3,7 +3,7 @@
  */
 'use strict';
 
-class Note {
+class Note implements note{
     private _id:number;
     private _title:string;
     private _description:string;

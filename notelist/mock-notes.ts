@@ -7,9 +7,9 @@ interface note {
     title:string;
     description:string;
     importance:number;
-    finishedDate:String;
-    createdDate:String;
-    dueDate:String;
+    finishedDate:string;
+    createdDate:string;
+    dueDate:string;
 }
 
 var notesarray:note[] = [

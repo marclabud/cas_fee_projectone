@@ -14,7 +14,6 @@ enum FilterCriteria {
     noteLowImportance
 }
 
-
 /* Handlebars Helper */
 
 /* Rate transformiert den Score (Ausprägung des Ratings) in HTML
@@ -217,7 +216,8 @@ class NotelistController {
      Default ist das Item, das ausgewählt wurde */
 
     constructor() {
-        this.noteservice = new NoteService;
+        this.noteservice = new NoteService();
+        this.noteStorageService= new NoteStorageService(this.notelist);
         /* Test ToDo Nach Test entfernen
         this.noteservice.WriteMockNotestoLocalStorage(); */
         this.notelist = this.noteservice.getNotesfromStorage();
@@ -233,7 +233,8 @@ class NotelistController {
         $(":checkbox").change(function () {
             var id = $(this).parent().attr("id");
             var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
-            noteStorageService.updateNote(Number(id), finishedDate);
+            /* ToDo: NoteStorage Integration */
+             noteStorageService.updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
         })
     }
