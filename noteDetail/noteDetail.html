@@ -27,7 +27,7 @@
 </header>
 <div class="note-content">
     <main class="note-detail">
-        <form id="note-form" class="note-form" action="" onsubmit="noteStorageService.saveOrUpdateNote()" method="post">
+        <form id="note-form" class="note-form" action="" onsubmit="new NoteStorageService().saveOrUpdateNote()" method="post">
             <input id="note-id" class="input" name="id" type="number" hidden="hidden">
             <label for="note-id"></label>
             <input id="note-createdDate" class="input" name="createdDate" type="text" hidden="hidden">
