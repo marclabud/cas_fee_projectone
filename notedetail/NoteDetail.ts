@@ -51,5 +51,5 @@ class NoteDetailControl {
     }
 }
 $(document).ready(function () {
-    new NoteDetailControl().noteStorageService;
+    new NoteDetailControl();
 });
