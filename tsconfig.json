@@ -10,11 +10,12 @@
     "noImplicitAny": true
   },
   "files": [
-    "notelist/mock-notes.ts",
+    "noteservice/mock-notes.ts",
     "notelist/notelist.ts",
-    "notedetail/Note.ts",
+    "noteservice/Note.ts",
+    "noteservice/NoteStorage.ts",
+    "noteservice/NoteService.ts",
     "notedetail/NoteDetail.ts",
-    "notedetail/NoteDetailMain.ts",
     "typings/index.d.ts"
   ],
   "exclude": [
