@@ -41,5 +41,6 @@ style.scss only imports partials.
 
 ###_partials
 * _layout.scss for basic styling.
-* _stylenotelist.scss for component noteList.
+* _stylenotelist.scss for component notelist.
+* _stylenotedetail.scss for component notedetail.
 
