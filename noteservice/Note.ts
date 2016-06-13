@@ -3,7 +3,7 @@
  */
 'use strict';
 
-interface note {
+interface INote {
     id:number;
     title:string;
     description:string;
@@ -13,7 +13,7 @@ interface note {
     dueDate:string;
 }
 
-class Note implements note{
+class Note implements INote{
     private _id:number;
     private _title:string;
     private _description:string;

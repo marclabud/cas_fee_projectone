@@ -7,33 +7,33 @@
 class NoteService {
 
     /*   /!* Mock-Daten aus dem Array *!/
-     getNotesfromStorage():note[] {
-     let notelist:note[];
+     getNotesfromStorage():INote[] {
+     let notelist:INote[];
      notelist = notesarray;
      return notelist
      }*/
 
     /* Daten aus dem LocalStorage */
-    getNotesfromStorage():note[] {
-        let notelist:note[];
+    getNotesfromStorage():INote[] {
+        let notelist:INote[];
         notelist = JSON.parse(localStorage.getItem(NOTE_LIST));
         return notelist
     }
 
     /* For Testing: Setup local store data with Mock Array */
     /*   WriteMockNotestoLocalStorage():void {
-     let notelist:note[];
+     let notelist:INote[];
      localStorage.removeItem(NOTE_LIST);
      notelist = notesarray;
      /!* Store notelist *!/
      localStorage.setItem(NOTE_LIST, JSON.stringify(notelist));
      } */
 
-    sortBy(noteList:note[], SelectedSortCriteria:SortCriteria):void {
+    sortBy(noteList:INote[], SelectedSortCriteria:SortCriteria):void {
 
         switch (SelectedSortCriteria) {
             case SortCriteria.id:
-                noteList.sort(function (a:note, b:note):number {
+                noteList.sort(function (a:INote, b:INote):number {
                     if (a.id > b.id) {
                         return 1;
                     }
@@ -44,7 +44,7 @@ class NoteService {
                 });
                 break;
             case SortCriteria.dueDate:
-                noteList.sort(function (a:note, b:note):number {
+                noteList.sort(function (a:INote, b:INote):number {
                     if (a.dueDate > b.dueDate) {
                         return 1;
                     }
@@ -55,7 +55,7 @@ class NoteService {
                 });
                 break;
             case SortCriteria.creationDate:
-                noteList.sort(function (a:note, b:note):number {
+                noteList.sort(function (a:INote, b:INote):number {
                     if (a.dueDate > b.dueDate) {
                         return 1;
                     }
@@ -66,7 +66,7 @@ class NoteService {
                 });
                 break;
             case SortCriteria.importance:
-                noteList.sort(function (a:note, b:note):number {
+                noteList.sort(function (a:INote, b:INote):number {
                     if (a.importance > b.importance) {
                         return 1;
                     }
@@ -82,8 +82,8 @@ class NoteService {
         return
     }
 
-    filterBy(noteList:note[], SelectedFilterCriteria:FilterCriteria):note[] {
-        let filterednotelist:note[];
+    filterBy(noteList:INote[], SelectedFilterCriteria:FilterCriteria):INote[] {
+        let filterednotelist:INote[];
 
         switch (SelectedFilterCriteria) {
             case FilterCriteria.id:

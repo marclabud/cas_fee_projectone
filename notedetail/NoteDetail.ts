@@ -4,32 +4,52 @@
 //require("./Note");
 //require("./NoteDetail");
 
-let noteList:Note[];
-let noteStorageService:NoteStorageService;
+class NoteDetailView {
 
-$(function () {
-    noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
-    if (noteList === null) { //If there is no data, initialize an empty array
-        noteList = [];
+    private _note:INote;
+
+    constructor(note:INote){
+        this._note = note;
+        this.render();
     }
-});
 
-$(document).ready(function () {
+    render() {
+        if (this._note !== undefined && this._note !== null) {
+            var dueDate = moment(this._note.dueDate).format(DATE_FORMAT);
+            $("#note-id").val(this._note.id);
+            $("#note-title").val(this._note.title);
+            $("#note-description").val(this._note.description);
+            $("#star" + this._note.importance).prop("checked", true);
+            $("#note-createdDate").val(this._note.createdDate);
+            $("#note-dueDate").val(dueDate);
+            $("#note-finishedDate").val(this._note.finishedDate);
+        }
+    };
+}
+
+class NoteDetailControl {
+
+    private _noteStorageService:NoteStorageService;
+    private noteDetailView:NoteDetailView;
+    private note:INote;
+
+    constructor() {
+        this._noteStorageService = new NoteStorageService();
+        this.init();
+        this.noteDetailView = new NoteDetailView(this.note);
+    }
+
+    init() {
         let noteId:String = Utility.getURLParameter("id");
-        noteStorageService = new NoteStorageService(noteList);
-
         if (noteId !== null) {
-            let aNote:note = noteStorageService.readNote(Number(noteId));
-            if (aNote !== null) {
-                let dueDate:string = moment(aNote.dueDate).format(DATE_FORMAT);
-                   $("#note-id").val(aNote.id);
-                $("#note-title").val(aNote.title);
-                $("#note-description").val(aNote.description);
-                $("#star" + aNote.importance).prop("checked", true);
-                $("#note-createdDate").val(aNote.createdDate);
-                $("#note-dueDate").val(dueDate);
-                $("#note-finishedDate").val(aNote.finishedDate);
-            }
+            this.note = this._noteStorageService.readNote(Number(noteId));
         }
     }
-);
+
+    get noteStorageService():NoteStorageService {
+        return this._noteStorageService;
+    }
+}
+$(document).ready(function () {
+    new NoteDetailControl().noteStorageService;
+});

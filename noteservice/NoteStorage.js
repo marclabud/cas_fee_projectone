@@ -8,9 +8,16 @@ var DATE_FORMAT = "MM/DD/YYYY";
  * read, save and update a Note from resp. into local storage.
  */
 var NoteStorageService = (function () {
-    function NoteStorageService(noteList) {
-        this._noteList = noteList;
+    function NoteStorageService() {
+        this.initNoteList();
     }
+    NoteStorageService.prototype.initNoteList = function () {
+        this.noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+        if (this.noteList === null) {
+            this.noteList = [];
+        }
+        return this.noteList;
+    };
     NoteStorageService.prototype.createNote = function (id, creationDate) {
         var dueDate = $("#note-dueDate").val();
         var isoDueDate = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
@@ -25,13 +32,13 @@ var NoteStorageService = (function () {
         return note;
     };
     NoteStorageService.prototype.readNote = function (id) {
-        return this._noteList.filter(function (aNote) {
+        return this.noteList.filter(function (aNote) {
             return aNote.id === id;
         })[0];
     };
     NoteStorageService.prototype.editNote = function (id) {
-        $.get("notedetail\\noteDetail.html", function () {
-            var url = "notedetail\\noteDetail.html?id=" + id;
+        $.get("notedetail\\notedetail.html", function () {
+            var url = "notedetail\\notedetail.html?id=" + id;
             location.replace(url);
         });
     };
@@ -49,8 +56,8 @@ var NoteStorageService = (function () {
     NoteStorageService.prototype.saveNote = function () {
         var createdDate = new Date().toJSON();
         var note = this.createNote(this.getNextId(), createdDate);
-        this._noteList.push(note);
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
+        this.noteList.push(note);
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die neue Notiz wurde gespeichert.");
         return true;
     };
@@ -68,19 +75,19 @@ var NoteStorageService = (function () {
             updatedNote = note;
         }
         else {
-            // updateNote called by note detail page
-            // readNote note from Form and updateNote whole content except createdDate and finishedDate
+            // updateNote called by INote detail page
+            // readNote INote from Form and updateNote whole content except createdDate and finishedDate
             updatedNote = this.createNote(id, null);
         }
         var index = id - 1;
-        this._noteList[index] = updatedNote; //Alter the selected item on the table
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
+        this.noteList[index] = updatedNote; //Alter the selected item on the table
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
     };
     NoteStorageService.prototype.getNextId = function () {
         var max = 0;
-        $.map(this._noteList, function (note) {
+        $.map(this.noteList, function (note) {
             if (note.id > max) {
                 max = note.id;
             }

@@ -11,18 +11,26 @@ const DATE_FORMAT = "MM/DD/YYYY";
  */
 class NoteStorageService {
 
-    private _noteList:note[];
+    private noteList:INote[];
 
-    constructor(noteList:note[]) {
-        this._noteList = noteList;
+    constructor() {
+        this.initNoteList();
     }
 
-    createNote(id:number, creationDate:string):Note {
+    initNoteList():INote[] {
+        this.noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+        if (this.noteList === null) { //If there is no data, initialize an empty array
+            this.noteList = [];
+        }
+        return this.noteList;
+    }
+
+    createNote(id:number, creationDate:string):INote {
         let dueDate:string = $("#note-dueDate").val();
         let isoDueDate:string = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
 
         /* instantiate a new Note */
-        let note:Note = new Note(id);
+        let note:INote = new Note(id);
         note.title = $("#note-title").val();
         note.description = $("#note-description").val();
         note.importance = $("#note-form input[type='radio']:checked").val();
@@ -33,15 +41,15 @@ class NoteStorageService {
         return note;
     }
 
-    readNote(id:number):note {
-         return this._noteList.filter(function (aNote:note) {
+    readNote(id:number):INote {
+        return this.noteList.filter(function (aNote:INote) {
             return aNote.id === id;
         })[0];
-     }
-    
+    }
+
     editNote(id:number) {
-        $.get("notedetail\\noteDetail.html", function () {
-            let url:string = "notedetail\\noteDetail.html?id=" + id;
+        $.get("notedetail\\notedetail.html", function () {
+            let url:string = "notedetail\\notedetail.html?id=" + id;
             location.replace(url);
         });
     }
@@ -60,19 +68,19 @@ class NoteStorageService {
 
     saveNote():boolean {
         let createdDate:string = new Date().toJSON();
-        let note:Note = this.createNote(this.getNextId(), createdDate);
-        this._noteList.push(note);
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
+        let note:INote = this.createNote(this.getNextId(), createdDate);
+        this.noteList.push(note);
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die neue Notiz wurde gespeichert.");
         return true;
     }
 
     updateNote(id:number, finishedDate:string):boolean {
-        let updatedNote:note = null;
+        let updatedNote:INote = null;
         if (finishedDate) {
             // updateNote called by main page
             // readNote Note from local storage and updateNote only finishedDate
-            let note:note = this.readNote(id);
+            let note:INote = this.readNote(id);
             if (note === undefined) {
                 alert("Note " + id + " does not yet exist! Please create it first");
                 return false;
@@ -80,20 +88,20 @@ class NoteStorageService {
             note.finishedDate = finishedDate;
             updatedNote = note;
         } else {
-            // updateNote called by note detail page
-            // readNote note from Form and updateNote whole content except createdDate and finishedDate
+            // updateNote called by INote detail page
+            // readNote INote from Form and updateNote whole content except createdDate and finishedDate
             updatedNote = this.createNote(id, null);
         }
         let index:number = id - 1;
-        this._noteList[index] = updatedNote;//Alter the selected item on the table
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
+        this.noteList[index] = updatedNote;//Alter the selected item on the table
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
     }
 
     getNextId():number {
         let max:number = 0;
-        $.map(this._noteList, function (note:Note) {
+        $.map(this.noteList, function (note:INote) {
             if (note.id > max) {
                 max = note.id;
             }

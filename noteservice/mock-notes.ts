@@ -3,7 +3,7 @@
  * depends on Notes.ts (interface)
  */
 
-var notesarray:note[] = [
+var notesarray:INote[] = [
     {
         "id": 1,
         title: "Erste Notiz",

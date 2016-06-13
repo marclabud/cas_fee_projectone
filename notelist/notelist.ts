@@ -60,7 +60,7 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 
 class Notelistview {
-    render(notelist:note[]):void {
+    render(notelist:INote[]):void {
         let context = {
             notes: notelist
         };
@@ -70,7 +70,7 @@ class Notelistview {
     }
 }
 class NotelistController {
-    notelist:note[];
+    notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
     noteStorageService:NoteStorageService;
@@ -81,10 +81,10 @@ class NotelistController {
 
     constructor() {
         this.noteservice = new NoteService();
-        this.noteStorageService= new NoteStorageService(this.notelist);
+        this.noteStorageService= new NoteStorageService();
         /* Test ToDo nach Test entfernen
         this.noteservice.WriteMockNotestoLocalStorage(); */
-        this.notelist = this.noteservice.getNotesfromStorage();
+        this.notelist = this.noteStorageService.initNoteList();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
         this.registerBtnNoteNew();
@@ -99,7 +99,7 @@ class NotelistController {
             var id = $(this).parent().attr("id");
             var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
             /* ToDo: NoteStorage Integration */
-             noteStorageService.updateNote(Number(id), finishedDate);
+             new NoteStorageService().updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
         })
     }
@@ -127,10 +127,10 @@ class NotelistController {
         let NextID:number = 1;
         console.log("NewNote", Event);
 
-        NextID = noteStorageService.getNextId();
+        NextID = this.noteStorageService.getNextId();
         if (typeof NextID === "number") {
             /* noteDetail Editor mit neuer ID aufrufen */
-            noteStorageService.editNote(NextID);
+            this.noteStorageService.editNote(NextID);
         }
         else {console.log ("Error:CreateNewNote: Wrong ID",NextID );
         }
@@ -184,16 +184,16 @@ class NotelistController {
             case "id":
                 /* Kein Filter */
                 break;
-            case "note-active":
+            case "INote-active":
                 this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
                 break;
-            case "note-highimportance":
+            case "INote-highimportance":
                 this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
                 break;
-            case "note-mediumimportance":
+            case "INote-mediumimportance":
                 this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
                 break;
-            case "note-lowimportance":
+            case "INote-lowimportance":
                 this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
                 break;
             default:
@@ -210,5 +210,6 @@ class NotelistController {
 /* App.Ctrl */
 $(document).ready(function () {
     var notelistctrl = new NotelistController();
+  //  notelistctrl.noteStorageService.initNoteList();
 });
 
