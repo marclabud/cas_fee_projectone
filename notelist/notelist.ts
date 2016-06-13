@@ -5,7 +5,7 @@ enum SortCriteria {
     creationDate,
     importance,
 }
-/* ENUM FilterCriteria noteList */
+/* ENUM FilterCriteria notelist */
 enum FilterCriteria {
     id,
     noteActive,
@@ -59,29 +59,31 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 /* Notelistview Classes */
 
+
 class NoteService {
-    /* Mock-Daten aus dem Array */
+
+ /*   /!* Mock-Daten aus dem Array *!/
     getNotesfromStorage():note[] {
         let notelist:note[];
         notelist = notesarray;
         return notelist
-    }
+    }*/
 
-    /* Daten aus dem LocalStorage
+    /* Daten aus dem LocalStorage */
      getNotesfromStorage():note[] {
-     let noteList:note[];
-     noteList = JSON.parse(localStorage.getItem("noteClient"));
-     return noteList
-     } */
+     let notelist:note[];
+     notelist = JSON.parse(localStorage.getItem(NOTE_LIST));
+     return notelist
+     }
 
     /* For Testing: Setup local store data with Mock Array */
-    WriteMockNotestoLocalStorage():void {
+ /*   WriteMockNotestoLocalStorage():void {
         let notelist:note[];
-        localStorage.removeItem("noteClient");
+        localStorage.removeItem(NOTE_LIST);
         notelist = notesarray;
-        /* Store noteList */
-        localStorage.setItem("noteClient", JSON.stringify(notelist));
-    }
+        /!* Store notelist *!/
+        localStorage.setItem(NOTE_LIST, JSON.stringify(notelist));
+    } */
 
     sortBy(noteList:note[], SelectedSortCriteria:SortCriteria):void {
 
@@ -201,7 +203,7 @@ class Notelistview {
         };
         let createNotesHTML:HandlebarsTemplateDelegate = Handlebars.compile(document.getElementById("notes-template").innerText);
         let notesHtml:string = createNotesHTML(context);
-        document.getElementById("noteList").innerHTML = notesHtml;
+        document.getElementById("notelist").innerHTML = notesHtml;
     }
 }
 class NotelistController {

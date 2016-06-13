@@ -4,6 +4,6 @@ notelist/*.js
 notelist/*.map
 app/scss/*.css
 app/scss/*.map
-noteDetail/*.js
-noteDetail/*.map
+notedetail/*.js
+notedetail/*.map
 node_modules
