@@ -11,9 +11,9 @@ const DATE_FORMAT = "MM/DD/YYYY";
  */
 class NoteStorageService {
 
-    private _noteList:Note[];
+    private _noteList:note[];
 
-    constructor(noteList:Note[]) {
+    constructor(noteList:note[]) {
         this._noteList = noteList;
     }
 
@@ -33,12 +33,12 @@ class NoteStorageService {
         return note;
     }
 
-    readNote(id:number):Note {
-         return this._noteList.filter(function (note:Note) {
-            return note.id === id;
+    readNote(id:number):note {
+         return this._noteList.filter(function (aNote:note) {
+            return aNote.id === id;
         })[0];
      }
-
+    
     editNote(id:number) {
         $.get("notedetail\\notedetail.html", function () {
             let url:string = "notedetail\\notedetail.html?id=" + id;
@@ -68,11 +68,11 @@ class NoteStorageService {
     }
 
     updateNote(id:number, finishedDate:string):boolean {
-        let updatedNote:Note = null;
+        let updatedNote:note = null;
         if (finishedDate) {
             // updateNote called by main page
             // readNote Note from local storage and updateNote only finishedDate
-            let note:Note = this.readNote(id);
+            let note:note = this.readNote(id);
             if (note === undefined) {
                 alert("Note " + id + " does not yet exist! Please create it first");
                 return false;

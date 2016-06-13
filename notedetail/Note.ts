@@ -3,7 +3,17 @@
  */
 'use strict';
 
-class Note {
+interface note {
+    id:number;
+    title:string;
+    description:string;
+    importance:number;
+    finishedDate:string;
+    createdDate:string;
+    dueDate:string;
+}
+
+class Note implements note{
     private _id:number;
     private _title:string;
     private _description:string;

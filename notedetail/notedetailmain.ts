@@ -19,16 +19,16 @@ $(document).ready(function () {
         noteStorageService = new NoteStorageService(noteList);
 
         if (noteId !== null) {
-            let note:Note = noteStorageService.readNote(Number(noteId));
-            if (note !== null) {
-                let dueDate:string = moment(note.dueDate).format(DATE_FORMAT);
-                $("#note-id").val(note.id);
-                $("#note-title").val(note.title);
-                $("#note-description").val(note.description);
-                $("#star" + note.importance).prop("checked", true);
-                $("#note-createdDate").val(note.createdDate);
+            let aNote:note = noteStorageService.readNote(Number(noteId));
+            if (aNote !== null) {
+                let dueDate:string = moment(aNote.dueDate).format(DATE_FORMAT);
+                   $("#note-id").val(aNote.id);
+                $("#note-title").val(aNote.title);
+                $("#note-description").val(aNote.description);
+                $("#star" + aNote.importance).prop("checked", true);
+                $("#note-createdDate").val(aNote.createdDate);
                 $("#note-dueDate").val(dueDate);
-                $("#note-finishedDate").val(note.finishedDate);
+                $("#note-finishedDate").val(aNote.finishedDate);
             }
         }
     }

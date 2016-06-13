@@ -1,16 +1,7 @@
 /**
  * Notes Mock Data
+ * depends on Notes.ts (interface)
  */
-
-interface note {
-    id:number;
-    title:string;
-    description:string;
-    importance:number;
-    finishedDate:String;
-    createdDate:String;
-    dueDate:String;
-}
 
 var notesarray:note[] = [
     {

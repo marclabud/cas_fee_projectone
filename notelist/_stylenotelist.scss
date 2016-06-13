@@ -1,10 +1,10 @@
 $NotecardBackgroundColor: #CCDCE9;
 $NotecardBorderColor: #005291;
-/* main content: noteList*/
+/* main content: notelist*/
 /* erste Ebene section  .notes */
 .notes {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-basis: 90%;
   align-items: center;
   justify-content: flex-start;
