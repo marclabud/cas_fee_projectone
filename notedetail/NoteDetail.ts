@@ -8,7 +8,7 @@ class NoteDetailView {
 
     private _note:INote;
 
-    constructor(note:INote){
+    constructor(note:INote) {
         this._note = note;
         this.render();
     }
@@ -37,13 +37,28 @@ class NoteDetailControl {
         this._noteStorageService = new NoteStorageService();
         this.init();
         this.noteDetailView = new NoteDetailView(this.note);
+        this.registerBtnNoteSave();
+        this.registerBtnNoteReset();
+        this.registerBtnBack();
     }
 
-    init() {
+    init():void {
         let noteId:String = Utility.getURLParameter("id");
         if (noteId !== null) {
             this.note = this._noteStorageService.readNote(Number(noteId));
         }
+    }
+
+    registerBtnNoteSave():void {
+        $("#btnNoteSave").on('click', this._noteStorageService.saveOrUpdateNote);
+    }
+
+    registerBtnNoteReset():void {
+        $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
+    }
+
+    registerBtnBack():void {
+        $("#btnBack").on('click', () => location.replace("..\\index.html"));
     }
 
     get noteStorageService():NoteStorageService {

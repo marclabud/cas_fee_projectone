@@ -14,6 +14,7 @@ class NoteStorageService {
     private noteList:INote[];
 
     constructor() {
+        var self = this;
         this.initNoteList();
     }
 
@@ -42,15 +43,12 @@ class NoteStorageService {
     }
 
     readNote(id:number):INote {
-        return this.noteList.filter(function (aNote:INote) {
-            return aNote.id === id;
-        })[0];
+        return this.noteList.filter((note:INote) => note.id === id)[0];
     }
 
-    editNote(id:number) {
-        $.get("notedetail\\notedetail.html", function () {
-            let url:string = "notedetail\\notedetail.html?id=" + id;
-            location.replace(url);
+    static editNote(id:number):void {
+        $.get("notedetail\\notedetail.html", () => {
+            location.replace("notedetail\\notedetail.html?id=" + id);
         });
     }
 
@@ -60,9 +58,11 @@ class NoteStorageService {
 
         // updateNote or saveNote
         if (currentId && currentId > 0) {
-            return this.updateNote(currentId, null);
+            // TODO: this.updateNote works NOT for BtnNoteSave event  handler because this is bind to the event
+            // TODO: so this has here to become self?! 
+            return new NoteStorageService().updateNote(currentId, null);
         } else {
-            return this.saveNote();
+            return new NoteStorageService().saveNote();
         }
     }
 
@@ -81,10 +81,6 @@ class NoteStorageService {
             // updateNote called by main page
             // readNote Note from local storage and updateNote only finishedDate
             let note:INote = this.readNote(id);
-            if (note === undefined) {
-                alert("Note " + id + " does not yet exist! Please create it first");
-                return false;
-            }
             note.finishedDate = finishedDate;
             updatedNote = note;
         } else {

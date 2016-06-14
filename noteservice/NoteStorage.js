@@ -9,6 +9,7 @@ var DATE_FORMAT = "MM/DD/YYYY";
  */
 var NoteStorageService = (function () {
     function NoteStorageService() {
+        var self = this;
         this.initNoteList();
     }
     NoteStorageService.prototype.initNoteList = function () {
@@ -32,14 +33,11 @@ var NoteStorageService = (function () {
         return note;
     };
     NoteStorageService.prototype.readNote = function (id) {
-        return this.noteList.filter(function (aNote) {
-            return aNote.id === id;
-        })[0];
+        return this.noteList.filter(function (note) { return note.id === id; })[0];
     };
-    NoteStorageService.prototype.editNote = function (id) {
+    NoteStorageService.editNote = function (id) {
         $.get("notedetail\\notedetail.html", function () {
-            var url = "notedetail\\notedetail.html?id=" + id;
-            location.replace(url);
+            location.replace("notedetail\\notedetail.html?id=" + id);
         });
     };
     NoteStorageService.prototype.saveOrUpdateNote = function () {
@@ -47,10 +45,12 @@ var NoteStorageService = (function () {
         var currentId = Number($("#note-id").val());
         // updateNote or saveNote
         if (currentId && currentId > 0) {
-            return this.updateNote(currentId, null);
+            // TODO: this.updateNote works NOT for BtnNoteSave event  handler because this is bind to the event
+            // TODO: so this has here to become self?! 
+            return new NoteStorageService().updateNote(currentId, null);
         }
         else {
-            return this.saveNote();
+            return new NoteStorageService().saveNote();
         }
     };
     NoteStorageService.prototype.saveNote = function () {
@@ -67,10 +67,6 @@ var NoteStorageService = (function () {
             // updateNote called by main page
             // readNote Note from local storage and updateNote only finishedDate
             var note = this.readNote(id);
-            if (note === undefined) {
-                alert("Note " + id + " does not yet exist! Please create it first");
-                return false;
-            }
             note.finishedDate = finishedDate;
             updatedNote = note;
         }

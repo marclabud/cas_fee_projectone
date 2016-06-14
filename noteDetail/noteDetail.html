@@ -27,7 +27,7 @@
 </header>
 <div class="note-content">
     <main class="note-detail">
-        <form id="note-form" class="note-form" action="" onsubmit="new NoteStorageService().saveOrUpdateNote()" method="post">
+        <form id="note-form" class="note-form" action="" method="post">
             <input id="note-id" class="input" name="id" type="number" hidden="hidden">
             <label for="note-id"></label>
             <input id="note-createdDate" class="input" name="createdDate" type="text" hidden="hidden">
@@ -67,11 +67,9 @@
             <div class="item col1"></div>
             <div class="item col2">
                 <div class="buttons">
-                    <a href="../index.html"><button id="back" type="button">Zurück</button></a>
-                    <a href="noteDetail.html">
-                        <button id="reset" type="button" form="note-form">Reset</button>
-                    </a>
-                    <button id="save" form="note-form">Speichern</button>
+                    <button id="btnBack" type="button">Zurück</button>
+                    <button id="btnNoteReset" type="button">Reset</button>
+                    <button id="btnNoteSave" type="button">Speichern</button>
                 </div>
             </div>
          </form>
