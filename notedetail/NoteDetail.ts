@@ -54,7 +54,7 @@ class NoteDetailControl {
     }
 
     registerBtnNoteReset():void {
-        $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
+        $("#btnNoteReset").on('click', () => location.replace("notedetail.html"));
     }
 
     registerBtnBack():void {

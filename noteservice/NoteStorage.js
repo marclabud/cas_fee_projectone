@@ -35,7 +35,8 @@ var NoteStorageService = (function () {
     NoteStorageService.prototype.readNote = function (id) {
         return this.noteList.filter(function (note) { return note.id === id; })[0];
     };
-    NoteStorageService.editNote = function (id) {
+    /* static removed ToDo: why static*/
+    NoteStorageService.prototype.editNote = function (id) {
         $.get("notedetail\\notedetail.html", function () {
             location.replace("notedetail\\notedetail.html?id=" + id);
         });
