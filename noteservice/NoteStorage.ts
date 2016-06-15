@@ -45,8 +45,8 @@ class NoteStorageService {
     readNote(id:number):INote {
         return this.noteList.filter((note:INote) => note.id === id)[0];
     }
-
-    static editNote(id:number):void {
+    /* static removed ToDo: why static*/
+    editNote(id:number):void {
         $.get("notedetail\\notedetail.html", () => {
             location.replace("notedetail\\notedetail.html?id=" + id);
         });
