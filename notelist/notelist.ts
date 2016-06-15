@@ -138,7 +138,7 @@ class NotelistController {
 
         NextID = this.noteStorageService.getNextId();
         if (typeof NextID === "number") {
-            /* noteDetail Editor mit neuer ID aufrufen */
+            /* notedetail Editor mit neuer ID aufrufen */
             this.noteStorageService.editNote(NextID);
         }
         else {console.log ("Error:CreateNewNote: Wrong ID",NextID );
