@@ -14,8 +14,7 @@ class NoteStorageService {
     private noteList:INote[];
 
     constructor() {
-        var self = this;
-        this.initNoteList();
+         this.initNoteList();
     }
 
     initNoteList():INote[] {

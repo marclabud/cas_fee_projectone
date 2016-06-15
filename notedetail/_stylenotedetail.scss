@@ -51,6 +51,14 @@ form button:active{
     background-color: #ACD6F5;
     font-weight:bold;
 }
+textarea:invalid,
+input:invalid {
+    border: 1px solid red;
+}
+textarea:valid,
+input:valid {
+    border: 1px solid green;
+}
 /* rating styles */
 .rate {
     float: left;

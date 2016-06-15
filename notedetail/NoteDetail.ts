@@ -6,23 +6,23 @@
 
 class NoteDetailView {
 
-    private _note:INote;
+    private note:INote;
 
-    constructor(note:INote) {
-        this._note = note;
+    constructor(aNote:INote) {
+        this.note = aNote;
         this.render();
     }
 
     render() {
-        if (this._note !== undefined && this._note !== null) {
-            var dueDate = moment(this._note.dueDate).format(DATE_FORMAT);
-            $("#note-id").val(this._note.id);
-            $("#note-title").val(this._note.title);
-            $("#note-description").val(this._note.description);
-            $("#star" + this._note.importance).prop("checked", true);
-            $("#note-createdDate").val(this._note.createdDate);
+        if (this.note !== undefined && this.note !== null) {
+            var dueDate = moment(this.note.dueDate).format(DATE_FORMAT);
+            $("#note-id").val(this.note.id);
+            $("#note-title").val(this.note.title);
+            $("#note-description").val(this.note.description);
+            $("#star" + this.note.importance).prop("checked", true);
+            $("#note-createdDate").val(this.note.createdDate);
             $("#note-dueDate").val(dueDate);
-            $("#note-finishedDate").val(this._note.finishedDate);
+            $("#note-finishedDate").val(this.note.finishedDate);
         }
     };
 }
@@ -47,13 +47,20 @@ class NoteDetailControl {
         }
     }
 
+
     registerEvenListener():void {
-        $("#btnNoteSave").on('click', () => this.noteStorageService.saveOrUpdateNote());
+        $("#btnNoteSave").on('click', function (e) {
+            if ($('form').is(':valid')) {
+                new NoteStorageService().saveOrUpdateNote();
+            }
+        });
         $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
     }
 }
 
+
 $(document).ready(function () {
+
     new NoteDetailControl();
 });
