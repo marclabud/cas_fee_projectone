@@ -87,6 +87,7 @@ class NotelistController {
         this.notelist = this.noteStorageService.initNoteList();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
+        this.registerBtnEdit();
         this.registerBtnNoteNew();
         this.registerCBFinished();
         this.registerListboxSorter();
@@ -103,6 +104,14 @@ class NotelistController {
             console.log("Checkbox changed:", id);
         })
     }
+
+    registerBtnEdit():void {
+        $(":button").on('click', function () {
+            let id = $(this).parent().attr("id");
+            new NoteStorageService().editNote(Number(id));
+        });
+    }
+
     registerBtnNoteNew():void {
         let el:HTMLElement = document.getElementById("btnNoteNew");
         el.addEventListener('click', this.createNewNote.bind(this));

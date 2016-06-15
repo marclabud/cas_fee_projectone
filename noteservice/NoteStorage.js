@@ -35,7 +35,7 @@ var NoteStorageService = (function () {
     NoteStorageService.prototype.readNote = function (id) {
         return this.noteList.filter(function (note) { return note.id === id; })[0];
     };
-    NoteStorageService.editNote = function (id) {
+    NoteStorageService.prototype.editNote = function (id) {
         $.get("notedetail\\notedetail.html", function () {
             location.replace("notedetail\\notedetail.html?id=" + id);
         });
@@ -45,13 +45,12 @@ var NoteStorageService = (function () {
         var currentId = Number($("#note-id").val());
         // updateNote or saveNote
         if (currentId && currentId > 0) {
-            // TODO: this.updateNote works NOT for BtnNoteSave event  handler because this is bind to the event
-            // TODO: so this has here to become self?! 
-            return new NoteStorageService().updateNote(currentId, null);
+            this.updateNote(currentId, null);
         }
         else {
-            return new NoteStorageService().saveNote();
+            this.saveNote();
         }
+        return true;
     };
     NoteStorageService.prototype.saveNote = function () {
         var createdDate = new Date().toJSON();

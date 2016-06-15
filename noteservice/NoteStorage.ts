@@ -46,7 +46,7 @@ class NoteStorageService {
         return this.noteList.filter((note:INote) => note.id === id)[0];
     }
 
-    static editNote(id:number):void {
+    editNote(id:number):void {
         $.get("notedetail\\notedetail.html", () => {
             location.replace("notedetail\\notedetail.html?id=" + id);
         });
@@ -58,12 +58,11 @@ class NoteStorageService {
 
         // updateNote or saveNote
         if (currentId && currentId > 0) {
-            // TODO: this.updateNote works NOT for BtnNoteSave event  handler because this is bind to the event
-            // TODO: so this has here to become self?! 
-            return new NoteStorageService().updateNote(currentId, null);
+            this.updateNote(currentId, null);
         } else {
-            return new NoteStorageService().saveNote();
+            this.saveNote();
         }
+        return true;
     }
 
     saveNote():boolean {
