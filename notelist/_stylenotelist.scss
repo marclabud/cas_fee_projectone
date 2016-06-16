@@ -34,10 +34,18 @@ $NotecardBorderColor: #005291;
 
 /* checkbox to finish note dependencies with  title style h5 */
 .chbx-note-finished {
+  cursor: pointer;
+  background-color: white;
+  color: $NotecardBorderColor;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
   height: 1.5rem;
   width: 1.5rem;
   margin: 0.5rem 0 0.5rem 0;
 }
+
+
 
 /* title and description */
 .notetext {
@@ -68,4 +76,7 @@ $NotecardBorderColor: #005291;
   height: 1.5rem;
   width: 2.5rem;
   margin: 0.5rem 0 0.5rem 0;
+}
+.btn-note-edit:hover {
+  background-color: #F75D00;
 }

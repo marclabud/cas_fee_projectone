@@ -67,7 +67,52 @@ p {
   font-size: 1rem;
 }
 
-/* Nav */
+button {
+  cursor: pointer;
+  border-color: $HSRblueColor ;
+  background-color: white;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  color: $HSRblueColor;
+  margin: 0.25rem;
+}
+
+button:hover {
+  background-color:#CCDCE9 ;
+}
+
+  select {
+    cursor: pointer;
+    border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    border-color: #CCDCE9 ;
+    margin: 0.25rem;
+    background-color: white;
+    color: $HSRblueColor;
+  }
+
+  select:hover {
+    border-color: white ;
+    background-color:#CCDCE9 ;
+  }
+nav {
+  button {
+    cursor: pointer;
+    border-color: #F75D00 ;
+    background-color: #F75D00;
+    border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    color: $HSRblueColor;
+    margin: 0.25rem;
+  }
+
+  button:hover {
+    background-color:#CCDCE9 ;
+  }
+}
 .notes-ctrl-sorter {
   display: flex;
   justify-content: flex-end;
