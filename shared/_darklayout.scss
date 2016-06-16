@@ -68,7 +68,54 @@ h5 {
 p {
   font-size: 1rem;
 }
+button {
+  cursor: pointer;
+  border-color: $DarkColor ;
+  background-color: $ColorBackgroundTitle ;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  color: $DarkColor;
+  margin: 0.25rem;
+}
 
+button:hover {
+  background-color:#CCDCE9 ;
+}
+
+select {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-color: $DarkColor ;
+  margin: 0.25rem;
+  background-color: $ColorBackgroundTitle;
+  color: $DarkColor;
+}
+select:checked {
+  background-color: $GreenColor ;
+}
+
+select:hover {
+  border-color: $DarkColor ;
+  background-color:$DarkGreenShadedColor ;
+}
+nav {
+  background-color:$ColorBackgroundTitle;
+  color: $DarkColor;
+  button {
+    cursor: pointer;
+    border-color: $DarkColor ;
+    background-color: $DarkColor;
+    color: $ColorBackgroundTitle;
+    margin: 0.25rem;
+  }
+
+  button:hover {
+    background-color:$DarkGreenShadedColor ;
+  }
+}
 /* Nav */
 .notes-ctrl-sorter {
   display: flex;
