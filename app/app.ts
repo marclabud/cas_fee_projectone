@@ -5,32 +5,54 @@
 const PATHSTYLE:string = "app/scss/style.css";
 const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
 
+/* ENUM StyleSheetTheme */
+enum StyleSheetTheme {
+    StandardTheme,
+    DarkTheme
+}
+
 class App {
 
-    changeStyleSheet(Theme:StyleSheetTheme) {
+    private theme:StyleSheetTheme;
 
-        let StyleTheme:string = "";
-        if (Theme === StyleSheetTheme.StandardTheme) {
-            StyleTheme = PATHSTYLE;
-        }
-        else {
-            StyleTheme = PATHDARKSTYLE;
-        }
-        /* Save Style to local Storage */
-        localStorage.setItem(NOTE_STYLE, JSON.stringify(StyleTheme));
-        /* Change Style */
-        $("link").attr("href", StyleTheme);
+    constructor() {
     }
 
-    getStyleSheetfromLocalStorage(Theme:StyleSheetTheme) {
-        let StyleSheet:string = "";
-        StyleSheet = JSON.parse(localStorage.getItem(NOTE_STYLE));
-        if (StyleSheet === PATHSTYLE) {
-            Theme = StyleSheetTheme.StandardTheme
+    initStylesheet(hrefPrefix:string) {
+        this.theme = this.getStyleSheetFromLocalStorage();
+        this.changeStyleSheet(this.theme, hrefPrefix);
+        $("#ddlb_stylesheetSelect").val(this.theme === 1 ? "StyleOne" : "StyleTwo");
+        $("#stylesheetSelect").val(this.theme === 1 ? "StyleOne" : "StyleTwo");
+    }
+
+    changeStyleSheet(Theme:StyleSheetTheme, hrefPrefix:string) {
+        let styleTheme:string = "";
+        let styleThemeLast:string = "";
+        if (Theme === StyleSheetTheme.StandardTheme) {
+            styleTheme = PATHSTYLE;
+            styleThemeLast = PATHDARKSTYLE;
         }
         else {
-            Theme = StyleSheetTheme.DarkTheme
+            styleTheme = PATHDARKSTYLE;
+            styleThemeLast = PATHSTYLE;
         }
-        return Theme
+        /* Save Style to local Storage */
+        localStorage.setItem(NOTE_STYLE, JSON.stringify(styleTheme));
+        /* Change Style */
+        $("link[href='" + hrefPrefix + styleThemeLast + "']").attr("href", hrefPrefix + styleTheme);
+    }
+
+    getStyleSheetFromLocalStorage() {
+        let styleSheet:string = "";
+        let theme:StyleSheetTheme = null;
+
+        styleSheet = JSON.parse(localStorage.getItem(NOTE_STYLE));
+        if (styleSheet === PATHSTYLE) {
+            theme = StyleSheetTheme.StandardTheme
+        }
+        else {
+            theme = StyleSheetTheme.DarkTheme
+        }
+        return theme
     }
 }

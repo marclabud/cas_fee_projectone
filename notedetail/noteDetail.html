@@ -19,6 +19,7 @@
     <script src="https://jspm.io/system@0.19.js"></script>
     <script src="../noteservice/Note.js"></script>
     <script src="../noteservice/NoteStorage.js"></script>
+    <script src="../app/App.js"></script>
     <script src="NoteDetail.js"></script>
 </head>
 <body class="site">
@@ -61,7 +62,7 @@
             </div>
             <div class="item col1"><h4>Erledigt bis:</h4></div>
             <div class="item col2">
-                <input id="note-dueDate" type="text" name="dueDate" class="tcal" value="" required>
+                <input id="note-dueDate" type="text" name="dueDate" class="tcal duedate" value="" required>
                 <label for="note-dueDate"></label>
             </div>
             <div class="item col1"></div>
@@ -78,9 +79,14 @@
 <footer>
     <div class="item footer">CAS Frontend Engineering 2016</br>Authoren: Marc Labud, Michel Rimbeaux</div>
     <div class="item col2">
-        <div class="git">
-            Projekt-Sourcen:&nbsp&nbsp<a href="https://github.com/marclabud/cas_fee_projectone">github</a>
-        </div>
+         <div class="footer-right">
+             <label for="stylesheetSelect">Design auswählen: </label>
+             <select id="stylesheetSelect">
+                 <option value="StyleOne">DarkTheme</option>
+                 <option value="StyleTwo" selected>BlueTheme</option>
+             </select>
+             </br>Projekt-Sourcen:&nbsp&nbsp<a class="git" href="https://github.com/marclabud/cas_fee_projectone">github</a>
+         </div>
     </div>
 </footer>
 </body>

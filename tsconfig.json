@@ -12,7 +12,7 @@
   "files": [
     "noteservice/mock-notes.ts",
     "notelist/notelist.ts",
-    "app/app.ts",
+    "app/App.ts",
     "noteservice/Note.ts",
     "noteservice/NoteStorage.ts",
     "noteservice/NoteService.ts",

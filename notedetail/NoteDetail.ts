@@ -4,16 +4,23 @@
 //require("./Note");
 //require("./NoteDetail");
 
+
+const HREF_PREFIX:string = "../";
+
 class NoteDetailView {
 
     private note:INote;
+    private app:App;
 
-    constructor(aNote:INote) {
+    constructor(aApp:App, aNote:INote) {
+        this.app = aApp;
         this.note = aNote;
         this.render();
     }
 
     render() {
+        this.app.initStylesheet("../");
+
         if (this.note !== undefined && this.note !== null) {
             var dueDate = moment(this.note.dueDate).format(DATE_FORMAT);
             $("#note-id").val(this.note.id);
@@ -28,19 +35,20 @@ class NoteDetailView {
 }
 
 class NoteDetailControl {
-
     private noteStorageService:NoteStorageService;
     private noteDetailView:NoteDetailView;
     private note:INote;
+    private app:App;
 
     constructor() {
+        this.app = new App();
+        this.noteStorageService = new NoteStorageService();
         this.init();
-        this.noteDetailView = new NoteDetailView(this.note);
+        this.noteDetailView = new NoteDetailView(this.app, this.note);
         this.registerEvenListener();
     }
 
     init():void {
-        this.noteStorageService = new NoteStorageService();
         let noteId:String = Utility.getURLParameter("id");
         if (noteId !== null) {
             this.note = this.noteStorageService.readNote(Number(noteId));
@@ -56,10 +64,28 @@ class NoteDetailControl {
         });
         $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
+        this.registerListboxStyleChanger();
+    }
+
+    registerListboxStyleChanger():void {
+        let el:HTMLElement = document.getElementById("stylesheetSelect");
+        el.addEventListener('change', this.styleSheetEvent.bind(this));
+    }
+
+    styleSheetEvent(event:Event):void {
+        let target:any = event.target;
+        let SelectedStyle:string = target.value;
+        if (SelectedStyle === "StyleOne") {
+            this.app.changeStyleSheet(StyleSheetTheme.DarkTheme, HREF_PREFIX)
+        }
+        else {
+            this.app.changeStyleSheet(StyleSheetTheme.StandardTheme, HREF_PREFIX)
+        }
+        console.log("Selected Style", SelectedStyle);
     }
 }
 
-
+/* Main */
 $(document).ready(function () {
 
     new NoteDetailControl();

@@ -95,7 +95,7 @@ class NoteStorageService {
         return true;
     }
 
-    getNextId():number {
+     getNextId():number {
         let max:number = 0;
         $.map(this.noteList, function (note:INote) {
             if (note.id > max) {
@@ -104,6 +104,7 @@ class NoteStorageService {
         });
         return Number(++max);
     }
+
 }
 
 class Utility {

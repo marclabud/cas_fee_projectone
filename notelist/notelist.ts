@@ -14,12 +14,6 @@ enum FilterCriteria {
     noteLowImportance
 }
 
-/* ENUM StyleSheetTheme */
-enum StyleSheetTheme {
-    StandardTheme,
-    DarkTheme
-}
-
 /* Handlebars Helper */
 
 /* Rate transformiert den Score (Ausprägung des Ratings) in HTML
@@ -55,17 +49,20 @@ Handlebars.registerHelper('showdate', function (date:string) {
         outDate = moment(date).format(DATEFORMAT);
     }
     else {
-        outDate ="";
-        console.log ("Invalid Date: "+moment(date));
+        outDate = "";
+        console.log("Invalid Date: " + moment(date));
     }
 
     return new Handlebars.SafeString(outDate);
 });
 
 /* Notelistview Classes */
-
-
 class Notelistview {
+    
+    constructor() {
+        new App().initStylesheet("./");
+    }
+
     render(notelist:INote[]):void {
         let context = {
             notes: notelist
@@ -76,7 +73,7 @@ class Notelistview {
     }
 }
 class NotelistController {
-    private _myapp: App;
+    private _myapp:App;
     notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
@@ -87,11 +84,11 @@ class NotelistController {
      Default ist das Item, das ausgewählt wurde */
     /* ToDo: Services im constructor übergeben Hinweis Michael */
     constructor() {
-        this._myapp= new App;
+        this._myapp = new App;
         this.noteservice = new NoteService();
         this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.initNoteList();
-        this.notelistview = new Notelistview;
+        this.notelistview = new Notelistview();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();
         this.registerBtnNoteNew();
@@ -106,7 +103,7 @@ class NotelistController {
             var id = $(this).parent().attr("id");
             var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
             /* ToDo: NoteStorage Integration */
-             new NoteStorageService().updateNote(Number(id), finishedDate);
+            new NoteStorageService().updateNote(Number(id), finishedDate);
             console.log("Checkbox changed:", id);
         })
     }
@@ -133,12 +130,13 @@ class NotelistController {
         el.addEventListener('change', this.filter.bind(this));
 
     }
+
     registerListboxStyleChanger():void {
         let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
         el.addEventListener('change', this.styleSheetEvent.bind(this));
     }
 
-    createNewNote (event:Event): void {
+    createNewNote(event:Event):void {
         let NextID:number = 1;
         console.log("NewNote", Event);
 
@@ -147,17 +145,19 @@ class NotelistController {
             /* notedetail Editor mit neuer ID aufrufen */
             this.noteStorageService.editNote(NextID);
         }
-        else {console.log ("Error:CreateNewNote: Wrong ID",NextID );
+        else {
+            console.log("Error:CreateNewNote: Wrong ID", NextID);
         }
     }
-    styleSheetEvent (event:Event):void {
+
+    styleSheetEvent(event:Event):void {
         let target:any = event.target;
         let SelectedStyle:string = target.value;
         if (SelectedStyle === "StyleOne") {
-            this._myapp.changeStyleSheet(StyleSheetTheme.DarkTheme)
+            this._myapp.changeStyleSheet(StyleSheetTheme.DarkTheme, "./")
         }
         else {
-            this._myapp.changeStyleSheet(StyleSheetTheme.StandardTheme)
+            this._myapp.changeStyleSheet(StyleSheetTheme.StandardTheme, "./")
         }
         console.log("Selected Style", SelectedStyle);
     }
@@ -166,7 +166,7 @@ class NotelistController {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
-        switch (SelectedSortOption){
+        switch (SelectedSortOption) {
             case "id":
                 this.noteservice.sortBy(this.notelist, SortCriteria.id);
                 break;
@@ -187,26 +187,26 @@ class NotelistController {
         console.log("change LBSort");
     }
 
-    filter(event: Event):void {
+    filter(event:Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
         /* Noteliste mit allen Elementen initialisieren   */
         this.notelist = this.noteservice.getNotesfromStorage();
-        switch (SelectedSortOption){
+        switch (SelectedSortOption) {
             case "id":
                 /* Kein Filter */
                 break;
             case "INote-active":
-                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
+                this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
                 break;
             case "INote-highimportance":
-                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
+                this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
                 break;
             case "INote-mediumimportance":
-                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
+                this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
                 break;
             case "INote-lowimportance":
-                this.notelist=this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
+                this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
                 break;
             default:
                 console.log("Switch SelectedSortOption: default");
@@ -215,6 +215,7 @@ class NotelistController {
         this.notelistview.render(this.notelist);
         console.log("change LBFilter");
     }
+
     /*    ToDo: Auf den ChangeEvent der beiden Listboxen, das Sortierkriterium und das Filterkriterium neu setzen
      und dann das notelistarray neu sortieren. Arrow-Funktion verwenden*/
 }
@@ -222,6 +223,6 @@ class NotelistController {
 /* App.Ctrl */
 $(document).ready(function () {
     var notelistctrl = new NotelistController();
-  //  notelistctrl.noteStorageService.initNoteList();
+    //  notelistctrl.noteStorageService.initNoteList();
 });
 

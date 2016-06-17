@@ -21,15 +21,14 @@
     </script>
     <!-- Kein Javascsript ToDo: Fehlerseite einbauen-->
     <noscript><p>Kein Javascript</p></noscript>
-    <link rel="stylesheet" type="text/css" href="app/scss/style.css">
+    <link rel="stylesheet" type="text/css" href="./app/scss/style.css">
     <script src="noteservice/Note.js"></script>
     <script src="noteservice/mock-notes.js"></script>
     <script src="noteservice/NoteStorage.js"></script>
     <script src="noteservice/NoteService.js"></script>
     <script src="notelist/notelist.js"></script>
-    <script src="app/app.js"></script>
-    <script src="notedetail/NoteDetail.js"></script>
-</head>
+    <script src="app/App.js"></script>
+ </head>
 <body class="site">
 <header role="banner">
     <h1>Einfach notieren</h1>
@@ -55,28 +54,28 @@
 </header>
 
 <section id="notelist" class="notes"></section>
-    <!-- handlebars-template for notes -->
-    <script id="notes-template" type="text/x-handlebars-template">
-        {{#each notes }}
-        <article id="{{id}}" data-info="{{title}}" class="note-card">
-            <label for="cb_note-finished"></label><input type="checkbox" id="cb_note-finished"
-                                                         class="chbx-note-finished">
-                <div class="notetext">
-                    <h5>{{title}}
-                        <small>Wichtigkeit: {{rate importance}}</small>
-                    </h5>
-                    <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
-                    <p> Fällig: {{showdate dueDate}}
-                        <small> Erstellt: {{showdate createdDate}}</small>
-                    </p>
-                            <p>{{description}}</p>
-                </div>
-                <button id="btnNoteEdit" type="button" class="btn-note-edit">Edit</button>
-        </article>
-        {{else}}
-        <p class="notes-empty">No content</p>
-        {{/each}}
-    </script>
+<!-- handlebars-template for notes -->
+<script id="notes-template" type="text/x-handlebars-template">
+    {{#each notes }}
+    <article id="{{id}}" data-info="{{title}}" class="note-card">
+        <label for="cb_note-finished"></label><input type="checkbox" id="cb_note-finished"
+                                                     class="chbx-note-finished">
+        <div class="notetext">
+            <h5>{{title}}
+                <small>Wichtigkeit: {{rate importance}}</small>
+            </h5>
+            <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
+            <p> Fällig: {{showdate dueDate}}
+                <small> Erstellt: {{showdate createdDate}}</small>
+            </p>
+            <p>{{description}}</p>
+        </div>
+        <button id="btnNoteEdit" type="button" class="btn-note-edit">Edit</button>
+    </article>
+    {{else}}
+    <p class="notes-empty">No content</p>
+    {{/each}}
+</script>
 <footer>
     <div class="css-selection">
         <label for="ddlb_stylesheetSelect">Design auswählen: </label>
