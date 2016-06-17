@@ -3,6 +3,7 @@
 //require("./Note");
 
 const NOTE_LIST = "noteList";
+const NOTE_STYLE= "noteStyle";
 const DATE_FORMAT = "MM/DD/YYYY";
 
 /**
