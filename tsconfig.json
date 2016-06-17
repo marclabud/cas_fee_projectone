@@ -15,7 +15,7 @@
     "noteservice/Note.ts",
     "noteservice/NoteStorage.ts",
     "noteservice/NoteService.ts",
-    "notelist/notelist.ts",
+    "notelist/Notelist.ts",
     "notedetail/NoteDetail.ts",
     "typings/index.d.ts"
   ],

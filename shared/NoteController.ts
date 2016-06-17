@@ -23,11 +23,25 @@ class NoteController {
         this.registerListboxStyleChanger();
     }
 
-    registerListboxStyleChanger():void {
+    getStyleSheetFromLocalStorage() {
+        let styleSheet:string = "";
+        let theme:StyleSheetTheme = null;
+
+        styleSheet = JSON.parse(localStorage.getItem(NOTE_STYLE));
+        if (styleSheet === PATHSTYLE) {
+            theme = StyleSheetTheme.StandardTheme
+        }
+        else {
+            theme = StyleSheetTheme.DarkTheme
+        }
+        return theme
+    }
+
+    private registerListboxStyleChanger():void {
         $("#ddlb_stylesheetSelect").on('change', this.styleSheetEvent.bind(this));
     }
 
-    styleSheetEvent(event:Event):void {
+    private styleSheetEvent(event:Event):void {
         let target:any = event.target;
         let SelectedStyle:string = target.value;
         if (SelectedStyle === "StyleOne") {
@@ -39,13 +53,13 @@ class NoteController {
         console.log("Selected Style", SelectedStyle);
     }
 
-    initStylesheet(hrefPrefix:string) {
+    private initStylesheet(hrefPrefix:string):void {
         this.theme = this.getStyleSheetFromLocalStorage();
         this.changeStyleSheet(this.theme, hrefPrefix);
         $("#ddlb_stylesheetSelect").val(this.theme === 1 ? "StyleOne" : "StyleTwo");
     }
 
-    changeStyleSheet(Theme:StyleSheetTheme, hrefPrefix:string) {
+    private changeStyleSheet(Theme:StyleSheetTheme, hrefPrefix:string):void {
         let styleTheme:string = "";
         let styleThemeLast:string = "";
         if (Theme === StyleSheetTheme.StandardTheme) {
@@ -62,17 +76,4 @@ class NoteController {
         $("link[href='" + hrefPrefix + styleThemeLast + "']").attr("href", hrefPrefix + styleTheme);
     }
 
-    getStyleSheetFromLocalStorage() {
-        let styleSheet:string = "";
-        let theme:StyleSheetTheme = null;
-
-        styleSheet = JSON.parse(localStorage.getItem(NOTE_STYLE));
-        if (styleSheet === PATHSTYLE) {
-            theme = StyleSheetTheme.StandardTheme
-        }
-        else {
-            theme = StyleSheetTheme.DarkTheme
-        }
-        return theme
-    }
 }

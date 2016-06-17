@@ -13,7 +13,7 @@ class NoteDetailView {
         this.render();
     }
 
-    render() {
+    render():void {
         if (this.note !== undefined && this.note !== null) {
             var dueDate = moment(this.note.dueDate).format(DATE_FORMAT);
             $("#note-id").val(this.note.id);
@@ -38,7 +38,7 @@ class NoteDetailController extends NoteController {
         this.init();
         this.noteDetailView = new NoteDetailView(this.note);
         this.registerEvenListener();
-        
+
     }
 
     init():void {
@@ -47,20 +47,21 @@ class NoteDetailController extends NoteController {
             this.note = this.noteStorageService.readNote(Number(noteId));
         }
     }
-    
+
     registerEvenListener():void {
+        $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
+        $("#btnBack").on('click', () => location.replace("..\\index.html"));
         $("#btnNoteSave").on('click', function (e) {
             if ($('form').is(':valid')) {
                 new NoteStorageService().saveOrUpdateNote();
             }
         });
-        $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
-        $("#btnBack").on('click', () => location.replace("..\\index.html"));
-     }
+    }
 }
 
 /* Main */
 $(document).ready(function () {
-
+ //   $("footer").load("../shared/footer.html");
     new NoteDetailController();
+  
 });
