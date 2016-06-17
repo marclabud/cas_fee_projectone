@@ -14,6 +14,12 @@ enum FilterCriteria {
     noteLowImportance
 }
 
+/* ENUM StyleSheetTheme */
+enum StyleSheetTheme {
+    StandardTheme,
+    DarkTheme
+}
+
 /* Handlebars Helper */
 
 /* Rate transformiert den Score (Ausprägung des Ratings) in HTML
@@ -70,6 +76,7 @@ class Notelistview {
     }
 }
 class NotelistController {
+    private _myapp: App;
     notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
@@ -78,12 +85,11 @@ class NotelistController {
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
-
+    /* ToDo: Services im constructor übergeben Hinweis Michael */
     constructor() {
+        this._myapp= new App;
         this.noteservice = new NoteService();
-        this.noteStorageService= new NoteStorageService();
-        /* Test ToDo nach Test entfernen
-        this.noteservice.WriteMockNotestoLocalStorage(); */
+        this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.initNoteList();
         this.notelistview = new Notelistview;
         this.notelistview.render(this.notelist);
@@ -93,7 +99,7 @@ class NotelistController {
         this.registerListboxSorter();
         this.registerListboxFilter();
         this.registerListboxStyleChanger();
-        };
+    };
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
@@ -129,7 +135,7 @@ class NotelistController {
     }
     registerListboxStyleChanger():void {
         let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
-        el.addEventListener('change', this.styleSheetSelect.bind(this));
+        el.addEventListener('change', this.styleSheetEvent.bind(this));
     }
 
     createNewNote (event:Event): void {
@@ -144,21 +150,18 @@ class NotelistController {
         else {console.log ("Error:CreateNewNote: Wrong ID",NextID );
         }
     }
-
-    styleSheetSelect (event:Event):void {
-        const PATHSTYLE:string = "app/scss/style.css";
-        const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
+    styleSheetEvent (event:Event):void {
         let target:any = event.target;
         let SelectedStyle:string = target.value;
         if (SelectedStyle === "StyleOne") {
-            console.log("Selected Style", SelectedStyle);
-            $("link").attr("href", PATHDARKSTYLE);
+            this._myapp.changeStyleSheet(StyleSheetTheme.DarkTheme)
         }
         else {
-            console.log("Selected Style", SelectedStyle);
-            $("link").attr("href", PATHSTYLE);
+            this._myapp.changeStyleSheet(StyleSheetTheme.StandardTheme)
         }
+        console.log("Selected Style", SelectedStyle);
     }
+
     sort(event:Event):void {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
