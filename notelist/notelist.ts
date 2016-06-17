@@ -58,10 +58,6 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 /* Notelistview Classes */
 class Notelistview {
-    
-    constructor() {
-        new App().initStylesheet("./");
-    }
 
     render(notelist:INote[]):void {
         let context = {
@@ -72,8 +68,7 @@ class Notelistview {
         document.getElementById("notelist").innerHTML = notesHtml;
     }
 }
-class NotelistController {
-    private _myapp:App;
+class NotelistController extends NoteController{
     notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
@@ -84,7 +79,7 @@ class NotelistController {
      Default ist das Item, das ausgewählt wurde */
     /* ToDo: Services im constructor übergeben Hinweis Michael */
     constructor() {
-        this._myapp = new App;
+        super(HREF_PREFIX_STYLE);
         this.noteservice = new NoteService();
         this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.initNoteList();
@@ -95,7 +90,6 @@ class NotelistController {
         this.registerCBFinished();
         this.registerListboxSorter();
         this.registerListboxFilter();
-        this.registerListboxStyleChanger();
     };
 
     registerCBFinished():void {
@@ -131,11 +125,6 @@ class NotelistController {
 
     }
 
-    registerListboxStyleChanger():void {
-        let el:HTMLElement = document.getElementById("ddlb_stylesheetSelect");
-        el.addEventListener('change', this.styleSheetEvent.bind(this));
-    }
-
     createNewNote(event:Event):void {
         let NextID:number = 1;
         console.log("NewNote", Event);
@@ -148,18 +137,6 @@ class NotelistController {
         else {
             console.log("Error:CreateNewNote: Wrong ID", NextID);
         }
-    }
-
-    styleSheetEvent(event:Event):void {
-        let target:any = event.target;
-        let SelectedStyle:string = target.value;
-        if (SelectedStyle === "StyleOne") {
-            this._myapp.changeStyleSheet(StyleSheetTheme.DarkTheme, "./")
-        }
-        else {
-            this._myapp.changeStyleSheet(StyleSheetTheme.StandardTheme, "./")
-        }
-        console.log("Selected Style", SelectedStyle);
     }
 
     sort(event:Event):void {

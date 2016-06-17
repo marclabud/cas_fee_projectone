@@ -11,11 +11,11 @@
   },
   "files": [
     "noteservice/mock-notes.ts",
-    "notelist/notelist.ts",
-    "app/App.ts",
+    "shared/NoteController.ts",
     "noteservice/Note.ts",
     "noteservice/NoteStorage.ts",
     "noteservice/NoteService.ts",
+    "notelist/notelist.ts",
     "notedetail/NoteDetail.ts",
     "typings/index.d.ts"
   ],

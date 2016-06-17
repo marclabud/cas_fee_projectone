@@ -15,15 +15,11 @@ class App {
 
     private theme:StyleSheetTheme;
 
-    constructor() {
-    }
-
     initStylesheet(hrefPrefix:string) {
         this.theme = this.getStyleSheetFromLocalStorage();
         this.changeStyleSheet(this.theme, hrefPrefix);
         $("#ddlb_stylesheetSelect").val(this.theme === 1 ? "StyleOne" : "StyleTwo");
-        $("#stylesheetSelect").val(this.theme === 1 ? "StyleOne" : "StyleTwo");
-    }
+     }
 
     changeStyleSheet(Theme:StyleSheetTheme, hrefPrefix:string) {
         let styleTheme:string = "";
