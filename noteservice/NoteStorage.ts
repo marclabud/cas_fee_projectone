@@ -4,7 +4,7 @@
 
 const NOTE_LIST = "noteList";
 const NOTE_STYLE= "noteStyle";
-const DATE_FORMAT = "MM/DD/YYYY";
+const DATE_FORMAT = "DD/MM/YYYY";
 
 /**
  * The NoteStorageService class provides all needed services to

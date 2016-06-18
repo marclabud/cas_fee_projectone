@@ -51,7 +51,7 @@ class NoteDetailController extends NoteController {
     registerEvenListener():void {
         $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
-        $("#btnNoteSave").on('click', function (e) {
+        $("#btnNoteSave").on('click', function () {
             if ($('form').is(':valid')) {
                 new NoteStorageService().saveOrUpdateNote();
             }
@@ -61,7 +61,5 @@ class NoteDetailController extends NoteController {
 
 /* Main */
 $(document).ready(function () {
- //   $("footer").load("../shared/footer.html");
     new NoteDetailController();
-  
 });
