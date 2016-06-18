@@ -173,16 +173,16 @@ class NotelistController extends NoteController{
             case "id":
                 /* Kein Filter */
                 break;
-            case "INote-active":
+            case "note-active":
                 this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteActive);
                 break;
-            case "INote-highimportance":
+            case "note-highimportance":
                 this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteHighImportance);
                 break;
-            case "INote-mediumimportance":
+            case "note-mediumimportance":
                 this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteMediumImportance);
                 break;
-            case "INote-lowimportance":
+            case "note-lowimportance":
                 this.notelist = this.noteservice.filterBy(this.notelist, FilterCriteria.noteLowImportance);
                 break;
             default:
