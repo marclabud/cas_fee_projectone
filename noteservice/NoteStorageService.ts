@@ -28,9 +28,13 @@ class NoteStorageService implements INoteStorageService {
     }
 
     private initNoteList():INote[] {
-        this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
-        if (this._noteList === null) { //If there is no data, initialize an empty array
-            this._noteList = [];
+        try {
+            this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+        } catch (err) {
+            alert("initNoteListError" + (typeof err));
+            if (this._noteList === null) { //If there is no data, initialize an empty array
+                this._noteList = [];
+            }
         }
         return this._noteList;
     }
