@@ -97,13 +97,13 @@ class NotelistController extends NoteController{
         this.notelistview = new Notelistview();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();
-        this.registerBtnNoteNew();
         this.registerCBFinished();
+        this.registerBtnNoteNew();
         this.registerListboxSorter();
         this.registerListboxFilter();
     };
 
-    registerCBFinished():void {
+    private registerCBFinished():void {
         $(":checkbox").change(function () {
             let  id = $(this).parent().attr("id");
             let finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
@@ -113,30 +113,30 @@ class NotelistController extends NoteController{
         })
     }
 
-    registerBtnEdit():void {
+    private registerBtnEdit():void {
         $(":button").on('click', function () {
             let id = $(this).parent().attr("id");
             NotelistController.changLocation(Number(id));
         });
     }
 
-    registerBtnNoteNew():void {
+    private registerBtnNoteNew():void {
         let el:HTMLElement = document.getElementById("btnNoteNew");
         el.addEventListener('click', this.createNewNote.bind(this));
     }
 
-    registerListboxSorter():void {
+    private registerListboxSorter():void {
         let el:HTMLElement = document.getElementById("ddlb_sorterselect");
         el.addEventListener('change', this.sort.bind(this));
     }
 
-    registerListboxFilter():void {
+    private registerListboxFilter():void {
         let el:HTMLElement = document.getElementById("ddlb_filterselect");
         el.addEventListener('change', this.filter.bind(this));
 
     }
 
-    createNewNote(event:Event):void {
+    private createNewNote(event:Event):void {
         let nextID:number = 1;
         console.log("NewNote", Event);
 
@@ -154,7 +154,7 @@ class NotelistController extends NoteController{
         window.location.replace("notedetail\\notedetail.html?id=" + id);
     }
 
-    sort(event:Event):void {
+    private sort(event:Event):void {
         /* found no type for event.target therefore any as type */
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
@@ -179,7 +179,7 @@ class NotelistController extends NoteController{
         console.log("change LBSort");
     }
 
-    filter(event:Event):void {
+     private filter(event:Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
         /* notelist mit allen Elementen initialisieren   */
