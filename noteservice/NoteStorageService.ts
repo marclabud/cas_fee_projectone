@@ -10,24 +10,32 @@ const DATE_FORMAT = "DD/MM/YYYY";
  * The NoteStorageService class provides all needed services to
  * read, save and update a Note from resp. into local storage.
  */
-class NoteStorageService {
+interface INoteStorageService {
+    getNote(id:number):INote,
+    saveOrUpdateNote(note:INote):boolean,
+    saveNote(note:INote):boolean,
+    updateNote(aNote:INote, finishedDate:string):boolean,
+    noteList:INote[]
+}
 
-    private noteList:INote[];
+class NoteStorageService implements INoteStorageService {
+
+    private _noteList:INote[];
 
     constructor() {
         this.initNoteList();
     }
 
-    initNoteList():INote[] {
-        this.noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
-        if (this.noteList === null) { //If there is no data, initialize an empty array
-            this.noteList = [];
+    private initNoteList():INote[] {
+        this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+        if (this._noteList === null) { //If there is no data, initialize an empty array
+            this._noteList = [];
         }
-        return this.noteList;
+        return this._noteList;
     }
 
     getNote(id:number):INote {
-        return this.noteList.filter((note:INote) => note.id === id)[0];
+        return this._noteList.filter((note:INote) => note.id === id)[0];
     }
 
     saveOrUpdateNote(note:INote):boolean {
@@ -43,8 +51,8 @@ class NoteStorageService {
     saveNote(note:INote):boolean {
         note.id = this.getNextId();
         note.createdDate = new Date().toJSON();
-        this.noteList.push(note);
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
+        this._noteList.push(note);
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
         alert("Die neue Notiz wurde gespeichert.");
         return true;
     }
@@ -59,20 +67,24 @@ class NoteStorageService {
             updatedNote = note;
         }
         let index:number = updatedNote.id - 1;
-        this.noteList[index] = updatedNote;//Alter the selected item on the table
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
+        this._noteList[index] = updatedNote;//Alter the selected item on the table
+        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
     }
 
     getNextId():number {
         let max:number = 0;
-        $.map(this.noteList, function (note:INote) {
+        $.map(this._noteList, function (note:INote) {
             if (note.id > max) {
                 max = note.id;
             }
         });
         return Number(++max);
+    }
+
+    get noteList():INote[] {
+        return this._noteList;
     }
 
 }

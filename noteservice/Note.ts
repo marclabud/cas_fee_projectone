@@ -1,5 +1,5 @@
 /**
- * This is the Note DTO to hold all note specifc data.
+ * This is the Note DTO to hold all note specific data.
  */
 'use strict';
 
