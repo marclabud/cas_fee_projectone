@@ -1,14 +1,6 @@
-.note-detail {
-  height: 900%;
-  width: 100%;
-  /* border: 1px solid black; */
-}
+@import 'stylenotedetail.scss';
 
 .note-form {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px;
-
   color: $GreenColor;
   background-color: $DarkColor;
   border-radius: 2rem;
@@ -16,125 +8,10 @@
   -webkit-border-radius: 2rem;
 }
 
-.item {
-  display: inline-block;
-  /* background:blue; */
-  margin: 10px;
-  flex-grow: 1;
-  width: calc(100% / 2 - 6 * 10px);
-}
-
-.col1 {
-  flex-basis: calc(100% / 10 * 2 - 6 * 10px);;
-}
-
-.col2 {
-  flex-basis: calc(100% / 10 * 8 - 6 * 10px);
-}
-
-footer {
-  flex-basis: calc(100% / 10 * 3 - 6 * 10px);
-  bottom: 0;
-  position: fixed;
-}
-
-.footer-right {
-  float: right;
-}
-
-.git {
-  color: white;
-}
-
-.description,
-.buttons,
-.input {
-  width: 95%;
-}
-
 .duedate {
   background-color: white;
 }
 
-form div h4 {
-  margin: 0;
-}
-
-form button {
-  float: right;
-  margin: 5px;
-  padding: 5px;
-  width: 5rem;
-}
-
-form button:hover,
-form button:focus,
 form button:active {
-  font-weight: bold;
   background-color: $GreenColor;
-}
-
-textarea:invalid,
-input:invalid {
-  border: 1px solid red;
-}
-
-textarea:valid,
-input:valid {
-  border: 1px solid green;
-}
-
-/* rating styles */
-.rate {
-  float: left;
-  height: 46px;
-  padding: 0 10px;
-}
-
-.rate:not(:checked) > input {
-  position: absolute;
-  top: -9999px;
-}
-
-.rate:not(:checked) > label {
-  float: right;
-  width: 1em;
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 30px;
-  color: #ccc;
-}
-
-.rate:not(:checked) > label:before {
-  content: "\2605";
-}
-
-.rate > input:checked ~ label {
-  color: #ffc700;
-}
-
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-  color: #deb217;
-}
-
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-  color: #c59b08;
-}
-
-.content {
-  display: -webkit-box;
-  /* OLD: Chrome <=20, iOS <=6,
-                            Safari <=6 */
-  display: -moz-box; /* OLD: Firefox <=21 */
-  display: -ms-flexbox; /* TWEENER: IE 10 */
-  display: -webkit-flex; /* NEW: Chrome 21-28 */
-  display: flex;
-  /* NEW (Spec): Chrome >=29,
-                     Firefox >=22, IE >=11 */
 }
