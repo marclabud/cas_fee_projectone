@@ -43,16 +43,16 @@ Handlebars.registerHelper('rate', function (rating:number) {
     return new Handlebars.SafeString(RatingHTML);
 });
 /* Showdate zeigt ein Datum der Note mit einem Präfix an
- *  Mit dem Präfix kann eine Beschreibung des Datums mitgegeben werden*/
+ *  Mit dem Präfix (optional) kann eine Beschreibung des Datums mitgegeben werden*/
 
-Handlebars.registerHelper('showdate', function (prefixText:string, date:string) {
+Handlebars.registerHelper('showdate', function (date:string,prefixText:string) {
     const DATEFORMAT:string = "LL";
     let outDate:string = "";
     if (!(typeof(prefixText) === "string")) {
         prefixText = "";
     }
     if (moment(date).isValid()) {
-        outDate = prefixText + moment(date).format(DATEFORMAT);
+        outDate = prefixText + " " + moment(date).format(DATEFORMAT);
     }
     else {
         outDate = "";

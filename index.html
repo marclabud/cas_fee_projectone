@@ -64,9 +64,8 @@
             <h5>{{title}}
                 <small>Wichtigkeit: {{rate importance}}</small>
             </h5>
-            <!--            ToDo: Zustand: Fällig hat kein Datum berücksichtigen. -->
-            <p> Fällig: {{showdate dueDate}}
-                <small> Erstellt: {{showdate createdDate}}</small>
+            <p> {{showdate dueDate "Fällig"}}
+                <small>{{showdate createdDate "Erstellt:"}}</small>
             </p>
             <p>{{description}}</p>
         </div>
