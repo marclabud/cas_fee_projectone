@@ -42,7 +42,8 @@ Handlebars.registerHelper('rate', function (rating:number) {
     return new Handlebars.SafeString(RatingHTML);
 });
 
-Handlebars.registerHelper('showdate', function (date:string) {
+/* ToDo: insert Prefix */
+Handlebars.registerHelper('showdate', function (date:string, prefixText:string) {
     const DATEFORMAT:string = "LL";
     let outDate:string = "";
     if (moment(date).isValid()) {
@@ -58,21 +59,27 @@ Handlebars.registerHelper('showdate', function (date:string) {
 
 /* Notelistview Classes */
 class Notelistview {
+    noteListTemplateHTML:HandlebarsTemplateDelegate;
+
 
     render(notelist:INote[]):void {
         let context = {
             notes: notelist
         };
-        let createNotesHTML:HandlebarsTemplateDelegate = Handlebars.compile(document.getElementById("notes-template").innerText);
-        let notesHtml:string = createNotesHTML(context);
+        let notesHtml:string = this.noteListTemplateHTML(context);
         document.getElementById("notelist").innerHTML = notesHtml;
     }
+
+    compile():void {
+        this.noteListTemplateHTML = Handlebars.compile(document.getElementById("notes-template").innerText);
+    }
+
 }
 class NotelistController extends NoteController{
     notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
-    noteStorageService:INoteStorageService;
+    noteStorageService:NoteStorageService;
 
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
@@ -84,6 +91,7 @@ class NotelistController extends NoteController{
         this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.noteList;
         this.notelistview = new Notelistview();
+        this.notelistview.compile();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();
         this.registerBtnNoteNew();
