@@ -72,7 +72,7 @@ class NotelistController extends NoteController{
     notelist:INote[];
     notelistview:Notelistview;
     noteservice:NoteService;
-    noteStorageService:NoteStorageService;
+    noteStorageService:INoteStorageService;
 
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
@@ -82,7 +82,7 @@ class NotelistController extends NoteController{
         super(HREF_PREFIX_STYLE);
         this.noteservice = new NoteService();
         this.noteStorageService = new NoteStorageService();
-        this.notelist = this.noteStorageService.initNoteList();
+        this.notelist = this.noteStorageService.noteList;
         this.notelistview = new Notelistview();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();

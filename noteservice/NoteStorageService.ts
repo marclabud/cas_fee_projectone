@@ -15,6 +15,7 @@ interface INoteStorageService {
     saveOrUpdateNote(note:INote):boolean,
     saveNote(note:INote):boolean,
     updateNote(aNote:INote, finishedDate:string):boolean,
+    getNextId():number,
     noteList:INote[]
 }
 
