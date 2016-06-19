@@ -86,17 +86,13 @@ class Notelistview {
 class NotelistController extends NoteController{
     notelist:INote[];
     notelistview:Notelistview;
-    noteservice:NoteService;
-    noteStorageService:NoteStorageService;
 
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
     /* ToDo: Services im constructor übergeben Hinweis Michael */
-    constructor() {
+    constructor(private noteservice:NoteService, private noteStorageService:NoteStorageService) {
         super(HREF_PREFIX_STYLE);
-        this.noteservice = new NoteService();
-        this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.noteList;
         this.notelistview = new Notelistview();
         this.notelistview.render(this.notelist);
@@ -218,7 +214,9 @@ class NotelistController extends NoteController{
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var notelistctrl = new NotelistController();
+    var noteservice = new NoteService();
+    var noteStorageService = new NoteStorageService();
+    var notelistctrl = new NotelistController(noteservice,noteStorageService);
     //  notelistctrl.noteStorageService.initNoteList();
 });
 
