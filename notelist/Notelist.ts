@@ -42,13 +42,17 @@ Handlebars.registerHelper('rate', function (rating:number) {
 
     return new Handlebars.SafeString(RatingHTML);
 });
+/* Showdate zeigt ein Datum der Note mit einem Präfix an
+ *  Mit dem Präfix kann eine Beschreibung des Datums mitgegeben werden*/
 
-/* ToDo: insert Prefix */
-Handlebars.registerHelper('showdate', function (date:string, prefixText:string) {
+Handlebars.registerHelper('showdate', function (prefixText:string, date:string) {
     const DATEFORMAT:string = "LL";
     let outDate:string = "";
+    if (!(typeof(prefixText) === "string")) {
+        prefixText = "";
+    }
     if (moment(date).isValid()) {
-        outDate = moment(date).format(DATEFORMAT);
+        outDate = prefixText + moment(date).format(DATEFORMAT);
     }
     else {
         outDate = "";
@@ -182,8 +186,8 @@ class NotelistController extends NoteController{
     filter(event:Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
-        /* Noteliste mit allen Elementen initialisieren   */
-        this.notelist = this.noteservice.getNotesfromStorage();
+        /* notelist mit allen Elementen initialisieren   */
+        this.notelist = this.noteStorageService.noteList;
         switch (SelectedSortOption) {
             case "id":
                 /* Kein Filter */
