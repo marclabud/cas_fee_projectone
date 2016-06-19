@@ -44,7 +44,7 @@ class NoteDetailController extends NoteController {
     init():void {
         let noteId:String = Utility.getURLParameter("id");
         if (noteId !== null) {
-            this.note = this.noteStorageService.readNote(Number(noteId));
+            this.note = this.noteStorageService.getNote(Number(noteId));
         }
     }
 
@@ -53,7 +53,8 @@ class NoteDetailController extends NoteController {
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
         $("#btnNoteSave").on('click', function () {
             if ($('form').is(':valid')) {
-                new NoteStorageService().saveOrUpdateNote();
+                let note:INote = DomToNoteMapper.map();
+                new NoteStorageService().saveOrUpdateNote(note);
             }
         });
     }

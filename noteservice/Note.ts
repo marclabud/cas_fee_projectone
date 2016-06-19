@@ -21,11 +21,7 @@ class Note implements INote{
     private _createdDate:string;
     private _dueDate:string;
     private _finishedDate:string;
-
-    constructor(id:number) {
-        this._id = id;
-    }
-
+    
     toJSON() {
         return {
             id: this._id,

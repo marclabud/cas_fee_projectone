@@ -13,7 +13,7 @@
     "noteservice/mock-notes.ts",
     "shared/NoteController.ts",
     "noteservice/Note.ts",
-    "noteservice/NoteStorage.ts",
+    "noteservice/NoteStorageService.ts",
     "noteservice/NoteService.ts",
     "notelist/Notelist.ts",
     "notedetail/NoteDetail.ts",

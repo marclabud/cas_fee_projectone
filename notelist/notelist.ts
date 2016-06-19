@@ -94,10 +94,12 @@ class NotelistController extends NoteController{
 
     registerCBFinished():void {
         $(":checkbox").change(function () {
-            var id = $(this).parent().attr("id");
-            var finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
+            let  id = $(this).parent().attr("id");
+            let finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
             /* ToDo: NoteStorage Integration */
-            new NoteStorageService().updateNote(Number(id), finishedDate);
+            let note:INote = new Note();
+            note.id = Number(id);
+            new NoteStorageService().updateNote(note, finishedDate);
             console.log("Checkbox changed:", id);
         })
     }
@@ -105,7 +107,7 @@ class NotelistController extends NoteController{
     registerBtnEdit():void {
         $(":button").on('click', function () {
             let id = $(this).parent().attr("id");
-            new NoteStorageService().editNote(Number(id));
+            NotelistController.changLocation(Number(id));
         });
     }
 
@@ -126,17 +128,21 @@ class NotelistController extends NoteController{
     }
 
     createNewNote(event:Event):void {
-        let NextID:number = 1;
+        let nextID:number = 1;
         console.log("NewNote", Event);
 
-        NextID = this.noteStorageService.getNextId();
-        if (typeof NextID === "number") {
+        nextID = this.noteStorageService.getNextId();
+        if (typeof nextID === "number") {
             /* notedetail Editor mit neuer ID aufrufen */
-            this.noteStorageService.editNote(NextID);
+            NotelistController.changLocation(nextID);
         }
         else {
-            console.log("Error:CreateNewNote: Wrong ID", NextID);
+            console.log("Error:CreateNewNote: Wrong ID", nextID);
         }
+    }
+
+    private static changLocation(id:number):void {
+        window.location.replace("notedetail\\notedetail.html?id=" + id);
     }
 
     sort(event:Event):void {

@@ -3,7 +3,7 @@
 //require("./Note");
 
 const NOTE_LIST = "noteList";
-const NOTE_STYLE= "noteStyle";
+const NOTE_STYLE = "noteStyle";
 const DATE_FORMAT = "DD/MM/YYYY";
 
 /**
@@ -15,7 +15,7 @@ class NoteStorageService {
     private noteList:INote[];
 
     constructor() {
-         this.initNoteList();
+        this.initNoteList();
     }
 
     initNoteList():INote[] {
@@ -26,76 +26,46 @@ class NoteStorageService {
         return this.noteList;
     }
 
-    createNote(id:number, creationDate:string):INote {
-        let dueDate:string = $("#note-dueDate").val();
-        let isoDueDate:string = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
-
-        /* instantiate a new Note */
-        let note:INote = new Note(id);
-        note.title = $("#note-title").val();
-        note.description = $("#note-description").val();
-        note.importance = $("#note-form input[type='radio']:checked").val();
-        note.createdDate = creationDate ? creationDate : $("#note-createdDate").val();
-        note.dueDate = isoDueDate;
-        note.finishedDate = $("#note-finishedDate").val();
-
-        return note;
-    }
-
-    readNote(id:number):INote {
+    getNote(id:number):INote {
         return this.noteList.filter((note:INote) => note.id === id)[0];
     }
 
-    
-    editNote(id:number):void {
-        $.get("notedetail\\notedetail.html", () => {
-            location.replace("notedetail\\notedetail.html?id=" + id);
-        });
-    }
-
-    saveOrUpdateNote():boolean {
-        // get current Id
-        let currentId:number = Number($("#note-id").val());
-
+    saveOrUpdateNote(note:INote):boolean {
         // updateNote or saveNote
-        if (currentId && currentId > 0) {
-            this.updateNote(currentId, null);
+        if (note.id && note.id > 0) {
+            this.updateNote(note, null);
         } else {
-            this.saveNote();
+            this.saveNote(note);
         }
         return true;
     }
 
-    saveNote():boolean {
-        let createdDate:string = new Date().toJSON();
-        let note:INote = this.createNote(this.getNextId(), createdDate);
+    saveNote(note:INote):boolean {
+        note.id = this.getNextId();
+        note.createdDate = new Date().toJSON();
         this.noteList.push(note);
         localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die neue Notiz wurde gespeichert.");
         return true;
     }
 
-    updateNote(id:number, finishedDate:string):boolean {
-        let updatedNote:INote = null;
+    updateNote(aNote:INote, finishedDate:string):boolean {
+        let updatedNote:INote = aNote;
         if (finishedDate) {
             // updateNote called by main page
-            // readNote Note from local storage and updateNote only finishedDate
-            let note:INote = this.readNote(id);
+            // getNote Note from local storage and update only finishedDate
+            let note:INote = this.getNote(aNote.id);
             note.finishedDate = finishedDate;
             updatedNote = note;
-        } else {
-            // updateNote called by INote detail page
-            // readNote INote from Form and updateNote whole content except createdDate and finishedDate
-            updatedNote = this.createNote(id, null);
         }
-        let index:number = id - 1;
+        let index:number = updatedNote.id - 1;
         this.noteList[index] = updatedNote;//Alter the selected item on the table
         localStorage.setItem(NOTE_LIST, JSON.stringify(this.noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
     }
 
-     getNextId():number {
+    getNextId():number {
         let max:number = 0;
         $.map(this.noteList, function (note:INote) {
             if (note.id > max) {
@@ -105,6 +75,26 @@ class NoteStorageService {
         return Number(++max);
     }
 
+}
+
+class DomToNoteMapper {
+
+    static map():INote {
+        let dueDate:string = $("#note-dueDate").val();
+        let isoDueDate:string = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
+
+        /* instantiate a new Note */
+        let note:INote = new Note();
+        note.id = Number($("#note-id").val());
+        note.title = $("#note-title").val();
+        note.description = $("#note-description").val();
+        note.importance = $("#note-form input[type='radio']:checked").val();
+        note.createdDate = $("#note-createdDate").val();
+        note.dueDate = isoDueDate;
+        note.finishedDate = $("#note-finishedDate").val();
+
+        return note;
+    }
 }
 
 class Utility {
