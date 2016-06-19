@@ -6,29 +6,6 @@
 
 class NoteService {
 
-    /*   /!* Mock-Daten aus dem Array *!/
-     getNotesfromStorage():INote[] {
-     let notelist:INote[];
-     notelist = notesarray;
-     return notelist
-     }*/
-
-    /* Daten aus dem LocalStorage */
-    getNotesfromStorage():INote[] {
-        let notelist:INote[];
-        notelist = JSON.parse(localStorage.getItem(NOTE_LIST));
-        return notelist
-    }
-
-    /* For Testing: Setup local store data with Mock Array */
-    /*   WriteMockNotestoLocalStorage():void {
-     let notelist:INote[];
-     localStorage.removeItem(NOTE_LIST);
-     notelist = notesarray;
-     /!* Store notelist *!/
-     localStorage.setItem(NOTE_LIST, JSON.stringify(notelist));
-     } */
-
     sortBy(noteList:INote[], SelectedSortCriteria:SortCriteria):void {
 
         switch (SelectedSortCriteria) {
