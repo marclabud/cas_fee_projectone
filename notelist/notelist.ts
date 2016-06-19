@@ -1,4 +1,5 @@
 /* ENUM SortCriteria noteList */
+import compile = Handlebars.compile;
 enum SortCriteria {
     id,
     dueDate,
@@ -61,6 +62,9 @@ Handlebars.registerHelper('showdate', function (date:string, prefixText:string) 
 class Notelistview {
     noteListTemplateHTML:HandlebarsTemplateDelegate;
 
+    constructor() {
+        this.compile();
+    }
 
     render(notelist:INote[]):void {
         let context = {
@@ -70,7 +74,7 @@ class Notelistview {
         document.getElementById("notelist").innerHTML = notesHtml;
     }
 
-    compile():void {
+    private compile():void {
         this.noteListTemplateHTML = Handlebars.compile(document.getElementById("notes-template").innerText);
     }
 
@@ -91,7 +95,6 @@ class NotelistController extends NoteController{
         this.noteStorageService = new NoteStorageService();
         this.notelist = this.noteStorageService.noteList;
         this.notelistview = new Notelistview();
-        this.notelistview.compile();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();
         this.registerBtnNoteNew();
@@ -104,11 +107,9 @@ class NotelistController extends NoteController{
         $(":checkbox").change(function () {
             let  id = $(this).parent().attr("id");
             let finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
-            /* ToDo: NoteStorage Integration */
             let note:INote = new Note();
             note.id = Number(id);
             new NoteStorageService().updateNote(note, finishedDate);
-            console.log("Checkbox changed:", id);
         })
     }
 
