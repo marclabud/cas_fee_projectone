@@ -25,8 +25,9 @@ Install typings in `typings.json`  from project folder using typings.
     typings install
 
 Start express server
+    
     npm start
-
+    
 ### REST Api
 
 | Method        | HTTP Verb		| Description  |
