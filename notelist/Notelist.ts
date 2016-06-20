@@ -62,6 +62,21 @@ Handlebars.registerHelper('showdate', function (date:string,prefixText:string) {
     return new Handlebars.SafeString(outDate);
 });
 
+Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) {
+    let CheckboxHTML:string = "";
+    let CheckboxLabelHTML:string = '<label for="cb_note-finished"></label>';
+
+    if (moment(finishedDate).isValid()) {     // set Checkbox checked if valid finishedDate
+        CheckboxHTML=CheckboxLabelHTML;
+        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" checked class="chbx-note-finished">';
+    }
+    else { // set Checkbox unchecked
+        CheckboxHTML = CheckboxLabelHTML;
+        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" class="chbx-note-finished">'
+    }                                  // set Checkbox unchecked
+    return new Handlebars.SafeString(CheckboxHTML);
+});
+
 /* Notelistview Classes */
 class Notelistview {
     noteListTemplateHTML:HandlebarsTemplateDelegate;
@@ -90,7 +105,6 @@ class NotelistController extends NoteController{
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
-    /* ToDo: Services im constructor übergeben Hinweis Michael */
     constructor(private noteservice:NoteService, private noteStorageService:NoteStorageService) {
         super(HREF_PREFIX_STYLE);
         this.notelist = this.noteStorageService.noteList;
