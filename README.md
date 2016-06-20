@@ -2,6 +2,10 @@
 =======
 A notepad example for [CAS] Front End Engineering.
 
+## Work Buddies
+* [Marc Labud](https://github.com/marclabud)
+* [Michel Rimbeaux](https://github.com/mrimbeau)
+
 ## Developer Setup
 
 ###prerequisite:
@@ -15,10 +19,22 @@ A notepad example for [CAS] Front End Engineering.
 Install packages in `package.json`  from project folder using npm.
 
     npm install
+    npm start
 
 Install typings in `typings.json`  from project folder using typings.
 
     typings install
+
+
+### 3. REST Api
+
+## 3. REST Api
+| Method        | HTTP Verb		| Description  |
+| ------------- |---------------| -------------|
+| /notes     	| GET 			| Returns a list of Notes |
+| /notes      	| POST      	| Adds a new Note |
+| /notes/:id 	| GET      		| Gets a Note by Id |
+| /notes/:id 	| PUT      		| Updates a Note by Id |
 
 ## Dependencies
 
