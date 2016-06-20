@@ -58,7 +58,7 @@
 <script id="notes-template" type="text/x-handlebars-template">
     {{#each notes }}
     <article id="{{id}}" data-info="{{title}}" class="note-card">
-        <label for="cb_note-finished"></label><input type="checkbox" id="cb_note-finished"
+        <label for="cb_note-finished">{{showdate finishedDate "F:"}}</label><input type="checkbox" id="cb_note-finished"
                                                      class="chbx-note-finished">
         <div class="notetext">
             <h5>{{title}}
