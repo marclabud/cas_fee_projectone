@@ -19,16 +19,16 @@ A notepad example for [CAS] Front End Engineering.
 Install packages in `package.json`  from project folder using npm.
 
     npm install
-    npm start
 
 Install typings in `typings.json`  from project folder using typings.
 
     typings install
 
+Start express server
+    npm start
 
-### 3. REST Api
+### REST Api
 
-## 3. REST Api
 | Method        | HTTP Verb		| Description  |
 | ------------- |---------------| -------------|
 | /notes     	| GET 			| Returns a list of Notes |
