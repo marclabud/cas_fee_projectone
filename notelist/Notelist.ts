@@ -68,11 +68,11 @@ Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) 
 
     if (moment(finishedDate).isValid()) {     // set Checkbox checked if valid finishedDate
         CheckboxHTML=CheckboxLabelHTML;
-        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" checked class="chbx-note-finished">';
+        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" checked class="note-finished">';
     }
     else { // set Checkbox unchecked
         CheckboxHTML = CheckboxLabelHTML;
-        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" class="chbx-note-finished">'
+        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" class="note-unfinished">'
     }                                  // set Checkbox unchecked
     return new Handlebars.SafeString(CheckboxHTML);
 });

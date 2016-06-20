@@ -39,7 +39,7 @@ background-image: url("../scss/image/noise-texture.png");
 }
 
 /* checkbox to finish note dependencies with  title style h5 */
-.chbx-note-finished {
+.note-finished, .note-unfinished {
   cursor: pointer;
   height: 1.5rem;
   width: 1.5rem;

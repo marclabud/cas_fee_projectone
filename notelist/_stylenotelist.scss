@@ -34,7 +34,7 @@ $NotecardBorderColor: #005291;
 /* checkbox to finish note dependencies with  title style h5 */
 /* ToDo:Individual checkbox styling */
 
-.chbx-note-finished {
+.note-finished,.note-unfinished {
   cursor: pointer;
   height: 1.5rem;
   width: 1.5rem;

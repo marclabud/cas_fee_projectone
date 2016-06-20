@@ -70,7 +70,7 @@ class NoteService {
             case FilterCriteria.noteActive: {
                 /*Nur notes anzeigen, die ein leeres FinishedDate enthalten */
                 function filterByFinishedDate(el:any) {
-                    if (el.finishedDate == "") {
+                    if (el.finishedDate == "" ||el.finishedDate == " ") {
                         return true;
                     }
                 }
