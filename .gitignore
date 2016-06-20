@@ -1,8 +1,13 @@
 .idea
 node_modules
 typings
-*.css
-*.js
-*.map
-
+app/scss/*.css
+app/scss/*.map
+notedetail/*.js
+notedetail/*.map
+notelist/*.js
+notelist/*.map
+noteservice/*.js
+noteservice/*.map
+NoteStorageService.ts
 
