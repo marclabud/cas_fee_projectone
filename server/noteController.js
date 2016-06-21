@@ -1,6 +1,6 @@
 var newNote = require("../noteservice/Note.js");
 
-var store = require("./../server2/noteStore.js");
+var store = require("./../server/noteStore.js");
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
