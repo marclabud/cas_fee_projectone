@@ -77,9 +77,8 @@ class ServerNoteStorageService implements INoteStorageService {
         note.createdDate = new Date().toJSON();
         this._noteList.push(note);
          /* save new Note on Server */
-        jQuery.ajax({
+        $.post({
             // dataType: "json",
-            method: "POST",
             url: this._baseUrl,
             data: note
         }).done(function (msg) {
