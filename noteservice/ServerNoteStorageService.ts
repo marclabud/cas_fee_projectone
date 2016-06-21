@@ -27,11 +27,16 @@ class ServerNoteStorageService implements INoteStorageService {
         this._baseUrl ="http://127.0.0.1:3000/notes/" ;
     }
 
-    getNotesfromServer():any {
+    getNotesfromServer(callback: () => void):any {
         var deferred = jQuery.ajax({
             // dataType: "json",
             method: "GET",
             url: this._baseUrl,
+        });
+        
+        deferred.done((notes: any) =>{
+            this._noteList = notes;
+            callback();
         });
 
         deferred.fail(function (msg) {

@@ -231,9 +231,7 @@ class NotelistController extends NoteController{
 $(document).ready(function () {
     var noteservice = new NoteService();
     var noteStorageService = new ServerNoteStorageService();
-    var deferred = noteStorageService.getNotesfromServer();
-    deferred.done(function (notes:any) {
-        noteStorageService.noteList = notes;
+    noteStorageService.getNotesfromServer(function () {
         var notelistctrl = new NotelistController(noteservice,noteStorageService);
     });
 });
