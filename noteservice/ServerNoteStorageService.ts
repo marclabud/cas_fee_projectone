@@ -19,7 +19,7 @@ interface INoteStorageService {
     noteList:INote[]
 }
 
-class LocalNoteStorageService implements INoteStorageService {
+class ServerNoteStorageService implements INoteStorageService {
 
     private _noteList:INote[];
 
