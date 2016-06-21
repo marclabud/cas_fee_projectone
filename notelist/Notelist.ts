@@ -131,7 +131,7 @@ class NotelistController extends NoteController{
     private registerBtnEdit():void {
         $(":button").on('click', function () {
             let id = $(this).parent().attr("id");
-            NotelistController.changLocation(Number(id));
+            NotelistController.changeLocation(Number(id));
         });
     }
 
@@ -158,14 +158,14 @@ class NotelistController extends NoteController{
         nextID = this.noteStorageService.getNextId();
         if (typeof nextID === "number") {
             /* notedetail Editor mit neuer ID aufrufen */
-            NotelistController.changLocation(nextID);
+            NotelistController.changeLocation(nextID);
         }
         else {
             console.log("Error:CreateNewNote: Wrong ID", nextID);
         }
     }
 
-    private static changLocation(id:number):void {
+    private static changeLocation(id:number):void {
         window.location.replace("notedetail\\notedetail.html?id=" + id);
     }
 
