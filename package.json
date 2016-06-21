@@ -1,10 +1,13 @@
 {
   "name": "SimpleNote",
-  "version": "0.0.1",
+  "version": "0.8.0",
   "description": "A notepad example for [CAS] Front End Engineering.",
   "repository": {
     "type": "git",
     "url": "https://github.com/marclabud/cas_fee_projectone.git"
+  },
+  "scripts": {
+  "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.15.1",
