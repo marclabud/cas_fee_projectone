@@ -20,16 +20,30 @@ interface INoteStorageService {
 }
 
 class ServerNoteStorageService implements INoteStorageService {
-
+    private _baseUrl: string;
     private _noteList:INote[];
 
     constructor() {
-        this.initNoteList();
+        this._baseUrl ="http://127.0.0.1:3000/notes/" ;
+    }
+
+    getNotesfromServer():any {
+        var deferred = jQuery.ajax({
+            // dataType: "json",
+            method: "GET",
+            url: this._baseUrl,
+        });
+
+        deferred.fail(function (msg) {
+            console.log(msg);
+        });
+        return deferred;
     }
 
     private initNoteList():INote[] {
         try {
-            this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+            // this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
+
         } catch (err) {
             alert("initNoteListError" + (typeof err));
             if (this._noteList === null) { //If there is no data, initialize an empty array
@@ -92,6 +106,9 @@ class ServerNoteStorageService implements INoteStorageService {
         return this._noteList;
     }
 
+    set noteList(notes:INote[]) {
+        this._noteList = notes;
+    }
 }
 
 class DomToNoteMapper {
