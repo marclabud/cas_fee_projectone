@@ -76,8 +76,18 @@ class ServerNoteStorageService implements INoteStorageService {
         note.id = this.getNextId();
         note.createdDate = new Date().toJSON();
         this._noteList.push(note);
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
-        alert("Die neue Notiz wurde gespeichert.");
+         /* save new Note on Server */
+        jQuery.ajax({
+            // dataType: "json",
+            method: "POST",
+            url: this._baseUrl,
+            data: note,
+        }).done(function (msg) {
+            alert("Die neue Notiz wurde gespeichert.\n");
+        }).fail(function (msg) {
+            console.log(msg);
+        });
+        /* optimistic approach as in localstorage*/
         return true;
     }
 
