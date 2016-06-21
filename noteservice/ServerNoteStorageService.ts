@@ -81,7 +81,7 @@ class ServerNoteStorageService implements INoteStorageService {
             // dataType: "json",
             method: "POST",
             url: this._baseUrl,
-            data: note,
+            data: note
         }).done(function (msg) {
             alert("Die neue Notiz wurde gespeichert.\n");
         }).fail(function (msg) {
@@ -102,7 +102,17 @@ class ServerNoteStorageService implements INoteStorageService {
         }
         let index:number = updatedNote.id - 1;
         this._noteList[index] = updatedNote;//Alter the selected item on the table
-        localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
+        jQuery.ajax({
+            // dataType: "json",
+            method: "PUT",
+            url: this._baseUrl + updatedNote.id,
+            data: updatedNote
+        }).done(function (msg) {
+            alert("Die  Notiz"+index+"wurde geändert.\n");
+        }).fail(function (msg) {
+            console.log(msg);
+        });
+        //localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
     }

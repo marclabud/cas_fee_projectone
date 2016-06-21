@@ -59,6 +59,19 @@ function testShowAllNotes() {
     });
 }
 
+function testShowAllNotes1() {
+    var note = Note;
+
+    jQuery.getJSON({
+        // dataType: "json",
+        url: "http://127.0.0.1:3000/notes"
+    }).done(function (obj) {
+        alert("Notiz gefunden\n" + JSON.stringify(obj));
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
 function testShowNote() {
     var note = Note;
 

@@ -15,14 +15,15 @@ module.exports.createNote = function (req, res) {
     console.log("id: " + req.body.id);
     console.log("title: " + req.body.title);
 
-    newNote.id = req.body.id;
+    newNote.id = Number(req.body.id);
     newNote.title = req.body.title;
     newNote.description = req.body.description;
-    newNote.importance = req.body.importance;
+    newNote.importance = Number(req.body.importance);
     newNote.finishedDate = req.body.finishedDate;
     newNote.createdDate = req.body.createdDate;
     newNote.dueDate = req.body.dueDate;
 
+    console.log(newNote);
 
     // var newNote = JSON.stringify(req.body.data);
     store.add(newNote, function (err, note) {
