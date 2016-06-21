@@ -105,7 +105,7 @@ class NotelistController extends NoteController{
     /* HTMLSelectElement greift auf das Interface von HTMLElement zurück */
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
-    constructor(private noteservice:NoteService, private noteStorageService:NoteStorageService) {
+    constructor(private noteservice:NoteService, private noteStorageService:INoteStorageService) {
         super(HREF_PREFIX_STYLE);
         this.notelist = this.noteStorageService.noteList;
         this.notelistview = new Notelistview();
@@ -118,12 +118,13 @@ class NotelistController extends NoteController{
     };
 
     private registerCBFinished():void {
-        $(":checkbox").change(function () {
-            let  id = $(this).parent().attr("id");
-            let finishedDate = $(this).is(':checked') ? new Date().toJSON() : " ";
+        $(":checkbox").change((ev) => {
+            let target = $(ev.target);
+            let  id = target.parent().attr("id");
+            let finishedDate = target.is(':checked') ? new Date().toJSON() : " ";
             let note:INote = new Note();
             note.id = Number(id);
-            new NoteStorageService().updateNote(note, finishedDate);
+            this.noteStorageService.updateNote(note, finishedDate);
         })
     }
 

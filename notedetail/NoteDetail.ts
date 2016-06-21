@@ -50,10 +50,10 @@ class NoteDetailController extends NoteController {
     private registerEvenListener():void {
         $("#btnNoteReset").on('click', () => location.replace("noteDetail.html"));
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
-        $("#btnNoteSave").on('click', function () {
+        $("#btnNoteSave").on('click', ()=> {
             if ($('form').is(':valid')) {
                 let note:INote = DomToNoteMapper.map();
-                new NoteStorageService().saveOrUpdateNote(note);
+                this.noteStorageService.saveOrUpdateNote(note);
             }
         });
     }
