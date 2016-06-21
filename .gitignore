@@ -9,5 +9,4 @@ notelist/*.js
 notelist/*.map
 noteservice/*.js
 noteservice/*.map
-NoteStorageService.ts
 
