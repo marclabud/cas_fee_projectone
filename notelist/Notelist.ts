@@ -1,5 +1,6 @@
+'use strict';
+import compile = Handlebars.compile; // ToDo: ??
 /* ENUM SortCriteria noteList */
-import compile = Handlebars.compile;
 enum SortCriteria {
     id,
     dueDate,
