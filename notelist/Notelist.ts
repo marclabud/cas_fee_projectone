@@ -230,7 +230,7 @@ class NotelistController extends NoteController{
 /* App.Ctrl */
 $(document).ready(function () {
     var noteservice = new NoteService();
-    var noteStorageService = new NoteStorageService();
+    var noteStorageService = new LocalNoteStorageService();
     var notelistctrl = new NotelistController(noteservice,noteStorageService);
     //  notelistctrl.noteStorageService.initNoteList();
 });

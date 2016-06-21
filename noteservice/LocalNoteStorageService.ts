@@ -7,7 +7,7 @@ const NOTE_STYLE = "noteStyle";
 const DATE_FORMAT = "DD/MM/YYYY";
 
 /**
- * The NoteStorageService class provides all needed services to
+ * The LocalNoteStorageService class provides all needed services to
  * read, save and update a Note from resp. into local storage.
  */
 interface INoteStorageService {
@@ -19,7 +19,7 @@ interface INoteStorageService {
     noteList:INote[]
 }
 
-class NoteStorageService implements INoteStorageService {
+class LocalNoteStorageService implements INoteStorageService {
 
     private _noteList:INote[];
 
@@ -123,7 +123,7 @@ class Utility {
 
 /* for server side usage
  module.exports = {
- NoteStorageService: NoteStorageService,
+ LocalNoteStorageService: LocalNoteStorageService,
  Utility: Utility,
  NOTE_LIST: NOTE_LIST,
  DATE_FORMAT: DATE_FORMAT,
