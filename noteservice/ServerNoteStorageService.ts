@@ -77,9 +77,9 @@ class ServerNoteStorageService implements INoteStorageService {
         note.createdDate = new Date().toJSON();
         this._noteList.push(note);
          /* save new Note on Server */
-        jQuery.ajax({
+        try {
+        $.post({
             // dataType: "json",
-            method: "POST",
             url: this._baseUrl,
             data: note
         }).done(function (msg) {
@@ -87,6 +87,9 @@ class ServerNoteStorageService implements INoteStorageService {
         }).fail(function (msg) {
             console.log(msg);
         });
+        } catch (err) {
+            alert("jquery.post Error"+ typeof(err))
+        }
         /* optimistic approach as in localstorage*/
         return true;
     }
@@ -102,6 +105,7 @@ class ServerNoteStorageService implements INoteStorageService {
         }
         let index:number = updatedNote.id - 1;
         this._noteList[index] = updatedNote;//Alter the selected item on the table
+        try {
         jQuery.ajax({
             // dataType: "json",
             method: "PUT",
@@ -112,6 +116,9 @@ class ServerNoteStorageService implements INoteStorageService {
         }).fail(function (msg) {
             console.log(msg);
         });
+        } catch (err){
+            alert("jquery.ajax Error"+ typeof(err))
+        }
         //localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
         alert("Die bestehende Notiz wurde geändert.");
         return true;
