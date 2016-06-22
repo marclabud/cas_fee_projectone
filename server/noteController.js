@@ -1,5 +1,3 @@
-var newNote = require("../noteservice/Note.js");
-
 var store = require("./../server/noteStore.js");
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -10,22 +8,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 module.exports.createNote = function (req, res) {
+    var newNote = mapBodyToNote(req);
+    console.log("Create Note: " + JSON.stringify(newNote));
 
-    console.log("req.body: " + JSON.stringify(req.body));
-    console.log("id: " + req.body.id);
-    console.log("title: " + req.body.title);
-
-    newNote.id = Number(req.body.id);
-    newNote.title = req.body.title;
-    newNote.description = req.body.description;
-    newNote.importance = Number(req.body.importance);
-    newNote.finishedDate = req.body.finishedDate;
-    newNote.createdDate = req.body.createdDate;
-    newNote.dueDate = req.body.dueDate;
-
-    console.log(newNote);
-
-    // var newNote = JSON.stringify(req.body.data);
     store.add(newNote, function (err, note) {
         if (note === undefined) {
             res.statusCode = 404;
@@ -60,19 +45,11 @@ module.exports.showAllNotes = function (req, res) {
     });
 };
 
-
 module.exports.updateNote = function (req, res) {
+    var updatedNote = mapBodyToNote(req);
+    console.log("Update Note: " + JSON.stringify(updatedNote));
 
-    newNote.id = req.body.id;
-    newNote.title = req.body.title;
-    newNote.description = req.body.description;
-    newNote.importance = req.body.importance;
-    newNote.finishedDate = req.body.finishedDate;
-    newNote.createdDate = req.body.createdDate;
-    newNote.dueDate = req.body.dueDate;
-
-    console.log("req.params.id: "+ req.params.id);
-    store.update(req.params.id, newNote, function (err, note) {
+    store.update(req.params.id, updatedNote, function (err, note) {
         if (note === undefined) {
             res.statusCode = 404;
             return res.send('Note not found!');
@@ -81,3 +58,16 @@ module.exports.updateNote = function (req, res) {
         res.json(note);
     });
 };
+
+function mapBodyToNote(req) {
+    var note = require("../noteservice/Note.js");
+    note._id = req.body.id;
+    note.id = Number(req.body.id);
+    note.title = req.body.title;
+    note.description = req.body.description;
+    note.importance = req.body.importance;
+    note.createdDate = req.body.createdDate;
+    note.dueDate = req.body.dueDate;
+    note.finishedDate = req.body.finishedDate;
+    return note;
+}

@@ -15,6 +15,6 @@ router.get("/notes/:id/", notes.showNote);
 router.put("/notes/:id/", notes.updateNote);
 
 // Deletes a Note by Id
-//router.delete("/notes/:id/", notes.deleteOrder);
+//router.delete("/notes/:id/", notes.deleteNote;
 
 module.exports = router;

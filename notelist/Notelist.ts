@@ -46,7 +46,7 @@ Handlebars.registerHelper('rate', function (rating:number) {
 /* Showdate zeigt ein Datum der Note mit einem Präfix an
  *  Mit dem Präfix (optional) kann eine Beschreibung des Datums mitgegeben werden*/
 
-Handlebars.registerHelper('showdate', function (date:string,prefixText:string) {
+Handlebars.registerHelper('showdate', function (date:string, prefixText:string) {
     const DATEFORMAT:string = "LL";
     let outDate:string = "";
     if (!(typeof(prefixText) === "string")) {
@@ -68,12 +68,12 @@ Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) 
     let CheckboxLabelHTML:string = '<label for="cb_note-finished"></label>';
 
     if (moment(finishedDate).isValid()) {     // set Checkbox checked if valid finishedDate
-        CheckboxHTML=CheckboxLabelHTML;
-        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" checked class="note-finished">';
+        CheckboxHTML = CheckboxLabelHTML;
+        CheckboxHTML += '<input type="checkbox" id="cb_note-finished" checked class="note-finished">';
     }
     else { // set Checkbox unchecked
         CheckboxHTML = CheckboxLabelHTML;
-        CheckboxHTML+= '<input type="checkbox" id="cb_note-finished" class="note-unfinished">'
+        CheckboxHTML += '<input type="checkbox" id="cb_note-finished" class="note-unfinished">'
     }                                  // set Checkbox unchecked
     return new Handlebars.SafeString(CheckboxHTML);
 });
@@ -99,7 +99,7 @@ class Notelistview {
     }
 
 }
-class NotelistController extends NoteController{
+class NotelistController extends NoteController {
     notelist:INote[];
     notelistview:Notelistview;
 
@@ -121,7 +121,7 @@ class NotelistController extends NoteController{
     private registerCBFinished():void {
         $(":checkbox").change((ev) => {
             let target = $(ev.target);
-            let  id = target.parent().attr("id");
+            let id = target.parent().attr("id");
             let finishedDate = target.is(':checked') ? new Date().toJSON() : " ";
             let note:INote = new Note();
             note.id = Number(id);
@@ -195,7 +195,7 @@ class NotelistController extends NoteController{
         console.log("change LBSort");
     }
 
-     private filter(event:Event):void {
+    private filter(event:Event):void {
         let target:any = event.target;
         let SelectedSortOption:string = target.value;
         /* notelist mit allen Elementen initialisieren   */
@@ -230,10 +230,11 @@ class NotelistController extends NoteController{
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var noteservice = new NoteService();
     var noteStorageService = new ServerNoteStorageService();
     noteStorageService.getNotesfromServer(function () {
-        var notelistctrl = new NotelistController(noteservice,noteStorageService);
+        new NotelistController(new NoteService(), noteStorageService);
     });
+
+    // new NotelistController(new NoteService(), new LocalNoteStorageService());
 });
 

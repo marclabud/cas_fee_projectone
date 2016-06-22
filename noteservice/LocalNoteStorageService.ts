@@ -32,9 +32,9 @@ class LocalNoteStorageService implements INoteStorageService {
             this._noteList = JSON.parse(localStorage.getItem(NOTE_LIST)); //Converts string to object
         } catch (err) {
             alert("initNoteListError" + (typeof err));
-            if (this._noteList === null) { //If there is no data, initialize an empty array
-                this._noteList = [];
-            }
+        }
+        if (this._noteList === null) { //If there is no data, initialize an empty array
+            this._noteList = [];
         }
         return this._noteList;
     }
@@ -45,6 +45,7 @@ class LocalNoteStorageService implements INoteStorageService {
 
     saveOrUpdateNote(note:INote):boolean {
         // updateNote or saveNote
+        note._id = note.id.toString();
         if (note.id && note.id > 0) {
             this.updateNote(note, null);
         } else {

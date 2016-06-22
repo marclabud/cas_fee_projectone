@@ -63,7 +63,7 @@ class NoteDetailController extends NoteController {
 $(document).ready(function () {
     var noteStorageService = new ServerNoteStorageService();
     noteStorageService.getNotesfromServer(function () {
-         new NoteDetailController(noteStorageService);
+        new NoteDetailController(noteStorageService);
     });
-    // new NoteDetailController(new ServerNoteStorageService());
+    // new NoteDetailController(new LocalNoteStorageService());
 });
