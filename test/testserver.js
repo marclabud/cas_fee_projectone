@@ -1,3 +1,5 @@
+'use script';
+
 function testUpdateNote() {
 
     var newNote = Note;
@@ -45,6 +47,30 @@ function testAddNote() {
 
 }
 
+function testAddNote1() {
+
+    var newNote = Note;
+    newNote.id = 1;
+    newNote.title = "Titel 1";
+    newNote.description = "Text 1";
+    newNote.importance = 4;
+    newNote.createdDate = "2016-06-19T17:03:19.338Z";
+    newNote.dueDate = "2016-06-21T00:00:00+02:00";
+    newNote.finishedDate = "";
+
+    jQuery.post({
+        // dataType: "json"
+        url: "http://127.0.0.1:3000/notes",
+        data: newNote
+    }).done(function (msg) {
+        alert("Die neue Notiz wurde gespeichert.\n");
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+
+}
+
+
 function testShowAllNotes() {
     var note = Note;
 
@@ -54,6 +80,19 @@ function testShowAllNotes() {
         url: "http://127.0.0.1:3000/notes"
     }).done(function (obj) {
         alert("Notiz gefunden\n" + JSON.stringify(obj));
+    }).fail(function (msg) {
+        console.log(msg);
+    });
+}
+
+function testShowAllNotes1() {
+    var note = Note;
+
+    jQuery.getJSON({
+        // dataType: "json",
+        url: "http://127.0.0.1:3000/notes"
+    }).done(function (obj) {
+        alert("Notiz gefunden\n" +JSON.stringify(obj));
     }).fail(function (msg) {
         console.log(msg);
     });

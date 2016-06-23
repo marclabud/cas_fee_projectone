@@ -14,6 +14,8 @@
     "shared/NoteController.ts",
     "noteservice/Note.ts",
     "noteservice/LocalNoteStorageService.ts",
+    "noteservice/NoteStorageService.ts",
+    "noteservice/ServerNoteStorageService.ts",
     "noteservice/NoteService.ts",
     "notelist/Notelist.ts",
     "notedetail/NoteDetail.ts",

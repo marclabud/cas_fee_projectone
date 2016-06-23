@@ -5,7 +5,8 @@
 
 var notesarray:INote[] = [
     {
-        "id": 1,
+        _id: "1",
+        id: Number(this._id),
         title: "Erste Notiz",
         description: "Erste Beschreibung",
         importance: 1,
@@ -14,7 +15,8 @@ var notesarray:INote[] = [
         dueDate: "2016-05-20T17:15:00+00:00"
     },
     {
-        "id": 2,
+        _id: "2",
+        id: Number(this._id),
         title: "Zweite Notiz",
         description: "Zweite Beschreibung",
         importance: 2,
@@ -23,7 +25,8 @@ var notesarray:INote[] = [
         dueDate: "2016-05-18T17:15:00+00:00"
     },
     {
-        "id": 3,
+        _id: "3",
+        id: Number(this._id),
         title: "Dritte Notiz",
         description: "Dritte Beschreibung",
         importance: 4,
@@ -32,7 +35,8 @@ var notesarray:INote[] = [
         dueDate: "2016-05-30T17:15:00+00:00"
     },
     {
-        "id": 4,
+        _id: "4",
+        id: Number(this._id),
         title: "Vierte Notiz",
         description: "",
         importance: 3,
@@ -42,7 +46,8 @@ var notesarray:INote[] = [
     },
 
     {
-        "id": 5,
+        _id: "5",
+        id: Number(this._id),
         title: "Fünfte Notiz",
         description: "Fünfte lange Beschreibung",
         importance: 5,

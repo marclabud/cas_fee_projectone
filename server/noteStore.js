@@ -2,8 +2,6 @@ var Datastore = require('nedb');
 var db = new Datastore({filename: './server/note.db', autoload: true});
 
 function addNote(note, callback) {
-
-    //console.log("addNote: "+ JSON.stringify(note));
     db.insert(note, function (err, note) {
         if (callback) {
             callback(err, note);
@@ -11,15 +9,16 @@ function addNote(note, callback) {
     });
 }
 
-function updateNote(id, notes, callback) {
-    db.update({id: id}, notes, {}, function (err, note) {
- //       deleteNote(id,  callback);
-        getNote(id, callback);
+function updateNote(id, note, callback) {
+    db.update({_id: id}, note, {}, function (err, note) {
+        if (callback) {
+            callback(err, note);
+        }
     });
 }
 
 function deleteNote(id, callback) {
-    db.remove({id: id}, function (err, note) {
+    db.remove({_id: id}, function (err, note) {
         if (callback) {
             callback(err, note);
         }
@@ -27,7 +26,7 @@ function deleteNote(id, callback) {
 }
 
 function getNote(id, callback) {
-    db.findOne({id: id}, function (err, note) {
+    db.findOne({_id: id}, function (err, note) {
         callback(err, note);
     });
 }

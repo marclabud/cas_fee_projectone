@@ -1,6 +1,6 @@
 'use strict';
 //import {Note} from "./Note"; // needs System.js
-//import {NOTE_LIST, DATE_FORMAT, LocalNoteStorageService, Utility} from "./NoteDetail";
+//import {NOTE_LIST, DATE_FORMAT, ServerNoteStorageService, Utility} from "./NoteDetail";
 //require("./Note");
 //require("./NoteDetail");
 
@@ -61,5 +61,9 @@ class NoteDetailController extends NoteController {
 
 /* Main */
 $(document).ready(function () {
-    new NoteDetailController(new LocalNoteStorageService());
+    var noteStorageService = new ServerNoteStorageService();
+    noteStorageService.getNotesfromServer(function () {
+        new NoteDetailController(noteStorageService);
+    });
+    // new NoteDetailController(new LocalNoteStorageService());
 });
