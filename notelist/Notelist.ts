@@ -1,5 +1,5 @@
 'use strict';
-import compile = Handlebars.compile; // ToDo: ??
+import compile = Handlebars.compile; 
 /* ENUM SortCriteria noteList */
 enum SortCriteria {
     id,
@@ -23,7 +23,7 @@ enum FilterCriteria {
  Wird ein ungüliger Wert übergeben, wird die class error-sign generiert*/
 
 Handlebars.registerHelper('rate', function (rating:number) {
-    var RatingHTML:string = "";
+    let RatingHTML:string = "";
     const BESTRATING:number = 5;
     if (rating >= 0 && rating <= BESTRATING) {
         for (let i = 1; i <= BESTRATING; i++) {
@@ -99,7 +99,7 @@ class Notelistview {
     }
 
 }
-class NotelistController extends NoteController {
+class NotelistController extends StyleController {
     notelist:INote[];
     notelistview:Notelistview;
 
@@ -232,11 +232,11 @@ class NotelistController extends NoteController {
 
 /* App.Ctrl */
 $(document).ready(function () {
-    var noteStorageService = new ServerNoteStorageService();
+    let noteStorageService = new ServerNoteStorageService();
     noteStorageService.getNotesfromServer(function () {
         new NotelistController(new NoteService(), noteStorageService);
     });
 
-    // new NotelistController(new NoteService(), new LocalNoteStorageService());
+
 });
 

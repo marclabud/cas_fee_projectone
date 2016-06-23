@@ -27,7 +27,7 @@ class NoteDetailView {
     };
 }
 
-class NoteDetailController extends NoteController {
+class NoteDetailController extends StyleController {
     private noteStorageService:INoteStorageService;
     private noteDetailView:NoteDetailView;
     private note:INote;

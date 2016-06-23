@@ -12,7 +12,7 @@ enum StyleSheetTheme {
     DarkTheme
 }
 
-class NoteController {
+class StyleController {
 
     private theme:StyleSheetTheme;
     private styleHrefPrefix:string;
