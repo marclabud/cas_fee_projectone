@@ -61,9 +61,13 @@ class NoteDetailController extends StyleController {
 
 /* Main */
 $(document).ready(function () {
-    var noteStorageService = new ServerNoteStorageService();
-    noteStorageService.getNotesfromServer(function () {
-        new NoteDetailController(noteStorageService);
-    });
-    // new NoteDetailController(new LocalNoteStorageService());
+    if (SelectedStorage === StorageTyp.ServerNoteStorageService) {
+        let noteStorageService = new ServerNoteStorageService();
+        noteStorageService.getNotesfromServer(function () {
+            new NoteDetailController(noteStorageService);
+        });
+    }else{//localStorage synchron
+            let noteStorageService = new LocalNoteStorageService();
+            new NoteDetailController(noteStorageService);
+    }
 });

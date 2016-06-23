@@ -232,11 +232,17 @@ class NotelistController extends StyleController {
 
 /* App.Ctrl */
 $(document).ready(function () {
-    let noteStorageService = new ServerNoteStorageService();
-    noteStorageService.getNotesfromServer(function () {
+    // Storage Selection
+    if (SelectedStorage === StorageTyp.ServerNoteStorageService) {
+        let noteStorageService = new ServerNoteStorageService();
+        noteStorageService.getNotesfromServer(function () {
+            new NotelistController(new NoteService(), noteStorageService);
+        });
+    }
+    else { //localStorage synchron
+        let noteStorageService = new LocalNoteStorageService();
         new NotelistController(new NoteService(), noteStorageService);
-    });
-
+    }
 
 });
 

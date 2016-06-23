@@ -4,6 +4,13 @@ const NOTE_LIST = "noteList";
 const NOTE_STYLE = "noteStyle";
 const DATE_FORMAT = "DD/MM/YYYY";
 
+enum StorageTyp {
+    LocalNoteStorageService,
+    ServerNoteStorageService
+}
+let SelectedStorage:StorageTyp = StorageTyp.ServerNoteStorageService;
+
+
 interface INoteStorageService {
     noteList:INote[];
     getNote(id:number):INote;
@@ -15,7 +22,6 @@ interface INoteStorageService {
 
 
 abstract class NoteStorageService {
-
     protected _noteList:INote[];
 
     constructor() {
