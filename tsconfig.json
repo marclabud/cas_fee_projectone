@@ -11,6 +11,7 @@
   },
   "files": [
     "noteservice/mock-notes.ts",
+    "app/App.ts",
     "shared/StyleController.ts",
     "noteservice/Note.ts",
     "noteservice/LocalNoteStorageService.ts",

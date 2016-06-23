@@ -8,8 +8,6 @@ enum StorageTyp {
     LocalNoteStorageService,
     ServerNoteStorageService
 }
-let SelectedStorage:StorageTyp = StorageTyp.ServerNoteStorageService;
-
 
 interface INoteStorageService {
     noteList:INote[];

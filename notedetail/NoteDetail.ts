@@ -61,7 +61,8 @@ class NoteDetailController extends StyleController {
 
 /* Main */
 $(document).ready(function () {
-    if (SelectedStorage === StorageTyp.ServerNoteStorageService) {
+    let app = new App(StorageTyp.ServerNoteStorageService);
+    if (app.storagetyp === StorageTyp.ServerNoteStorageService) {
         let noteStorageService = new ServerNoteStorageService();
         noteStorageService.getNotesfromServer(function () {
             new NoteDetailController(noteStorageService);

@@ -232,8 +232,9 @@ class NotelistController extends StyleController {
 
 /* App.Ctrl */
 $(document).ready(function () {
+    let app = new App(StorageTyp.ServerNoteStorageService);
     // Storage Selection
-    if (SelectedStorage === StorageTyp.ServerNoteStorageService) {
+    if (app.storagetyp === StorageTyp.ServerNoteStorageService) {
         let noteStorageService = new ServerNoteStorageService();
         noteStorageService.getNotesfromServer(function () {
             new NotelistController(new NoteService(), noteStorageService);
