@@ -241,8 +241,14 @@ $(document).ready(function () {
         });
     }
     else { //localStorage synchron
-        let noteStorageService = new LocalNoteStorageService();
-        new NotelistController(new NoteService(), noteStorageService);
+        if (app.isLocalStorageAvailable()) {
+            let noteStorageService = new LocalNoteStorageService();
+            new NotelistController(new NoteService(), noteStorageService);
+        }
+        else {
+            console.log ("No Local Storage")
+        }
+
     }
 
 });

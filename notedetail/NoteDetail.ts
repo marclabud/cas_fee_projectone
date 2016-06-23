@@ -68,7 +68,12 @@ $(document).ready(function () {
             new NoteDetailController(noteStorageService);
         });
     }else{//localStorage synchron
+        if (app.isLocalStorageAvailable()) {
             let noteStorageService = new LocalNoteStorageService();
             new NoteDetailController(noteStorageService);
+        }
+        else {
+            console.log ("No Local Storage")
+        }
     }
 });
