@@ -192,6 +192,7 @@ class NotelistController extends NoteController {
                 break;
         }
         this.notelistview.render(this.notelist);
+        this.registerBtnEdit();
         console.log("change LBSort");
     }
 
@@ -221,6 +222,7 @@ class NotelistController extends NoteController {
                 break;
         }
         this.notelistview.render(this.notelist);
+        this.registerBtnEdit();
         console.log("change LBFilter");
     }
 
