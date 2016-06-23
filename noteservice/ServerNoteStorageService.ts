@@ -2,28 +2,16 @@
 //import {Note} from "./Note"; // needs System.js
 //require("./Note");
 
-const NOTE_LIST = "noteList";
-const NOTE_STYLE = "noteStyle";
-const DATE_FORMAT = "DD/MM/YYYY";
-
 /**
  * The ServerNoteStorageService class provides all needed services to
  * read, save and update a Note from resp. into local storage.
  */
-interface INoteStorageService {
-    getNote(id:number):INote,
-    saveOrUpdateNote(note:INote):boolean,
-    saveNote(note:INote):boolean,
-    updateNote(aNote:INote, finishedDate:string):boolean,
-    getNextId():number,
-    noteList:INote[]
-}
 
-class ServerNoteStorageService implements INoteStorageService {
+class ServerNoteStorageService extends NoteStorageService {
     private _baseUrl:string;
-    private _noteList:INote[];
-
+ 
     constructor() {
+        super();
         this._baseUrl ="http://127.0.0.1:3000/notes/" ;
     }
 
@@ -35,7 +23,7 @@ class ServerNoteStorageService implements INoteStorageService {
         });
         
         deferred.done((notes: any) =>{
-            this._noteList = notes;
+            this.noteList = notes;
             callback();
         });
 
@@ -57,21 +45,6 @@ class ServerNoteStorageService implements INoteStorageService {
         return this._noteList;
     }
 
-    getNote(id:number):INote {
-        return this._noteList.filter((note:INote) => note.id === id)[0];
-    }
-
-    saveOrUpdateNote(note:INote):boolean {
-        // updateNote or saveNote
-        note._id = note.id.toString();
-        if (note.id && note.id > 0) {
-            this.updateNote(note, null);
-        } else {
-            this.saveNote(note);
-        }
-        return true;
-    }
-
     saveNote(note:INote):boolean {
         note.id = this.getNextId();
         note.createdDate = new Date().toJSON();
@@ -83,7 +56,7 @@ class ServerNoteStorageService implements INoteStorageService {
                 url: this._baseUrl,
                 data: note
             }).done(function (msg) {
-                alert("Die neue Notiz wurde gespeichert.\n");
+                console.log(msg);
             }).fail(function (msg) {
                 console.log(msg);
             });
@@ -91,6 +64,7 @@ class ServerNoteStorageService implements INoteStorageService {
             alert("jquery.post Error" + typeof(err))
         }
         /* optimistic approach as in localstorage*/
+        alert("Die neue Notiz wurde gespeichert.\n");
         return true;
     }
 
@@ -121,51 +95,7 @@ class ServerNoteStorageService implements INoteStorageService {
         }
         return true;
     }
-
-    getNextId():number {
-        let max:number = 0;
-        $.map(this._noteList, function (note:INote) {
-            if (note.id > max) {
-                max = note.id;
-            }
-        });
-        return Number(++max);
-    }
-
-    get noteList():INote[] {
-        return this._noteList;
-    }
-
-    set noteList(notes:INote[]) {
-        this._noteList = notes;
-    }
-}
-
-class DomToNoteMapper {
-
-    static map():INote {
-        let dueDate:string = $("#note-dueDate").val();
-        let isoDueDate:string = moment(dueDate, DATE_FORMAT).tz("Europe/Berlin").format(); // ISO8601
-
-        /* instantiate a new Note */
-        let note:INote = new Note();
-        note.id = Number($("#note-id").val());
-        note.title = $("#note-title").val();
-        note.description = $("#note-description").val();
-        note.importance = $("#note-form input[type='radio']:checked").val();
-        note.createdDate = $("#note-createdDate").val();
-        note.dueDate = isoDueDate;
-        note.finishedDate = $("#note-finishedDate").val();
-
-        return note;
-    }
-}
-
-class Utility {
-    static getURLParameter(name:String):String {
-        let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-    }
+    
 }
 
 /* for server side usage
