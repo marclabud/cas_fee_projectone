@@ -52,6 +52,7 @@ class NoteDetailController extends StyleController {
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
         $("#btnNoteSave").on('click', ()=> {
             if ($('form').is(':valid')) {
+                event.preventDefault(); // prevent reloading the page
                 let note:INote = DomToNoteMapper.map();
                 this.noteStorageService.saveOrUpdateNote(note);
             }
