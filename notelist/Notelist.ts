@@ -87,11 +87,11 @@ Handlebars.registerHelper('SetDescription', function (description:string){
         if (description.length > MaxLen) {  // Create Accordion
             // descriptionHTML="Accordion: " + description.length.toString();
             accFirstLine= description.substr(0,MaxLen);
-            accContent=description.substr(MaxLen+1,description.length);
+            accContent=description.substr(MaxLen,description.length);
             descriptionHTML = `<p class="accFirstRow">${accFirstLine}</p> <p class="accContent">${accContent}</p>`;
         }
         else{
-           descriptionHTML=description;
+           descriptionHTML=`<p>${description}</p>`;
         }
     }
     return new Handlebars.SafeString(descriptionHTML);
