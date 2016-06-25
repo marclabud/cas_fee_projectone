@@ -78,6 +78,21 @@ Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) 
     return new Handlebars.SafeString(CheckboxHTML);
 });
 
+Handlebars.registerHelper('SetDescription', function (description:string){
+    let descriptionHTML:string ="";
+    const MaxLen: number = 50;
+    if (typeof(description)==="string") {
+        if (description.length > MaxLen) {  // Create Accordion
+           descriptionHTML="Accordion: " + description.length.toString();
+            
+        }
+        else{
+           descriptionHTML=description;
+        }
+    }
+    return new Handlebars.SafeString(descriptionHTML);
+});
+
 /* Notelistview Classes */
 class Notelistview {
     noteListTemplateHTML:HandlebarsTemplateDelegate;
@@ -97,7 +112,6 @@ class Notelistview {
     private compile():void {
         this.noteListTemplateHTML = Handlebars.compile(document.getElementById("notes-template").innerText);
     }
-
 }
 class NotelistController extends StyleController {
     notelist:INote[];
