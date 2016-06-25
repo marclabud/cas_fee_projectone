@@ -19,8 +19,8 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
     </script>
-    <!-- Kein Javascsript ToDo: Fehlerseite einbauen-->
-    <noscript><p>Kein Javascript</p></noscript>
+    <!-- Kein Javascsript -->
+    <noscript><a href=NoJavaScript.html>Kein Java Script</a></noscript>
     <link rel="stylesheet" type="text/css" href="./app/scss/style.css">
     <script src="app/App.js"></script>
     <script src="shared/StyleController.js"></script>
@@ -69,7 +69,7 @@
             <p> {{showdate dueDate "Fällig"}}
                 <small>{{showdate createdDate "Erstellt:"}}</small>
             </p>
-            <p>{{description}}</p>
+            {{SetDescription description}}
         </div>
         <button id="btnNoteEdit" type="button" class="btn-note-edit">Edit</button>
     </article>

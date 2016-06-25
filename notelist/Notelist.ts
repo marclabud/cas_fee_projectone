@@ -78,6 +78,25 @@ Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) 
     return new Handlebars.SafeString(CheckboxHTML);
 });
 
+Handlebars.registerHelper('SetDescription', function (description:string){
+    let descriptionHTML:string ="";
+    let accFirstLine:string="";
+    let accContent:string="";
+    const MaxLen: number = 60;
+    if (typeof(description)==="string") {
+        if (description.length > MaxLen) {  // Create Accordion
+            // descriptionHTML="Accordion: " + description.length.toString();
+            accFirstLine= description.substr(0,MaxLen);
+            accContent=description.substr(MaxLen,description.length);
+            descriptionHTML = `<p class="accFirstRow">${accFirstLine}</p> <p class="accContent">${accContent}</p>`;
+        }
+        else{
+           descriptionHTML=`<p>${description}</p>`;
+        }
+    }
+    return new Handlebars.SafeString(descriptionHTML);
+});
+
 /* Notelistview Classes */
 class Notelistview {
     noteListTemplateHTML:HandlebarsTemplateDelegate;
@@ -92,10 +111,25 @@ class Notelistview {
         };
         let notesHtml:string = this.noteListTemplateHTML(context);
         document.getElementById("notelist").innerHTML = notesHtml;
+        this.initaccordion();
     }
 
     private compile():void {
         this.noteListTemplateHTML = Handlebars.compile(document.getElementById("notes-template").innerText);
+
+    }
+    private initaccordion():void {
+        let $firstRow = $(".accFirstRow");
+        let $content= $(".accContent");
+        /* Show only first row */
+        $content.hide();
+        $firstRow.click( function() {
+            $content.not(":hidden").slideUp('slow');
+            $(this).next()
+                .not(":visible")
+                .slideDown('slow')
+                .prev();
+        });
     }
 
 }
