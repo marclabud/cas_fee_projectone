@@ -80,11 +80,16 @@ Handlebars.registerHelper('SetFinishedCheckBox', function (finishedDate:string) 
 
 Handlebars.registerHelper('SetDescription', function (description:string){
     let descriptionHTML:string ="";
+    let checkboxHTML:string="";
     const MaxLen: number = 50;
     if (typeof(description)==="string") {
         if (description.length > MaxLen) {  // Create Accordion
-           descriptionHTML="Accordion: " + description.length.toString();
-            
+            // descriptionHTML="Accordion: " + description.length.toString();
+            descriptionHTML= description.substr(0,MaxLen)+" ...";
+            checkboxHTML =`<input type="checkbox" checked>`;
+            /*<i></i>
+            <h2>Languages Used</h2>
+            <p></p> */
         }
         else{
            descriptionHTML=description;
