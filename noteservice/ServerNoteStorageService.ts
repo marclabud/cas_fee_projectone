@@ -46,8 +46,7 @@ class ServerNoteStorageService extends NoteStorageService {
     }
 
     saveNote(note:INote):boolean {
-        note.id = this.getNextId();
-        note.createdDate = new Date().toJSON();
+        this.setNoteIdAndCreatedDate(note);
         this._noteList.push(note);
         /* save new Note on Server */
         try {
@@ -81,18 +80,19 @@ class ServerNoteStorageService extends NoteStorageService {
         this._noteList[index] = updatedNote;//Alter the selected item on the table
         try {
             $.ajax({
-                // dataType: "json",
                 method: "PUT",
                 url: this._baseUrl + updatedNote._id,
                 data: updatedNote
-            }).done(function (msg) {
-                alert("Die bestehende Notiz wurde geändert.\n");
+            }).done(function (msg) {               // dataType: "json",
+
+                console.log(msg);
             }).fail(function (msg) {
                 console.log(msg);
             });
         } catch (err) {
             alert("jquery.ajax Error" + typeof(err))
         }
+        alert("Die bestehende Notiz wurde geändert.\n");
         return true;
     }
     

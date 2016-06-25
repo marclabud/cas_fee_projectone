@@ -28,8 +28,7 @@ class LocalNoteStorageService extends  NoteStorageService implements INoteStorag
     }
 
     saveNote(note:INote):boolean {
-        note.id = this.getNextId();
-        note.createdDate = new Date().toJSON();
+        this.setNoteIdAndCreatedDate(note);
         this._noteList.push(note);
         localStorage.setItem(NOTE_LIST, JSON.stringify(this._noteList));
         alert("Die neue Notiz wurde gespeichert.");

@@ -16,6 +16,7 @@ interface INoteStorageService {
     saveNote(note:INote):boolean;
     updateNote(aNote:INote, finishedDate:string):boolean;
     getNextId():number;
+    setNoteIdAndCreatedDate(note:INote):void;
 }
 
 
@@ -34,8 +35,15 @@ abstract class NoteStorageService {
         return this._noteList.filter((note:INote) => note.id === id)[0];
     }
 
+    setNoteIdAndCreatedDate(note:INote):void {
+        note.id = this.getNextId();
+        note._id = note.id.toString();
+        note.createdDate = new Date().toJSON();
+    }
+
     saveOrUpdateNote(note:INote):boolean {
         // updateNote or saveNote
+        let noteId:String = Utility.getURLParameter("id");
         note._id = note.id.toString();
         if (note.id && note.id > 0) {
             this.updateNote(note, null);
