@@ -14,6 +14,7 @@ $raleway-font-stack: 'Raleway', sans-serif;
 
 $HSRblueColor: #005291;
 $ColorForBlueBackground: white;
+$ColorOrange: #F75D00;
 
 body {
   margin: 0;
@@ -100,8 +101,8 @@ button:hover {
 nav {
   button {
     cursor: pointer;
-    border-color: #F75D00 ;
-    background-color: #F75D00;
+    border-color: $ColorOrange;
+    background-color: $ColorOrange;
     border-radius: 0.25rem;
     -moz-border-radius: 0.25rem;
     -webkit-border-radius: 0.25rem;

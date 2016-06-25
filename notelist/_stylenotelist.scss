@@ -1,5 +1,6 @@
 $NotecardBackgroundColor: #CCDCE9;
 $NotecardBorderColor: #005291;
+$ColorOrange:#F75D00;
 /* main content: notelist*/
 /* erste Ebene section  .notes */
 .notes {
@@ -68,6 +69,22 @@ $NotecardBorderColor: #005291;
   color: black;
 }
 
+/* description */
+
+.accFirstRow {
+  cursor: pointer;
+  margin: 0 0 0 0;
+
+}
+.accFirstRow::after {
+  content: "\23EC";
+  color: $ColorOrange;
+  margin: 0 0 0 0;
+}
+.accContent {
+  margin: 0 0 0 0;
+}
+
 /* Note-Edit Button  */
 .btn-note-edit {
   flex_basis: 15%;
@@ -76,5 +93,5 @@ $NotecardBorderColor: #005291;
   margin: 0.5rem 0 0.5rem 0;
 }
 .btn-note-edit:hover {
-  background-color: #F75D00;
+  background-color: $ColorOrange;
 }
