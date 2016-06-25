@@ -7,7 +7,10 @@
     "url": "https://github.com/marclabud/cas_fee_projectone.git"
   },
   "scripts": {
-  "start": "node server.js"
+    "start": "node server.js",
+    "build-css": "node-sass  app/scss/ -o app/scss/ ",
+    "build-js": "tsc -p tsconfig.json",
+    "build": "npm run build-js && npm run build-css"
   },
   "dependencies": {
     "body-parser": "^1.15.1",
@@ -16,11 +19,13 @@
     "handlebars": "^4.0.5",
     "method-override": "^2.3.6",
     "moment": "^2.13.0",
-    "moment-timezone": "^0.5.4",
+    "moment-timenpm zone": "^0.5.4",
     "morgan": "^1.7.0",
     "nedb": "^1.8.0"
   },
   "devDependencies": {
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "node-sass": "^3.8.0"
+
   }
 }

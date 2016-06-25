@@ -24,9 +24,16 @@ Install typings in `typings.json`  from project folder using typings.
 
     typings install
 
+####  build from commandline
+Build .js and .css files from project folder using npm
+
+    npm run build
+
 Start express server
     
     npm start
+
+When server ist running, start client with index.html
     
 ### REST Api
 
@@ -41,7 +48,7 @@ Start express server
 
 * [typescript](https://github.com/microsoft/typescript.git)
 * [typings](https://github.com/typings/typings.git)
-* jasmine
+* node-saas (for commandline build)
 * jquery
 * [handlebars.js](https://github.com/wycats/handlebars.js/)
 * moment.js
@@ -51,10 +58,8 @@ Start express server
 * sass
 
 ## sass structure
-top file is style.scss for standard style and
-
-darkstyle for the second style.
-style.scss only imports partials.
+Top file is style.scss for standard style and darkstyle.scss for the second style.
+Both files only imports partials.
 
 ###_partials
 * _layout.scss for basic styling.
