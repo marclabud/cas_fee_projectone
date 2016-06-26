@@ -51,10 +51,11 @@ When server ist running, start client with index.html
 * node-saas (for commandline build)
 * jquery
 * [handlebars.js](https://github.com/wycats/handlebars.js/)
-* moment.js
-* moment-timezone-with-data.js
-* system.js
-
+* moment
+* moment-timezone-with-data
+* systemjs
+* express
+* nedb
 
 ## required devtools
 * sass
