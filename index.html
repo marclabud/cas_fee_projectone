@@ -22,14 +22,34 @@
     <!-- Kein Javascsript -->
     <noscript><a href=NoJavaScript.html>Kein Java Script</a></noscript>
     <link rel="stylesheet" type="text/css" href="./app/scss/style.css">
-    <script src="app/App.js"></script>
-    <script src="shared/StyleController.js"></script>
-    <script src="noteservice/Note.js"></script>
-    <script src="noteservice/NoteStorageService.js"></script>
-    <script src="noteservice/LocalNoteStorageService.js"></script>
-    <script src="noteservice/ServerNoteStorageService.js"></script>
-    <script src="noteservice/NoteService.js"></script>
-    <script src="notelist/Notelist.js"></script>
+
+    <!-- Application Handlebars in global scope -->
+    <script src="./noteservice/NoteHandlebars.js"></script>
+
+    <!-- system.js  -->
+    <script src="./node_modules/typescript/lib/typescript.js"></script>
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+
+    <script>
+        System.config({
+            map: {
+                traceur: './node_modules/typescript/lib/typescript.js'
+            },
+            transpiler: 'typescript'
+        });
+
+        System.import("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js");
+
+        // loads relative to the current page URL
+        System.import('./app/App.js');
+        System.import("./shared/StyleController.js");
+        System.import("./noteservice/Note.js");
+        System.import("./noteservice/NoteStorageService.js");
+        System.import("./noteservice/LocalNoteStorageService.js");
+        System.import("./noteservice/ServerNoteStorageService.js");
+        System.import("./notelist/Notelist.js");
+        System.import("./noteservice/NoteService.js");
+    </script>
 </head>
 <body class="site">
 <header role="banner">
@@ -86,7 +106,8 @@
                 <option value="StyleOne">DarkTheme</option>
                 <option value="StyleTwo" selected>BlueTheme</option>
             </select>
-            </br>Projekt-Sourcen:&nbsp&nbsp<a class="git" href="https://github.com/marclabud/cas_fee_projectone">github</a>
+            </br>Projekt-Sourcen:&nbsp&nbsp<a class="git"
+                                              href="https://github.com/marclabud/cas_fee_projectone">github</a>
         </div>
     </div>
 </footer>

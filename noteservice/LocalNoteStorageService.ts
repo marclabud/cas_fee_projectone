@@ -1,14 +1,12 @@
 'use strict';
-//import {Note} from "./Note"; // needs System.js
-//require("./Note");
-
+import { INote, Note } from "../noteservice/Note.ts";
+import { INoteStorageService, NoteStorageService, NOTE_LIST} from "../noteservice/NoteStorageService.ts";
 
 /**
  * The ServerNoteStorageService class provides all needed services to
  * read, save and update a Note from resp. into local storage.
  */
-
-class LocalNoteStorageService extends  NoteStorageService implements INoteStorageService {
+export class LocalNoteStorageService extends  NoteStorageService implements INoteStorageService {
 
     constructor() {
         super();
@@ -51,12 +49,3 @@ class LocalNoteStorageService extends  NoteStorageService implements INoteStorag
     }
 }
 
-
-/* for server side usage
- module.exports = {
- ServerNoteStorageService: ServerNoteStorageService,
- Utility: Utility,
- NOTE_LIST: NOTE_LIST,
- DATE_FORMAT: DATE_FORMAT,
- };
- */

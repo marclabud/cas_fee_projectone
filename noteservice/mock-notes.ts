@@ -1,9 +1,12 @@
+'use strict';
+import {INote} from "../noteservice/Note.ts";
+
 /**
  * Notes Mock Data
  * depends on Notes.ts (interface)
  */
 
-var notesarray:INote[] = [
+let notesarray:INote[] = [
     {
         _id: "1",
         id: Number(this._id),

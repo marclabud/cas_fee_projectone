@@ -18,6 +18,7 @@
     "noteservice/NoteStorageService.ts",
     "noteservice/ServerNoteStorageService.ts",
     "noteservice/NoteService.ts",
+    "noteservice/NoteHandlebars.ts",
     "notelist/Notelist.ts",
     "notedetail/NoteDetail.ts",
     "typings/index.d.ts"

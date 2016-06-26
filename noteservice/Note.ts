@@ -1,12 +1,12 @@
+'use strict';
+
 /**
  * This is the Note DTO to hold all note specific data.
  *  Note:
  *      - _id is the neDB internal id and must be of type string
  *      - id is the application real id and is kept to ensure backwards compatibility with LocalNoteStorageServer
  */
-'use strict';
-
-interface INote {
+export interface INote {
     _id:string;
     id:number;   
     title:string;
@@ -17,7 +17,7 @@ interface INote {
     dueDate:string;
 }
 
-class Note implements INote{
+export class Note implements INote{
     _id:string;
     id:number;
     title:string;
@@ -27,7 +27,3 @@ class Note implements INote{
     dueDate:string;
     finishedDate:string;
 }
-
-/* for server side usage
- module.exports.Note = Note;
- */

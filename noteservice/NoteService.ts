@@ -1,10 +1,13 @@
+'use strict';
+import { INote, Note } from "../noteservice/Note.ts";
+import { SortCriteria, FilterCriteria } from "../notelist/Notelist.ts";
+
 /**
  * NoteService
  * Basic Services to Init the listview
  * Services to find and Sort Notes in NoteList
  */
-
-class NoteService {
+export class NoteService {
 
     sortBy(noteList:INote[], SelectedSortCriteria:SortCriteria):void {
 

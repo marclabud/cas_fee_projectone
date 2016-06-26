@@ -1,18 +1,19 @@
 'use strict';
+import { NOTE_STYLE } from "../noteservice/NoteStorageService.ts";
 
-const PATHSTYLE:string = "app/scss/style.css";
-const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
+export const PATHSTYLE:string = "app/scss/style.css";
+export const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
 
-const HREF_PREFIX_STYLE:string = "./";
-const HREF_PREFIX_DARKSYTLE:string = "../";
+export const HREF_PREFIX_STYLE:string = "./";
+export const HREF_PREFIX_DARKSYTLE:string = "../";
 
 /* ENUM StyleSheetTheme */
-enum StyleSheetTheme {
+export enum StyleSheetTheme {
     StandardTheme,
     DarkTheme
 }
 
-class StyleController {
+export class StyleController {
 
     private theme:StyleSheetTheme;
     private styleHrefPrefix:string;
