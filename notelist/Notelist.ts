@@ -70,6 +70,8 @@ export class NotelistController extends StyleController {
     constructor(private noteservice:NoteService, private noteStorageService:INoteStorageService) {
         super(HREF_PREFIX_STYLE);
         this.notelist = this.noteStorageService.noteList;
+        /* Erstellt Datum ist Default-Sortierung */
+        this.noteservice.sortBy(this.notelist, SortCriteria.creationDate);
         this.notelistview = new Notelistview();
         this.notelistview.render(this.notelist);
         this.registerBtnEdit();
