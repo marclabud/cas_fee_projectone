@@ -58,15 +58,15 @@
         <button type="button" id="btnNoteNew" class="btn-note-new">Neue Notiz</button>
         <label for="ddlb_sorterselect">Sortieren nach:</label>
         <select id="ddlb_sorterselect" class="sorter">
-            <option value="id" selected>Standard</option>
             <option value="due-date">Fällig Datum</option>
-            <option value="creation-date">Erstellt Datum</option>
+            <option value="creation-date" selected >Erstellt Datum</option>
             <option value="importance">Wichtigkeit</option>
+            <option value="id">Schlüssel id</option>
         </select>
 
         <label for="ddlb_filterselect">Filtern nach: </label>
         <select id="ddlb_filterselect" class="filter">
-            <option value="id" selected>Standard</option>
+            <option value="id" selected>Kein Filter</option>
             <option value="note-active">Notizen in Arbeit</option>
             <option value="note-highimportance">Hoher Wichtigkeit</option>  <!--Rating 4 oder 5-->
             <option value="note-mediumimportance">Mittlerer Wichtigkeit</option> <!--Rating 2 oder 3-->
