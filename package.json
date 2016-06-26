@@ -19,7 +19,7 @@
     "handlebars": "^4.0.5",
     "method-override": "^2.3.6",
     "moment": "^2.13.0",
-    "moment-timenpm zone": "^0.5.4",
+    "moment-timezone": "^0.5.4",
     "morgan": "^1.7.0",
     "nedb": "^1.8.0"
   },
