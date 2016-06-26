@@ -1,10 +1,18 @@
 'use strict';
-//import {Note} from "./Note"; // needs System.js
-//import {NOTE_LIST, DATE_FORMAT, ServerNoteStorageService, Utility} from "./NoteDetail";
-//require("./Note");
-//require("./NoteDetail");
+import {App} from "../App/App.ts";
+import {StyleController, HREF_PREFIX_DARKSYTLE} from "../shared/StyleController.ts";
+import {ServerNoteStorageService} from "../noteservice/ServerNoteStorageService.ts";
+import {LocalNoteStorageService} from "../noteservice/LocalNoteStorageService.ts";
+import {INote} from "../noteservice/Note.ts";
+import {
+    INoteStorageService,
+    DomToNoteMapper,
+    Utility,
+    StorageTyp,
+    DATE_FORMAT
+} from "../noteservice/NoteStorageService.ts";
 
-class NoteDetailView {
+export class NoteDetailView {
 
     private note:INote;
 
@@ -27,7 +35,7 @@ class NoteDetailView {
     };
 }
 
-class NoteDetailController extends StyleController {
+export class NoteDetailController extends StyleController {
     private noteStorageService:INoteStorageService;
     private noteDetailView:NoteDetailView;
     private note:INote;
@@ -52,7 +60,7 @@ class NoteDetailController extends StyleController {
         $("#btnBack").on('click', () => location.replace("..\\index.html"));
         $("#btnNoteSave").on('click', ()=> {
             if ($('form').is(':valid')) {
-              //  event.preventDefault(); // prevent reloading the page
+                //  event.preventDefault(); // prevent reloading the page
                 let note:INote = DomToNoteMapper.map();
                 this.noteStorageService.saveOrUpdateNote(note);
             }
@@ -68,13 +76,13 @@ $(document).ready(function () {
         noteStorageService.getNotesfromServer(function () {
             new NoteDetailController(noteStorageService);
         });
-    }else{//localStorage synchron
+    } else {//localStorage synchron
         if (app.isLocalStorageAvailable()) {
             let noteStorageService = new LocalNoteStorageService();
             new NoteDetailController(noteStorageService);
         }
         else {
-            console.log ("No Local Storage")
+            console.log("No Local Storage")
         }
     }
 });

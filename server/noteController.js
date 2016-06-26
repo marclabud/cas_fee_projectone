@@ -1,4 +1,5 @@
 var store = require("./../server/noteStore.js");
+var system = require("./../node_modules/systemjs/dist/system.js");
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -60,7 +61,7 @@ module.exports.updateNote = function (req, res) {
 };
 
 function mapBodyToNote(req) {
-    var note = require("../noteservice/Note.js");
+    var note = system.import("../noteservice/Note.js");
     note._id = req.body.id;
     note.id = Number(req.body.id);
     note.title = req.body.title;

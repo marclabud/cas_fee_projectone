@@ -19,13 +19,27 @@
     <!-- application resources -->
     <link rel="stylesheet" type="text/css" href="../app/scss/style.css">
     <script src="https://jspm.io/system@0.19.js"></script>
-    <script src="../app/App.js"></script>
-    <script src="../shared/StyleController.js"></script>
-    <script src="../noteservice/Note.js"></script>
-    <script src="../noteservice/NoteStorageService.js"></script>
-    <script src="../noteservice/LocalNoteStorageService.js"></script>
-    <script src="../noteservice/ServerNoteStorageService.js"></script>
-    <script src="NoteDetail.js"></script>
+
+    <!-- system.js  -->
+    <script src="../node_modules/typescript/lib/typescript.js"></script>
+    <script src="../node_modules/systemjs/dist/system.js"></script>
+    <script>
+        System.config({
+             map: {
+                traceur: './node_modules/typescript/lib/typescript.js'
+            },
+            transpiler: 'typescript'
+        });
+
+        // loads relative to the current page URL
+        System.import('../app/App.js');
+        System.import("../shared/StyleController.js");
+        System.import("../noteservice/Note.js");
+        System.import("../noteservice/NoteStorageService.js");
+        System.import("../noteservice/LocalNoteStorageService.js");
+        System.import("../noteservice/ServerNoteStorageService.js");
+        System.import("./NoteDetail.js");
+    </script>
 </head>
 <body class="site">
 <header role="banner">

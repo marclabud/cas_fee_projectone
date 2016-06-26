@@ -53,6 +53,8 @@ When server ist running, start client with index.html
 * [handlebars.js](https://github.com/wycats/handlebars.js/)
 * moment.js
 * moment-timezone-with-data.js
+* system.js
+
 
 ## required devtools
 * sass

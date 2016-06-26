@@ -1,15 +1,16 @@
 'use strict';
+import { INote, Note } from "../noteservice/Note.ts";
 
-const NOTE_LIST = "noteList";
-const NOTE_STYLE = "noteStyle";
-const DATE_FORMAT = "DD/MM/YYYY";
+export const NOTE_LIST = "noteList";
+export const NOTE_STYLE = "noteStyle";
+export const DATE_FORMAT = "DD/MM/YYYY";
 
-enum StorageTyp {
+export enum StorageTyp {
     LocalNoteStorageService,
     ServerNoteStorageService
 }
 
-interface INoteStorageService {
+export interface INoteStorageService {
     noteList:INote[];
     getNote(id:number):INote;
     saveOrUpdateNote(note:INote):boolean;
@@ -20,7 +21,7 @@ interface INoteStorageService {
 }
 
 
-abstract class NoteStorageService {
+export abstract class NoteStorageService {
     protected _noteList:INote[];
 
     constructor() {
@@ -72,7 +73,7 @@ abstract class NoteStorageService {
     }
 }
 
-class DomToNoteMapper {
+export class DomToNoteMapper {
 
     static map():INote {
         let dueDate:string = $("#note-dueDate").val();
@@ -92,7 +93,7 @@ class DomToNoteMapper {
     }
 }
 
-class Utility {
+export class Utility {
     static getURLParameter(name:String):String {
         let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
