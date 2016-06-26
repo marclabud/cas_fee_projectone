@@ -1,6 +1,6 @@
 'use strict';
 import { INote, Note } from "../noteservice/Note.ts";
-import { INoteStorageService, NoteStorageService } from "../noteservice/NoteStorageService.ts";
+import {INoteStorageService, NoteStorageService, Utility} from "../noteservice/NoteStorageService.ts";
 
 /**
  * The ServerNoteStorageService class provides all needed services to
@@ -8,7 +8,7 @@ import { INoteStorageService, NoteStorageService } from "../noteservice/NoteStor
  */
 export class ServerNoteStorageService extends NoteStorageService implements INoteStorageService {
     private _baseUrl:string;
- 
+
     constructor() {
         super();
         this._baseUrl ="http://127.0.0.1:3000/notes/" ;
@@ -59,10 +59,10 @@ export class ServerNoteStorageService extends NoteStorageService implements INot
                 console.log(msg);
             });
         } catch (err) {
-            alert("jquery.post Error" + typeof(err))
+            console.log("jquery.post Error" + typeof(err))
         }
         /* optimistic approach as in localstorage*/
-        alert("Die neue Notiz wurde gespeichert.\n");
+        Utility.log("Die neue Notiz wurde gespeichert");
         return true;
     }
 
@@ -89,9 +89,9 @@ export class ServerNoteStorageService extends NoteStorageService implements INot
                 console.log(msg);
             });
         } catch (err) {
-            alert("jquery.ajax Error" + typeof(err))
+            console.log("jquery.ajax Error" + typeof(err))
         }
-        alert("Die bestehende Notiz wurde geändert.\n");
+        Utility.log("Die bestehende Notiz wurde geändert");
         return true;
     }
     

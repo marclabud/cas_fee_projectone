@@ -63,7 +63,7 @@ export abstract class NoteStorageService {
         });
         return Number(++max);
     }
-
+    
     get noteList():INote[] {
         return this._noteList;
     }
@@ -97,5 +97,9 @@ export class Utility {
     static getURLParameter(name:String):String {
         let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
         return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+
+    static log(message:string):void {
+        $("#log").append("<h5>" + message + "</h5>").delay(7200);
     }
 }

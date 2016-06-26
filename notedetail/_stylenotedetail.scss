@@ -12,7 +12,7 @@
 
 .item {
   display: inline-block;
-  /* background:blue; */
+  /* background:blue;*/
   margin: 10px;
   flex-grow: 1;
   width: calc(100% / 2 - 6 * 10px);
@@ -44,6 +44,12 @@ footer {
 .buttons,
 .input {
   width: 95%;
+}
+
+.log  {
+  margin: 20px;
+  width: 100%;
+  color: green;
 }
 
 form div h4 {
