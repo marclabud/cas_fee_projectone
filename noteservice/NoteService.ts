@@ -14,10 +14,10 @@ export class NoteService {
         switch (SelectedSortCriteria) {
             case SortCriteria.id:
                 noteList.sort(function (a:INote, b:INote):number {
-                    if (a.id > b.id) {
+                    if (a.id < b.id) {
                         return 1;
                     }
-                    else if (a.id < b.id) {
+                    else if (a.id > b.id) {
                         return -1;
                     }
                     else return 0;
@@ -36,10 +36,10 @@ export class NoteService {
                 break;
             case SortCriteria.creationDate:
                 noteList.sort(function (a:INote, b:INote):number {
-                    if (a.dueDate > b.dueDate) {
+                    if (a.dueDate < b.dueDate) {
                         return 1;
                     }
-                    else if (a.dueDate < b.dueDate) {
+                    else if (a.dueDate > b.dueDate) {
                         return -1;
                     }
                     else return 0;
@@ -47,10 +47,10 @@ export class NoteService {
                 break;
             case SortCriteria.importance:
                 noteList.sort(function (a:INote, b:INote):number {
-                    if (a.importance > b.importance) {
+                    if (a.importance < b.importance) {
                         return 1;
                     }
-                    else if (a.importance < b.importance) {
+                    else if (a.importance > b.importance) {
                         return -1;
                     }
                     else return 0;
