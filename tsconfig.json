@@ -6,8 +6,6 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outFile": "SimpleNote.js",
-    "outDir": "/dist",
     "removeComments": false,
     "noImplicitAny": true
   },
