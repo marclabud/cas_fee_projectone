@@ -6,6 +6,8 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "outFile": "SimpleNote.js",
+    "outDir": "/dist",
     "removeComments": false,
     "noImplicitAny": true
   },
@@ -15,7 +17,7 @@
     "shared/StyleController.ts",
     "noteservice/Note.ts",
     "noteservice/LocalNoteStorageService.ts",
-    "noteservice/NoteStorageService.ts",
+    "noteservice/NoteStorageSnpm ervice.ts",
     "noteservice/ServerNoteStorageService.ts",
     "noteservice/NoteService.ts",
     "noteservice/NoteHandlebars.ts",
