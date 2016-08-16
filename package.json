@@ -1,6 +1,6 @@
 {
   "name": "SimpleNote",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "A notepad example for [CAS] Front End Engineering.",
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "handlebars": "^4.0.5",
+    "handlebars": "^4.0.5",
     "method-override": "^2.3.6",
     "moment": "^2.13.0",
     "moment-timezone": "^0.5.4",
@@ -25,7 +26,7 @@
     "systemjs": "^0.19.31"
   },
   "devDependencies": {
-    "typescript": "^1.8.10",
+    "typescript": "^2.1.0-dev.20160816",
     "node-sass": "^3.8.0"
   }
 }
