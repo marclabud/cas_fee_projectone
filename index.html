@@ -27,27 +27,15 @@
     <script src="./noteservice/NoteHandlebars.js"></script>
 
     <!-- system.js  -->
-    <script src="./node_modules/typescript/lib/typescript.js"></script>
     <script src="./node_modules/systemjs/dist/system.js"></script>
+    <!-- appbundle.js is created with tsconfig options target es5 module system-->
+    <script src="app/appbundle.js"></script>
 
     <script>
-        System.config({
-            map: {
-                typescript: './node_modules/typescript/lib/typescript.js'
-            },
-            transpiler: 'typescript'
-        });
+        //"notelist/Notelist" is the module syntax in the appbundle.js
+        System.import("notelist/Notelist");
+    </script>
 
-        // loads relative to the current page URL
-        System.import('./app/App.js');
-        System.import("./shared/StyleController.js");
-        System.import("./noteservice/Note.js");
-        System.import("./noteservice/NoteStorageService.js");
-        System.import("./noteservice/LocalNoteStorageService.js");
-        System.import("./noteservice/ServerNoteStorageService.js");
-        System.import("./noteservice/NoteService.js");
-        System.import("./notelist/Notelist.js");
-     </script>
 </head>
 <body class="site">
 <header role="banner">
