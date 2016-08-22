@@ -33,12 +33,10 @@
     <script>
         System.config({
             map: {
-                traceur: './node_modules/typescript/lib/typescript.js'
+                typescript: './node_modules/typescript/lib/typescript.js'
             },
             transpiler: 'typescript'
         });
-
-        System.import("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js");
 
         // loads relative to the current page URL
         System.import('./app/App.js');
