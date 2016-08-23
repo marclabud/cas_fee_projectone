@@ -1,12 +1,12 @@
 .idea
 node_modules
 typings
-app/scss/*.css
-app/scss/*.map
-notedetail/*.js
-notedetail/*.map
-notelist/*.js
-notelist/*.map
-noteservice/*.js
-noteservice/*.map
+src/app/scss/*.css
+src/app/scss/*.map
+src/notedetail/*.js
+src/notedetail/*.map
+src/notelist/*.js
+src/notelist/*.map
+src/noteservice/*.js
+src/noteservice/*.map
 

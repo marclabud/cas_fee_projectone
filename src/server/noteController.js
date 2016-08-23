@@ -1,5 +1,5 @@
-var store = require("./../server/noteStore.js");
-var system = require("./../node_modules/systemjs/dist/system.js");
+var store = require("./noteStore.js");
+var system = require("../../node_modules/systemjs/dist/system.js");
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -7,7 +7,6 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 module.exports.createNote = function (req, res) {
     var newNote = mapBodyToNote(req);
     console.log("Create Note: " + JSON.stringify(newNote));

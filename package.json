@@ -7,7 +7,7 @@
     "url": "https://github.com/marclabud/cas_fee_projectone.git"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server.js",
     "build-css": "node-sass  app/scss/ -o app/scss/ ",
     "build-js": "tsc -p tsconfig.json",
     "build": "npm run build-js && npm run build-css"

@@ -1,5 +1,5 @@
 'use strict';
-import {INote} from "../noteservice/Note.ts";
+import {INote} from "./Note.ts";
 
 /**
  * Notes Mock Data

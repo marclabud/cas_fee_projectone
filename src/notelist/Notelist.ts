@@ -1,6 +1,6 @@
 'use strict';
 import compile = Handlebars.compile;
-import {App} from "../App/App.ts";
+import {App} from "../app/App.ts";
 import {StyleController, HREF_PREFIX_STYLE} from "../shared/StyleController.ts";
 import {ServerNoteStorageService} from "../noteservice/ServerNoteStorageService.ts";
 import {LocalNoteStorageService} from "../noteservice/LocalNoteStorageService.ts";

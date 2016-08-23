@@ -1,0 +1,316 @@
+/* scss main file for the theme blue
+ * containing:
+ * _layout.scss (partial for layout for static modules Header, Footer, Nav )
+ * the scss-Files of the component
+ * _stylenotelist.scss
+ * _stylenotedetail.scss'
+ */
+/* partial _layout.scss  */
+/* Moved to shared
+ *Basic Layout for
+ * header
+ * nav
+ * body
+ * headings
+ * footer */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0;
+  padding: 0; }
+
+.site {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column; }
+
+header {
+  display: block;
+  width: 100%;
+  background-color: #005291;
+  color: white; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif; }
+
+h1 {
+  font-size: 3.5rem; }
+
+h2 {
+  font-size: 2.813rem; }
+
+h3 {
+  font-size: 2.125rem; }
+
+h4 {
+  font-size: 1.5rem; }
+
+h5 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0; }
+
+p {
+  font-size: 1rem; }
+
+button {
+  cursor: pointer;
+  border-color: #005291;
+  background-color: white;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  color: #005291;
+  margin: 0.25rem; }
+
+button:hover {
+  background-color: #CCDCE9; }
+
+select {
+  cursor: pointer;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-color: #CCDCE9;
+  margin: 0.25rem;
+  background-color: white;
+  color: #005291; }
+
+select:hover {
+  border-color: white;
+  background-color: #CCDCE9; }
+
+nav button {
+  cursor: pointer;
+  border-color: #F75D00;
+  background-color: #F75D00;
+  border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  color: #005291;
+  margin: 0.25rem; }
+
+nav button:hover {
+  background-color: #CCDCE9; }
+
+.notes-ctrl-sorter {
+  display: flex;
+  justify-content: flex-end; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #005291;
+  color: white; }
+
+/* notelist partial */
+/* main content: notelist*/
+/* erste Ebene section  .notes */
+.notes {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap; }
+
+/*zweite Ebene article .note-card */
+.note-card {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 45%;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  width: 45%;
+  border: 0.125rem solid #005291;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem; }
+
+.note-card:hover {
+  background-color: #CCDCE9; }
+
+/* checkbox to finish note dependencies with  title style h5 */
+/* ToDo:Individual checkbox styling */
+.note-finished, .note-unfinished {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  flexbase: 10%;
+  margin: 0.5rem 1.5rem 0.5rem 1.5rem; }
+
+/* title and description */
+.notetext {
+  display: flex;
+  flex-basis: 75%;
+  justify-content: flex-start;
+  flex-direction: column; }
+
+/* Rating */
+.scored-sign::after {
+  content: "\2605";
+  color: gold; }
+
+.unscored-sign::after {
+  content: "\2605";
+  color: #ccc; }
+
+/* Rating-Error */
+.error-sign::after {
+  content: "\2614 ";
+  color: black; }
+
+/* description */
+.accFirstRow {
+  cursor: pointer;
+  margin: 0 0 0 0; }
+
+.accFirstRow::after {
+  content: "\23EC";
+  color: #F75D00;
+  margin: 0 0 0 0; }
+
+.accContent {
+  margin: 0 0 0 0; }
+
+/* Note-Edit Button  */
+.btn-note-edit {
+  flex_basis: 15%;
+  height: 1.5rem;
+  width: 2.5rem;
+  margin: 0.5rem 0 0.5rem 0; }
+
+.btn-note-edit:hover {
+  background-color: #F75D00; }
+
+/* notedetail partial */
+.note-detail {
+  height: 900%;
+  width: 100%;
+  /* border: 1px solid black; */ }
+
+.note-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px; }
+
+.item {
+  display: inline-block;
+  /* background:blue;*/
+  margin: 10px;
+  flex-grow: 1;
+  width: calc(100% / 2 - 6 * 10px); }
+
+.col1 {
+  flex-basis: calc(100% / 10 * 2 - 6 * 10px); }
+
+.col2 {
+  flex-basis: calc(100% / 10 * 8 - 6 * 10px); }
+
+footer {
+  flex-basis: calc(100% / 10 * 3 - 6 * 10px);
+  bottom: 0;
+  position: fixed; }
+
+.footer-right {
+  float: right; }
+
+.git {
+  color: white; }
+
+.description,
+.buttons,
+.input {
+  width: 95%; }
+
+.log {
+  margin: 20px;
+  width: 100%;
+  color: green; }
+
+form div h4 {
+  margin: 0; }
+
+.footer-right {
+  float: right; }
+
+.git {
+  color: white; }
+
+form button {
+  float: right;
+  margin: 5px;
+  padding: 5px;
+  width: 5rem; }
+
+form button:hover,
+form button:focus,
+form button:active {
+  background-color: #F75D00;
+  font-weight: bold; }
+
+textarea:invalid,
+input:invalid {
+  border: 1px solid red; }
+
+textarea:valid,
+input:valid {
+  border: 1px solid green; }
+
+/* rating styles */
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px; }
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px; }
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc; }
+
+.rate:not(:checked) > label:before {
+  content: "\2605"; }
+
+.rate > input:checked ~ label {
+  color: #ffc700; }
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217; }
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08; }
+
+.content {
+  display: -webkit-box;
+  /* OLD: Chrome <=20, iOS <=6,
+                            Safari <=6 */
+  display: -moz-box;
+  /* OLD: Firefox <=21 */
+  display: -ms-flexbox;
+  /* TWEENER: IE 10 */
+  display: -webkit-flex;
+  /* NEW: Chrome 21-28 */
+  display: flex;
+  /* NEW (Spec): Chrome >=29,
+                     Firefox >=22, IE >=11 */ }

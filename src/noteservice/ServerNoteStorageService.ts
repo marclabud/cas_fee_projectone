@@ -1,6 +1,6 @@
 'use strict';
-import { INote, Note } from "../noteservice/Note.ts";
-import {INoteStorageService, NoteStorageService, Utility} from "../noteservice/NoteStorageService.ts";
+import { INote, Note } from "./Note.ts";
+import {INoteStorageService, NoteStorageService, Utility} from "./NoteStorageService.ts";
 
 /**
  * The ServerNoteStorageService class provides all needed services to

@@ -1,5 +1,5 @@
 'use strict';
-import { INote, Note } from "../noteservice/Note.ts";
+import { INote, Note } from "./Note.ts";
 
 export const NOTE_LIST = "noteList";
 export const NOTE_STYLE = "noteStyle";

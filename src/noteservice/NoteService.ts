@@ -1,5 +1,5 @@
 'use strict';
-import { INote, Note } from "../noteservice/Note.ts";
+import { INote, Note } from "./Note.ts";
 import { SortCriteria, FilterCriteria } from "../notelist/Notelist.ts";
 
 /**

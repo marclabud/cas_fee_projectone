@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var notes = require('./../server/noteController.js');
+var notes = require('./noteController.js');
 
 // Returns a list of Notes
 router.get("/notes", notes.showAllNotes);

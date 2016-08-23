@@ -1,5 +1,5 @@
 'use strict';
-import {App} from "../App/App.ts";
+import {App} from "../app/App.ts";
 import {StyleController, HREF_PREFIX_DARKSYTLE} from "../shared/StyleController.ts";
 import {ServerNoteStorageService} from "../noteservice/ServerNoteStorageService.ts";
 import {LocalNoteStorageService} from "../noteservice/LocalNoteStorageService.ts";

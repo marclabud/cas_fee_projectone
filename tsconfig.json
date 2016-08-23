@@ -8,19 +8,19 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "outFile": "app/appbundle.js"
+    "outFile": "src/shared/appbundle.js"
   },
   "files": [
-    "app/App.ts",
-    "shared/StyleController.ts",
-    "noteservice/Note.ts",
-    "noteservice/LocalNoteStorageService.ts",
-    "noteservice/NoteStorageService.ts",
-    "noteservice/ServerNoteStorageService.ts",
-    "noteservice/NoteService.ts",
-    "noteservice/NoteHandlebars.ts",
-    "notelist/Notelist.ts",
-    "notedetail/NoteDetail.ts",
+    "src/app/App.ts",
+    "src/shared/StyleController.ts",
+    "src/noteservice/Note.ts",
+    "src/noteservice/LocalNoteStorageService.ts",
+    "src/noteservice/NoteStorageService.ts",
+    "src/noteservice/ServerNoteStorageService.ts",
+    "src/noteservice/NoteService.ts",
+    "src/noteservice/NoteHandlebars.ts",
+    "src/notelist/Notelist.ts",
+    "src/notedetail/NoteDetail.ts",
     "typings/index.d.ts"
   ],
   "exclude": [
