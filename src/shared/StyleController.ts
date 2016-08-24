@@ -4,8 +4,8 @@ import { NOTE_STYLE } from "../noteservice/NoteStorageService.ts";
 export const PATHSTYLE:string = "app/scss/style.css";
 export const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
 
-export const HREF_PREFIX_STYLE:string = "";
-export const HREF_PREFIX_DARKSYTLE:string = "../";
+export const HREF_PREFIX_CALLER_NOTELIST:string = "";
+export const HREF_PREFIX_CALLER_NOTEDETAIL:string = "../";
 
 /* ENUM StyleSheetTheme */
 export enum StyleSheetTheme {

@@ -1,7 +1,7 @@
 'use strict';
 import compile = Handlebars.compile;
 import {App} from "../app/App.ts";
-import {StyleController, HREF_PREFIX_STYLE} from "../shared/StyleController.ts";
+import {StyleController, HREF_PREFIX_CALLER_NOTELIST} from "../shared/StyleController.ts";
 import {ServerNoteStorageService} from "../noteservice/ServerNoteStorageService.ts";
 import {LocalNoteStorageService} from "../noteservice/LocalNoteStorageService.ts";
 import {INote, Note} from "../noteservice/Note.ts";
@@ -68,7 +68,7 @@ export class NotelistController extends StyleController {
     /* Aktives Filter- und Sortierkriterium über Listboxen
      Default ist das Item, das ausgewählt wurde */
     constructor(private noteservice:NoteService, private noteStorageService:INoteStorageService) {
-        super(HREF_PREFIX_STYLE);
+        super(HREF_PREFIX_CALLER_NOTELIST);
         this.notelist = this.noteStorageService.noteList;
         /* Erstellt Datum ist Default-Sortierung */
         this.noteservice.sortBy(this.notelist, SortCriteria.creationDate);

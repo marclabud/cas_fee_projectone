@@ -1,6 +1,6 @@
 'use strict';
 import {App} from "../app/App.ts";
-import {StyleController, HREF_PREFIX_DARKSYTLE} from "../shared/StyleController.ts";
+import {StyleController, HREF_PREFIX_CALLER_NOTEDETAIL} from "../shared/StyleController.ts";
 import {ServerNoteStorageService} from "../noteservice/ServerNoteStorageService.ts";
 import {LocalNoteStorageService} from "../noteservice/LocalNoteStorageService.ts";
 import {INote} from "../noteservice/Note.ts";
@@ -41,7 +41,7 @@ export class NoteDetailController extends StyleController {
     private note:INote;
 
     constructor(aNoteStorageService:INoteStorageService) {
-        super(HREF_PREFIX_DARKSYTLE);
+        super(HREF_PREFIX_CALLER_NOTEDETAIL);
         this.noteStorageService = aNoteStorageService;
         this.init();
         this.noteDetailView = new NoteDetailView(this.note);
