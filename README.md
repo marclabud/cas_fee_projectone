@@ -48,6 +48,7 @@ When server ist running, start client with index.html
 
 * [typescript](https://github.com/microsoft/typescript.git)
 * [typings](https://github.com/typings/typings.git)
+* [gulp](https://github.com/gulpjs/gulp.git)
 * node-saas (for commandline build)
 * jquery
 * [handlebars.js](https://github.com/wycats/handlebars.js/)
