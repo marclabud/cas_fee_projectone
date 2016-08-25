@@ -2,7 +2,7 @@
 node_modules
 typings
 src/app/scss/*.css
-src/app/scss/*.map
+src/app/scss/maps/*.map
 src/notedetail/*.js
 src/notedetail/*.map
 src/notelist/*.js

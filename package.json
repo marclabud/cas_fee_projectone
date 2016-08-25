@@ -7,7 +7,8 @@
     "url": "https://github.com/marclabud/cas_fee_projectone.git"
   },
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "build": "gulp build"
   },
   "dependencies": {
     "body-parser": "^1.15.1",
