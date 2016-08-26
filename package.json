@@ -23,12 +23,13 @@
     "systemjs": "^0.19.31"
   },
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
     "require-dir": "^0.3.0",
-    "typescript": "^2.1.0"
+    "typescript": "^2.0.0"
   }
 }
