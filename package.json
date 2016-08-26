@@ -29,6 +29,6 @@
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
     "require-dir": "^0.3.0",
-    "typescript": "^2.1.0"
+    "typescript": "^2.0.0"
   }
 }
