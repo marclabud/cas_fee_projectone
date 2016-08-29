@@ -196,7 +196,7 @@ footer {
 
 .site {
   background-color: #ecebe8;
-  background-image: url("image/noise-texture.png"); }
+  background-image: url("../scss/image/noise-texture.png"); }
 
 /* main content: notelist*/
 /* erste Ebene section  .notes */
@@ -355,3 +355,5 @@ input:valid {
 
 form button:active {
   background-color: #00FF00; }
+
+/*# sourceMappingURL=maps/darkstyle.css.map */

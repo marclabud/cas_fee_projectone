@@ -13,6 +13,6 @@ function sass() {
         .pipe(gsass().on('error', gutil.log))
         .pipe(sourcemaps.write('./maps'))
         .on('error', gutil.log)
-        .pipe(gulp.dest('./src/app/scss'));
+        .pipe(gulp.dest('./public/css'));
 }
 sass.description=`SASS-Files Compilation`;

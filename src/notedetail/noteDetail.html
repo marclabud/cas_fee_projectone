@@ -9,13 +9,15 @@
             crossorigin="anonymous">
     </script>
     <!-- Kein Javascsript -->
-    <noscript><a href=NoJavaScript.html>Kein Java Script</a></noscript>
+    <noscript><a href=../NoJavaScript.html>Kein Java Script</a></noscript>
      <!-- calendar resources -->
     <link rel="stylesheet" type="text/css" href="../lib/tcal/css/tcal.css">
     <script src="../lib/tcal/js/tcal.js"></script>
-    <!-- moment resources -->
+    <!-- npm moment, system -->
     <script src="../../node_modules/moment/moment.js"></script>
     <script src="../../node_modules/moment-timezone/builds/moment-timezone-with-data.js"></script>
+    <script src="../../node_modules/systemjs/dist/system.js"></script>
+
     <!-- application resources -->
     <link rel="stylesheet" type="text/css" href="../app/scss/style.css">
 
@@ -23,8 +25,7 @@
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
     </script>
-    <!-- system.js  -->
-    <script src="../../node_modules/systemjs/dist/system.js"></script>
+
     <!-- appbundle.js is created with tsconfig options target es5 module system-->
     <script src="../shared/appbundle.js"></script>
 

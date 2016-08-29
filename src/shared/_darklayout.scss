@@ -26,6 +26,8 @@ body {
   font-family: $Orbitron-font-stack;
   display: flex;
   flex-direction: column;
+    background-color: #ecebe8;
+    background-image: url("image/noise-texture.png");
 }
 
 header {

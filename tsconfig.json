@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "outFile": "src/shared/appbundle.js"
+    "outFile": "public/appbundle.js"
   },
   "files": [
     "src/app/App.ts",
