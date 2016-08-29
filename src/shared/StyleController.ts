@@ -1,8 +1,8 @@
 'use strict';
 import { NOTE_STYLE } from "../noteservice/NoteStorageService.ts";
 
-export const PATHSTYLE:string = "app/scss/style.css";
-export const PATHDARKSTYLE:string = "app/scss/darkstyle.css";
+export const PATHSTYLE:string = "css/style.css";
+export const PATHDARKSTYLE:string = "css/darkstyle.css";
 
 export const HREF_PREFIX_CALLER_NOTELIST:string = "";
 export const HREF_PREFIX_CALLER_NOTEDETAIL:string = "../";

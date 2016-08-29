@@ -130,7 +130,7 @@ export class NotelistController extends StyleController {
     }
 
     private static changeLocation(id:number):void {
-        window.location.replace("notedetail\\notedetail.html?id=" + id);
+        window.location.replace("html\\notedetail.html?id=" + id);
     }
 
     private sort(event:Event):void {
