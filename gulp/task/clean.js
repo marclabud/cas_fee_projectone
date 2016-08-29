@@ -11,6 +11,6 @@ function clean() {
     del.sync(['public/css/*',
          'public/html/*',
          'public/*']);
-    gutil.log('dir public is clean');
+    gutil.log('dir public is cleaned');
 }
-clean.description=`del *.* from build-dir public`;
+clean.description=`del *.* from :build-dir public`;
