@@ -22,7 +22,9 @@ body {
 .site {
   font-family: "Orbitron", sans-serif;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  background-color: #ecebe8;
+  background-image: url("image/noise-texture.png"); }
 
 header {
   display: block;
@@ -193,10 +195,6 @@ footer {
 
 .btn-note-edit:hover {
   background-color: #F75D00; }
-
-.site {
-  background-color: #ecebe8;
-  background-image: url("../scss/image/noise-texture.png"); }
 
 /* main content: notelist*/
 /* erste Ebene section  .notes */
