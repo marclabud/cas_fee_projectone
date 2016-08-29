@@ -2,7 +2,7 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 
-gulp.task('build',['ts', 'sass','html'], build);
+gulp.task('build',['ts', 'sass','html','image'], build);
 
 function build() {
     gutil.log('Build Tasks Done')
