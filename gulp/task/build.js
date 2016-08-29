@@ -7,5 +7,5 @@ gulp.task('build',['ts', 'sass','html','image'], build);
 function build() {
     gutil.log('Build Tasks Done')
 }
-build.description=`Build Stand Release 1.0 tsc und sass`;
-build.flags= {'--dev':`Coming soon`};
+build.description=`Build: Target Dir is public`;
+// build.flags= {'--dev':`Coming soon`};

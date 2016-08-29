@@ -35,6 +35,18 @@ description is shown in gulp -T
 
 gulp-util for logging
 
+## target dir
+Target Dir for frontend build is public.
+
+    public
+      I-css
+         I-image
+      I-html
+    index.html
+    app.js     
+
+start with index.html.
+
 ## tasklist
 - [ ] linter for ts and scss
 - [ ] webpack for js bundling
