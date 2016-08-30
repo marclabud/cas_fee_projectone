@@ -4,21 +4,18 @@ const gutil = require('gulp-util');
 const browserSync = require('browser-sync').create();
 
 
-gulp.task('serve', serve);
+gulp.task('serve',['clean:public','ts','sass','html','image','lib',], serve);
 
 function serve() {
 
     browserSync.init({
         server: {
-            baseDir: ["./public","./"],
-            index: "./public/index.html"
+            baseDir: ["./public"]
         }
     });
-/*    gulp.src('./src/app/scss/!*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(gsass().on('error', gutil.log))
-        .pipe(sourcemaps.write('./maps'))
-        .on('error', gutil.log)
-        .pipe(gulp.dest('./public/css'));*/
+
+    gulp.watch(['src/app/scss/*.scss','src/**/*.scss','!src/lib','!src/server',], ['sass']);
+    gulp.watch(['src/**/*.ts','!src/lib','!src/server',], ['ts']);
+    gulp.watch(['src/index.html','src/**/*.html','!src/lib','!src/server',], ['html']);
 }
-serve.description=`browser-sync init`;
+serve.description=`public-setup, browser-sync and watch init`;
