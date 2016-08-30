@@ -13,10 +13,13 @@
      <!-- lib calendar resources -->
     <link rel="stylesheet" type="text/css" href="../lib/tcal/css/tcal.css">
     <script src="../lib/tcal/js/tcal.js"></script>
-    <!-- npm moment, system -->
+
+    <!-- moment, systemjs wrapped with comment for html-replace-->
+    <!-- build:vendor -->
     <script src="../../node_modules/moment/moment.js"></script>
     <script src="../../node_modules/moment-timezone/builds/moment-timezone-with-data.js"></script>
     <script src="../../node_modules/systemjs/dist/system.js"></script>
+    <!-- endbuild -->
 
     <!-- application resources -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
