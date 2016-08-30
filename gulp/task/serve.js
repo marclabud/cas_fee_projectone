@@ -10,7 +10,8 @@ function serve() {
 
     browserSync.init({
         server: {
-            baseDir: ["./public","./"]
+            baseDir: ["./public","./"],
+            index: "./public/index.html"
         }
     });
 /*    gulp.src('./src/app/scss/!*.scss')
